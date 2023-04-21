@@ -1,0 +1,40 @@
+$gap: 24px;
+
+.home-excursions-container {
+	display: flex;
+	flex-direction: column;
+	
+	label {
+		font-size: 24px;
+		font-weight: bold;
+		margin-bottom: $gap;
+	}
+
+	.excursions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: $gap;
+	
+		.excursion {
+			display: flex;
+			min-height: 250px;
+			width: 100%;
+			box-shadow: rgba(black, 0.24) 0px 3px 8px;
+
+			@media(min-width: 992px) {
+				width: calc((100% - 1 * $gap) / 2);
+			}
+
+			@media(min-width: 1400px) {
+				width: calc((100% - 2 * $gap) / 3);
+			}
+
+			.label {
+				width: 100%;
+				text-align: center;
+				font-weight: bold;
+				padding: 8px 0;
+			}
+		}
+	}
+}

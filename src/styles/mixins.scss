@@ -1,0 +1,19 @@
+@use 'bootstrap/scss/bootstrap' as bootstrap;
+
+@mixin breakpoint($from: null, $to: null) {
+	@if ($from and map-has-key(bootstrap.$grid-breakpoints, $from)) {
+		$fromWidth: map-get(bootstrap.$grid-breakpoints, $from);
+
+		@if ($fromWidth and $to and map-has-key(bootstrap.$grid-breakpoints, $to)) {
+			$toWidth: map-get(bootstrap.$grid-breakpoints, $to);
+
+			@media(min-width: $fromWidth) and (max-width: $toWidth) {
+				@content;
+			}
+		} @else {
+			@media(min-width: $fromWidth) {
+				@content;
+			}
+		}
+	}
+}

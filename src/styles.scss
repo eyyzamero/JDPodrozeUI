@@ -1,3 +1,7 @@
+// @use 'bootstrap/scss/bootstrap';
+@use 'src/styles/variables';
+@use 'src/styles/mixins';
+
 html {
 	height: 100%;
 }
