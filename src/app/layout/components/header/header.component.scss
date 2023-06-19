@@ -2,25 +2,61 @@
 
 .header-container {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	max-height: 100px;
 	padding: 16px;
 	box-shadow: var(--app-black-opacity-2-color) 0px 3px 8px;
 
-	@include mixins.breakpoint(lg) {
-		padding: 16px 64px 16px 16px;
+	.header-top-content {
+		display: none;
+
+		@include mixins.breakpoint(lg) {
+			display: flex;
+			justify-content: flex-end;
+			max-width: 1920px;
+			width: 100%;
+			font-size: 14px;
+		}
+
+		.navigation-container {
+			display: flex;
+			gap: 8px;
+
+			.navigation {
+				display: inline-flex;
+				font-size: 12px;
+				text-decoration: underline;
+				text-underline-position: under;
+				color: black;
+
+				&:hover {
+					color: var(--app-light-orange-color);
+				}
+			}
+		}
+
+		.user-container {
+			.login {
+				font-weight: bold;
+			}
+		}
 	}
 
 	.header-content {
-		display: contents;
+		display: flex;
+		justify-content: space-between;
 		max-width: 1920px;
+		width: 100%;
 
 		.logo-container {
 			display: flex;
+			cursor: pointer;
 
 			img {
-				max-width: 100%;
-				max-height: 100%;
+				display: block;
+				max-width: 200px;
+				object-fit: contain;
 			}
 		}
 
@@ -40,10 +76,20 @@
 				font-weight: bold;
 				color: var(--app-black-color);
 				text-decoration: none;
+				white-space: nowrap;
 	
 				&:hover {
-					color: var(--app-light-blue-color);
+					color: var(--app-light-orange-color);
 				}
+			}
+		}
+
+		app-header-menu {
+			display: none;
+			margin-left: 24px;
+
+			@include mixins.breakpoint(lg) {
+				display: initial;
 			}
 		}
 
@@ -52,6 +98,10 @@
 			flex: 1;
 			align-items: center;
 			justify-content: flex-end;
+
+			@include mixins.breakpoint(lg) {
+				display: none;
+			}
 
 			.menu-btn {
 				width: 32px;

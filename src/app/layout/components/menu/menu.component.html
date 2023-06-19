@@ -1,0 +1,21 @@
+<div class="menu-container">
+	<svg-icon name="close" class="close-btn" (click)="close()"></svg-icon>
+	<section class="logo-container">
+		<img class="logo" src="assets/images/logos/logo_colored.png" alt="JDPodróże">
+	</section>
+	<span class="divider"></span>
+	<section class="navigation-container">
+		<a *ngFor="let tab of tabs" class="navigation" [routerLink]="tab.path" (click)="onNavigation()">
+			<span class="text">{{ tab.name }}</span>
+			<svg-icon name="chevron-right"></svg-icon>
+		</a>
+		<a class="navigation" routerLink="/account/login">
+			<span class="text">Zaloguj się</span>
+			<svg-icon name="chevron-right"></svg-icon>
+		</a>
+		<a class="navigation" routerLink="/account/register">
+			<span class="text">Zarejestruj się</span>
+			<svg-icon name="chevron-right"></svg-icon>
+		</a>
+	</section>
+</div>

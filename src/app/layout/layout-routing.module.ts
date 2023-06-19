@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout.component';
+import { roleGuard } from '../core/guards/role.guard';
+import { RoleType } from '../core/enums';
 
 const routes: Routes = [
 	{
@@ -10,6 +12,15 @@ const routes: Routes = [
 			{
 				path: "",
 				loadChildren: () => import('../modules/home/home.module').then(m => m.HomeModule)
+			},
+			{
+				path: 'about-us',
+				loadChildren: () => import('../modules/about-us/about-us.module').then(m => m.AboutUsModule)
+			},
+			{
+				path: 'admin',
+				loadChildren: () => import('../modules/admin/admin.module').then(m => m.AdminModule),
+				canMatch: [() => roleGuard([RoleType.ADMINISTRATOR])]
 			}
 		]
 	}

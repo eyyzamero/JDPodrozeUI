@@ -1,0 +1,17 @@
+<section *ngIf="item" class="home-excursions-item-container">
+	<div class="card">
+		<img [src]="item.image" [alt]="item.name" class="card-img-top home-excursions-item-image">
+		<div class="card-body home-excursions-item-content">
+			<div class="home-excursions-text-container">
+				<h5 class="card-title">{{ item.name }}</h5>
+				<p class="card-text">{{ item.description }}</p>
+			</div>
+			<div class="home-excursions-actions-container">
+				<h4 class="price">{{ item.priceGross }} PLN / os</h4>
+				<a href="#" class="btn add-to-cart-btn">
+					<svg-icon name="cart" [svgStyle]="{ 'width.px': 16, 'height.px': 16 }" alt="koszyk"></svg-icon>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>

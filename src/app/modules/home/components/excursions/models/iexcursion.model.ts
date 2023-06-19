@@ -1,4 +1,8 @@
 export interface IExcursionModel {
-	id: string;
+	id: number;
 	name: string;
+	description: string;
+	priceGross: number;
+	priceNet: number;
+	image: string;
 }

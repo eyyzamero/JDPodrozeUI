@@ -1,16 +1,27 @@
-// @use 'bootstrap/scss/bootstrap';
 @use 'src/styles/variables';
 @use 'src/styles/mixins';
 
-html {
+html,
+body {
 	height: 100%;
 }
 
-body {
-	overflow-x: hidden;
-	height: 100%;
+.offcanvas {
+	overflow: auto;
+}
 
-	*:focus {
-		outline: none !important;
+.dropdown-menu {
+	&.show {
+		margin-top: -3px !important;
+	}
+
+	.dropdown-item {
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		&:first-child,
+		&:last-child {
+			border-radius: 4px;
+		}
 	}
 }

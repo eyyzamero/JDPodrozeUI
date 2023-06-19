@@ -3,14 +3,22 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeExcursionsComponent } from './components/excursions/home-excursions.component';
+import { HomeCarouselComponent } from './components/carousel/home-carousel.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeExcursionsItemComponent } from './components/excursions/components/item/home-excursions-item.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
 	declarations: [
 		HomeComponent,
-  		HomeExcursionsComponent
+		HomeExcursionsComponent,
+		HomeCarouselComponent,
+  		HomeExcursionsItemComponent
 	],
 	imports: [
 		CommonModule,
+		NgbModule,
+		AngularSvgIconModule,
 		HomeRoutingModule
 	]
 })

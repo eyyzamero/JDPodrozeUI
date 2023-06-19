@@ -1,0 +1,19 @@
+<section class="home-carousel-container">
+	<div class="home-carousel-content">
+		<ngb-carousel #carousel class="home-carousel" [interval]="5000" [keyboard]="true" [pauseOnHover]="true">
+			<ng-template *ngFor="let image of images; let i = index" ngbSlide>
+				<div class="image-wrapper">
+					<img [src]="image.src" class="img-fluid"> 
+				</div>
+				<div class="carousel-caption">
+					<h3>{{ image.title }}</h3>
+					<p>Przykładzik #{{ i + 1 }}</p>
+				</div>
+			</ng-template>
+		</ngb-carousel>
+	</div>
+	<div class="home-carousel-header">
+		<h2>Odkrywaj, zwiedzaj, poznawaj!</h2>
+		<h5>Zapraszamy na nasze wycieczki, które zapewnią ci niesamowite doświadczenia zwiedzania. Kliknij teraz, aby sprawdzić nasze najnowsze oferty</h5>
+	</div>
+</section>

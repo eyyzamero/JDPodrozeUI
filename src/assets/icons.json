@@ -1,0 +1,63 @@
+{
+	"iconImageFiles": [
+		{
+			"iconName": "cart",
+			"iconPath": "/assets/icons/cart.svg"
+		},
+		{
+			"iconName": "chevron-right",
+			"iconPath": "/assets/icons/chevron-right.svg"
+		},
+		{
+			"iconName": "close",
+			"iconPath": "/assets/icons/close.svg"
+		},
+		{
+			"iconName": "email",
+			"iconPath": "/assets/icons/email.svg"
+		},
+		{
+			"iconName": "facebook",
+			"iconPath": "/assets/icons/facebook.svg"
+		},
+		{
+			"iconName": "instagram",
+			"iconPath": "/assets/icons/instagram.svg"
+		},
+		{
+			"iconName": "list",
+			"iconPath": "/assets/icons/list.svg"
+		},
+		{
+			"iconName": "login",
+			"iconPath": "/assets/icons/login.svg"
+		},
+		{
+			"iconName": "logout",
+			"iconPath": "/assets/icons/logout.svg"
+		},
+		{
+			"iconName": "menu",
+			"iconPath": "/assets/icons/menu.svg"
+		},
+		{
+			"iconName": "telephone",
+			"iconPath": "/assets/icons/telephone.svg"
+		},
+		{
+			"iconName": "user-add",
+			"iconPath": "/assets/icons/user-add.svg"
+		},
+		{
+			"iconName": "user",
+			"iconPath": "/assets/icons/user.svg"
+		},
+		{
+			"iconName": "table",
+			"iconPath": "/assets/icons/table.svg"
+		}
+	],
+	"customIcons": [
+
+	]
+}

@@ -1,8 +1,8 @@
 <section class="home-excursions-container">
-	<label>Wycieczki</label>
-	<div class="excursions">
+	<h3>Wycieczki</h3>
+	<div *ngIf="excursions" class="excursions">
 		<article *ngFor="let excursion of excursions" class="excursion">
-			<div class="label">{{ excursion.name }}</div>
+			<app-home-excursions-item [item]="excursion"></app-home-excursions-item>
 		</article>
 	</div>
 </section>

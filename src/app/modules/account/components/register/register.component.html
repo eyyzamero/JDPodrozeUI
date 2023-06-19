@@ -1,0 +1,13 @@
+<div class="account-register-container">
+	<img routerLink="" class="logo" src="assets/images/logos/logo_colored.png" alt="logo">
+	<header>Zarejestruj się</header>
+	<form [formGroup]="form" (ngSubmit)="register()">
+		<input type="text" formControlName="login" placeholder="Login">
+		<input type="password" formControlName="password" placeholder="Hasło">
+		<input type="password" formControlName="confirmPassword" placeholder="Powtórz hasło">
+		<input type="text" formControlName="firstName" placeholder="Imię">
+		<input type="text" formControlName="lastName" placeholder="Nazwisko">
+		<input type="email" formControlName="email" placeholder="Adres email">
+		<button type="submit">ZAREJESTRUJ</button>
+	</form>
+</div>

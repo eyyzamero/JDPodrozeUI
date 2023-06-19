@@ -1,0 +1,84 @@
+@use 'src/styles/mixins' as mixins;
+
+$width: 400px;
+
+.account-login-container,
+.account-register-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	gap: 16px;
+	padding: 24px 0;
+	overflow: hidden;
+
+	@include mixins.breakpoint(sm) {
+		width: auto;
+	}
+
+	.logo {
+		width: 50%;
+		max-width: 200px;
+	}
+
+	header {
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	.error {
+		font-weight: bold;
+		color: red;
+		width: calc(100% - 16px);
+		text-align: center;
+
+		@include mixins.breakpoint(sm) {
+			width: $width;
+		}
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+
+		input,
+		button {
+			padding: 12px;
+			font-size: 14px;
+			font-weight: bold;
+			border-radius: 4px;
+			width: calc(100% - 16px);
+
+			@include mixins.breakpoint(sm) {
+				width: $width;
+			}
+		}
+
+		input {
+			border: 1px solid var(--app-light-gray-color);
+		}
+
+		button {
+			font-weight: bolder;
+			outline: none;
+			border: none;
+			background-color: var(--app-light-orange-color);
+			text-transform: uppercase;
+			color: black;
+
+			.spinner-border {
+				--bs-spinner-width: 16px;
+    			--bs-spinner-height: 16px;
+				--bs-spinner-border-width: 3px;
+			}
+
+			&.disabled {
+				cursor: not-allowed;
+			}
+		}
+	}
+}

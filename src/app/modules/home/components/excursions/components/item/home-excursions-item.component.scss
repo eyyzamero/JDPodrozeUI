@@ -1,0 +1,74 @@
+.home-excursions-item-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	
+	.home-excursions-item-image-container {
+		padding: 16px;
+
+		.home-excursions-item-image {
+			aspect-ratio: 16 / 9;
+			max-height: 250px;
+			width: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+
+	.home-excursions-item-content {
+		padding: 0 16px 16px 16px;
+
+		h3 {
+			font-weight: bold;
+		}
+
+		h5 {
+			font-weight: normal;
+			margin: 0;
+		}
+	}
+}
+
+.card {
+	--bs-card-height: 100%;
+
+	.card-body {
+		display: flex;
+		flex-direction: column;
+		padding-top: 16px;
+		
+		.home-excursions-text-container {
+			flex: 1;
+
+			.card-title {
+				font-weight: bold;
+			}
+		}
+
+		.home-excursions-actions-container {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			padding-top: 16px;
+			gap: 8px;
+
+			h4 {
+				font-weight: bold;
+				margin: 0;
+			}
+
+			.add-to-cart-btn {
+				background-color: var(--app-light-orange-color);
+				line-height: 1;
+			}
+		}
+	}
+}
+
+.home-excursions-item-image {
+	aspect-ratio: 16 / 9;
+	max-height: 250px;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+}
