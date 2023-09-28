@@ -12,15 +12,15 @@
 		</a>
 	</li>
 	<li *ngIf="auth" class="header-menu-option">
-		<a href="#" class="header-menu-option-link" (click)="logout($event)">
-			<svg-icon name="logout" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
-			<span>Wyloguj się</span>
+		<a routerLink="/admin" class="header-menu-option-link" (click)="onOptionClick()">
+			<svg-icon name="table" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
+			<span>Panel administracyjny</span>
 		</a>
 	</li>
 	<li *ngIf="auth" class="header-menu-option">
-		<a routerLink="/admin" class="header-menu-option-link">
-			<svg-icon name="table" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
-			<span>Panel administracyjny</span>
+		<a href="#" class="header-menu-option-link" (click)="logout($event)">
+			<svg-icon name="logout" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
+			<span>Wyloguj się</span>
 		</a>
 	</li>
 </ul>

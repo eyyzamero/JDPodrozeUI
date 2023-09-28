@@ -1,0 +1,81 @@
+.admin-excursions-form-images-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+
+	input {
+		display: none;
+	}
+
+	.image-container {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid black;
+		cursor: pointer;
+		min-width: 178px;
+		min-height: 108px;
+		padding: 8px;
+
+		&:hover {
+			border-color: var(--app-light-orange-color);
+			color: var(--app-light-orange-color);
+
+			.image-delete {
+				display: initial;
+			}
+		}
+
+		&.draggable {
+			cursor: move;
+			user-select: none;
+		}
+
+		.image {
+			max-width: 160px;
+			max-height: 90px;
+		}
+
+		.icon-container {
+			display: flex;
+			width: 100%;
+			height: 100%;
+			align-items: center;
+			justify-content: center;
+
+			.icon {
+				display: inline-flex;
+				width: 36px;
+				height: 36px;
+
+				svg {
+					vertical-align: top;
+					width: 36px;
+					height: 36px;
+				}
+			}
+		}
+
+		.image-delete {
+			display: none;
+			position: absolute;
+			top: 8px;
+			right: 8px;
+			color: red;
+			cursor: pointer;
+
+			.icon-container {
+				.icon {
+					width: 16px;
+					height: 16px;
+	
+					svg {
+						width: 16px;
+						height: 16px;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,46 @@
+.admin-orders-excursion-order-participant-container {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+
+	.icon-container {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		align-items: center;
+
+		.icon {
+			display: inline-flex;
+			width: 16px;
+			height: 16px;
+			cursor: pointer;
+
+			svg {
+				vertical-align: top;
+				width: 16px;
+				height: 16px;
+			}
+		}
+	}
+
+	&.minified {
+		.admin-orders-excursion-order-participant-name,
+		.admin-orders-excursion-order-participant-surname {
+			font-weight: bold;
+		}
+	}
+
+	.admin-orders-excursion-order-participant-discount {
+		font-weight: bold;
+	}
+
+	.admin-orders-excursion-order-participant-name,
+	.admin-orders-excursion-order-participant-surname,
+	.admin-orders-excursion-order-participant-discount,
+	.admin-orders-excursion-order-participant-email,
+	.admin-orders-excursion-order-participant-telephone-number,
+	.admin-orders-excursion-order-participant-birth-date {
+		font-size: 16px;
+	}
+}

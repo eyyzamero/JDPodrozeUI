@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ExcursionsHttpService } from './excursions-http.service';
+import { ExcursionsHttpClientService } from './excursions-http.service';
 
-describe('ExcursionsHttpService', () => {
-	let service: ExcursionsHttpService;
+describe('ExcursionsHttpClientService', () => {
+	let service: ExcursionsHttpClientService;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({});
-		service = TestBed.inject(ExcursionsHttpService);
+		service = TestBed.inject(ExcursionsHttpClientService);
 	});
 
 	it('should be created', () => {

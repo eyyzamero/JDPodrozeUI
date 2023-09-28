@@ -4,7 +4,9 @@
 			<img src="assets/images/logos/logo_colored.png" alt="logo" (click)="redirectToHomePage()">
 		</div>
 		<div class="navigation-container">
-			<a *ngFor="let tab of tabs" class="navigation" [routerLink]="tab.path">{{ tab.name }}</a>
+			<a *ngFor="let tab of tabs" class="navigation" [ngClass]="{ 'disabled': tab.disabled }" [routerLink]="tab.disabled ? '.' :  tab.path">
+				<span>{{ tab.name }}</span>
+			</a>
 		</div>
 		<app-header-menu></app-header-menu>
 		<div class="action-buttons-container">

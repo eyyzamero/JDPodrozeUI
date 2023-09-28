@@ -1,0 +1,103 @@
+.admin-orders-excursion-order-container {
+	.icon-container {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		align-items: center;
+
+		.icon {
+			display: inline-flex;
+			width: 16px;
+			height: 16px;
+			cursor: pointer;
+
+			svg {
+				vertical-align: top;
+				width: 16px;
+				height: 16px;
+			}
+		}
+	}
+
+	.admin-orders-excursion-order-collapse-trigger {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		width: 100%;
+		cursor: pointer;
+
+		&:hover {
+			.admin-orders-excursion-order-colapse-text {
+				color: var(--app-orange-color);
+			}
+		}
+
+		.admin-orders-excursion-order-collapse-text-container {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+
+			.admin-orders-excursion-order-colapse-text {
+				font-size: 16px;
+			}
+		}
+
+		.admin-orders-excursion-order-collapse-actions-container {
+			.admin-orders-excursion-order-collapse-btn {
+				transition: transform 0.5s ease;
+				transform: rotate(90deg);
+
+				&.opened {
+					transform: rotate(270deg);
+				}
+			}
+		}
+	}
+
+	.admin-orders-excursion-order-collapse-content {
+		padding: 8px 0 0 28px;
+
+		.admin-orders-excursion-order-collapse-list {
+			display: flex;
+			flex-direction: column;
+
+			.admin-orders-excursion-order-collapse-content-label,
+			.admin-orders-excursion-order-collapse-content-value {
+				font-size: 16px;
+			}
+
+			.admin-orders-excursion-order-collapse-content-label {
+				font-weight: bold;
+				margin-right: 4px;
+			}
+
+			app-admin-orders-excursion-order-participant {
+				display: block;
+				margin-left: 12px;
+			}
+
+			.admin-orders-excursion-order-action-buttons-container {
+				display: flex;
+				flex-wrap: wrap;
+				margin-top: 12px;
+
+				.admin-orders-excursion-order-change-status-btn {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					position: relative;
+					background-color: var(--app-light-orange-color);
+					color: black;
+					font-weight: bold;
+					width: 250px;
+					min-height: 38px;
+
+					app-loading-spinner {
+						width: 21px;
+						height: 21px;
+					}
+				}
+			}
+		}
+	}
+}

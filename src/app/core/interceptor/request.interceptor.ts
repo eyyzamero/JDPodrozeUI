@@ -15,7 +15,7 @@ export class RequestInterceptor implements HttpInterceptor {
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		request = request.clone({
 			setHeaders: {
-				'Authorization': `${this._authDataService.currentValue.data?.Token}`
+				'Authorization': `Bearer ${this._authDataService.currentValue.data?.Token}`
 			}
 		});
 

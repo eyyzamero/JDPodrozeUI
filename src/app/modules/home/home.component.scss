@@ -3,7 +3,6 @@
 	grid-auto-flow: row;
 	place-items: center;
 	gap: 32px;
-	padding-bottom: 32px;
 
 	.home-carousel-container,
 	.home-content {
@@ -13,10 +12,15 @@
 	.home-carousel-container {
 		display: grid;
 		place-items: center;
-		background-color: var(--app-light-blue-color2);
+		background-color: var(--app-light-orange-opacity-5-color);
 	}
 
 	.home-content {
 		max-width: 1920px;
+	}
+
+	app-home-newsletter {
+		display: block;
+		width: 100%;
 	}
 }

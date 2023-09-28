@@ -1,15 +1,18 @@
 <div class="account-login-container">
-	<img routerLink="" class="logo" src="assets/images/logos/logo_colored.png" alt="logo">
+	<img class="logo" src="assets/images/logos/logo_colored.png" alt="logo" (click)="navigateToHomePage()">
 	<header>Zaloguj się</header>
 	<span *ngIf="invalidCredentialsError" class="error">Nieprawidłowe dane logowania</span>
 	<form [formGroup]="form" (ngSubmit)="tryToLogin()">
 		<input type="text" formControlName="login" placeholder="Login">
 		<input type="password" formControlName="password" placeholder="Hasło">
-		<button type="submit" class="login-btn" [ngClass]="{ 'disabled': loadingState === LoadingState.LOADING }">
+		<button type="submit" [ngClass]="{ 'disabled': loadingState === LoadingState.LOADING }">
 			<div *ngIf="loadingState === LoadingState.LOADING; else btnText" class="spinner-border" role="status"></div>
 			<ng-template #btnText>
 				<span>Zaloguj</span>
 			</ng-template>
+		</button>
+		<button type="button" class="home-btn" (click)="navigateToHomePage()">
+			<span>Powrót do strony głównej</span>
 		</button>
 	</form>
 </div>

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { IAuthModel } from 'src/app/core/models';
 import { AuthJsonWebTokenLocalStorageDataService } from 'src/app/core/services/data/auth/jwt-local-storage/auth-json-web-token-local-storage-data.service';
 
@@ -14,6 +15,7 @@ export class HeaderMenuOptionsComponent {
 	@Output() closeMenu: EventEmitter<void> = new EventEmitter<void>();
 
 	constructor(
+		private _router: Router,
 		private _authJsonWebTokenLocalStorageDataService: AuthJsonWebTokenLocalStorageDataService
 	) { }
 
@@ -25,5 +27,6 @@ export class HeaderMenuOptionsComponent {
 		event.preventDefault();
 		this.onOptionClick();
 		this._authJsonWebTokenLocalStorageDataService.clear();
+		this._router.navigate(['/']);
 	}
 }

@@ -18,6 +18,14 @@ const routes: Routes = [
 				loadChildren: () => import('../modules/about-us/about-us.module').then(m => m.AboutUsModule)
 			},
 			{
+				path: 'contact',
+				loadChildren: () => import('../modules/contact/contact.module').then(m => m.ContactModule)
+			},
+			{
+				path: 'excursions',
+				loadChildren: () => import('../modules/excursions/excursions.module').then(m => m.ExcursionsModule)
+			},
+			{
 				path: 'admin',
 				loadChildren: () => import('../modules/admin/admin.module').then(m => m.AdminModule),
 				canMatch: [() => roleGuard([RoleType.ADMINISTRATOR])]

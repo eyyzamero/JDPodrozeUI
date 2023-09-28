@@ -28,7 +28,8 @@
 			font-weight: bold;
 		}
 
-		h5 {
+		span {
+			font-size: 20px;
 			font-weight: normal;
 		}
 	}
@@ -55,6 +56,17 @@
 			@include mixins.breakpoint(xxl) {
 				width: 800px;
 			}
+
+			&.loading {
+				.image-wrapper {
+					app-loading-spinner {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+					}
+				}
+			}
 	
 			.image-wrapper {
 				position: relative;
@@ -67,6 +79,16 @@
 					left: 0;
 					bottom: 0;
 					right: 0;
+				}
+			}
+
+			.carousel-caption {
+				p {
+					display: none;
+					
+					@include mixins.breakpoint(lg) {
+						display: initial;
+					} 
 				}
 			}
 		}

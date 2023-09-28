@@ -27,7 +27,8 @@
 						"inlineStyleLanguage": "scss",
 						"assets": [
 							"src/favicon.ico",
-							"src/assets"
+							"src/assets",
+							"src/robots.txt"
 						],
 						"styles": [
 							"src/styles.scss"
@@ -39,7 +40,7 @@
 					"configurations": {
 						"production": {
 							"outputHashing": "all",
-							"sourceMap": false,
+							"sourceMap": true,
 							"namedChunks": false,
 							"aot": true,
 							"extractLicenses": true,
@@ -50,6 +51,9 @@
 									"replace": "src/configurations/configuration.ts",
 									"with": "src/configurations/configuration.production.ts"
 								}
+							],
+							"allowedCommonJsDependencies": [
+								"@ckeditor/ckeditor5-build-decoupled-document"
 							]
 						},
 						"development": {
@@ -58,7 +62,10 @@
 							"vendorChunk": true,
 							"extractLicenses": false,
 							"sourceMap": true,
-							"namedChunks": true
+							"namedChunks": true,
+							"allowedCommonJsDependencies": [
+								"@ckeditor/ckeditor5-build-decoupled-document"
+							]
 						}
 					},
 					"defaultConfiguration": "production"

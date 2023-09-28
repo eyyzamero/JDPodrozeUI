@@ -1,0 +1,15 @@
+.toast-container {
+	top: 70px;
+
+	.toast-success {
+		background-color: var(--bs-success);
+		color: white;
+		font-weight: bold;
+	}
+
+	.toast-error {
+		background-color: var(--bs-danger);
+		color: white;
+		font-weight: bold;
+	}
+}

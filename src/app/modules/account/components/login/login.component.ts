@@ -38,10 +38,10 @@ export class LoginComponent extends AccountBase implements OnInit, OnDestroy {
 
 	constructor(
 		authHttpService: AuthHttpService,
-		private _router: Router,
+		router: Router,
 		private _authJsonWebTokenLocalStorageDataService: AuthJsonWebTokenLocalStorageDataService
 	) {
-		super(authHttpService);
+		super(router, authHttpService);
 	}
 
 	ngOnInit(): void {

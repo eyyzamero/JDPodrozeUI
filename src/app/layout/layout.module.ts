@@ -16,8 +16,8 @@ import { HeaderMenuOptionsComponent } from './components/header/components/heade
 		LayoutComponent,
 		HeaderComponent,
 		MenuComponent,
-  HeaderMenuComponent,
-  HeaderMenuOptionsComponent
+		HeaderMenuComponent,
+		HeaderMenuOptionsComponent
 	],
 	imports: [
 		CommonModule,

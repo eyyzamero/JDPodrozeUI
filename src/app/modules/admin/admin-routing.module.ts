@@ -5,7 +5,17 @@ import { AdminComponent } from './admin.component';
 const routes: Routes = [
 	{
 		path: '',
-		component: AdminComponent
+		component: AdminComponent,
+		children: [
+			{
+				path: '',
+				loadChildren: () => import('./components/excursions/admin-excursions.module').then(m => m.ExcursionsModule)
+			},
+			{
+				path: 'orders',
+				loadChildren: () => import('./components/orders/admin-orders.module').then(m => m.AdminOrdersModule)
+			}
+		]
 	}
 ];
 

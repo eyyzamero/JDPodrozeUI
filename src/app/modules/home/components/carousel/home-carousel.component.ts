@@ -1,38 +1,72 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
-import { HomeCarouselModel, IHomeCarouselModel } from './models';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Color } from 'src/app/core/enums';
+import { Subscription } from 'rxjs';
+import { configuration } from 'src/configurations/configuration';
+import { ExcursionsDataService } from 'src/app/modules/excursions/services/data/excursions-data.service';
+import { IExcursionModel } from 'src/app/modules/excursions/models';
 
 @Component({
 	selector: 'app-home-carousel',
 	templateUrl: './home-carousel.component.html',
 	styleUrls: ['./home-carousel.component.scss']
 })
-export class HomeCarouselComponent {
+export class HomeCarouselComponent implements OnInit, OnDestroy {
 
-	@ViewChild('carousel', { static: true }) carouselRef?: NgbCarousel;
+	excursions: IExcursionModel[] = [];
+	isLoading = true;
 
-	images: IHomeCarouselModel[] = [
-		new HomeCarouselModel(1, 'assets/images/carousel/1.jpg', false, '[USA] Alabama kurwa United States Crocodile'),
-		new HomeCarouselModel(2, 'assets/images/carousel/2.jpg', false, '[Węgry] Budapeszt przy wodzie'),
-		new HomeCarouselModel(3, 'assets/images/carousel/3.jpg', false, '[Polska] Sosnowiec')
-	];
-	currentIndex: number = 0;
-	allImagesLoaded: boolean = false;
+	readonly Color = Color;
 
-	constructor() { }
+	private _subscriptions: Subscription[] = [];
 
-	onNext(): void {
-		this.currentIndex = (this.currentIndex + 1) % this.images.length;
+	constructor(
+		private _excursionsDataService: ExcursionsDataService,
+		private _changeDetectorRef: ChangeDetectorRef
+	) { }
+
+	ngOnInit(): void {
+		this._initSubscriptions();
 	}
 
-	onPrevious(): void {
-		this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+	private _initSubscriptions(): void {
+		this._subscriptions.push(
+			this._excursionsDataService.observable.subscribe({
+				next: (value) => {
+					this.isLoading = true;
+					const items = value.data?.filter(x => x.inCarousel);
+					
+					if (items) {
+						this.excursions = items;
+						this._handleImagesLoad();
+					}
+				}
+			})
+		);
 	}
 
-	onImageLoad(item: IHomeCarouselModel) {
-		item.loaded = true;
+	getImage(imageId?: number): string {
+		return imageId ?`${configuration.api}/Excursions/GetImage/${imageId}` : '';
+	}
 
-		if (this.images.every(x => x.loaded))
-			this.allImagesLoaded = true;
+	private _handleImagesLoad(): void {
+		const imageLoadPromises = this.excursions.filter(x => x.imageId !== 0).map((excursion) => this._preloadImage(excursion.imageId));
+
+		Promise.all(imageLoadPromises).then(() => {
+			this.isLoading = false;
+			this._changeDetectorRef.markForCheck();
+		});
+	}
+
+	private _preloadImage(imageId: number): Promise<any> {
+		return new Promise((resolve, reject) => {
+			const img = new Image();
+			img.src = this.getImage(imageId); 
+			img.onload = resolve;
+			img.onerror = (err) => { reject(err); console.log(err)};
+		});
+	}
+
+	ngOnDestroy(): void {
+		this._subscriptions.forEach(x => x.unsubscribe());
 	}
 }

@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { IExcursionModel } from './models';
 import { Subscription } from 'rxjs';
-import { HomeExcursionsDataService } from './services/data/home-excursions-data.service';
-import { HomeExcursionsHttpService } from './services/http/home-excursions-http.service';
+import { LoadingState } from 'src/app/core/enums';
+import { IExcursionModel } from 'src/app/modules/excursions/models';
+import { ExcursionsDataService } from 'src/app/modules/excursions/services/data/excursions-data.service';
 
 @Component({
   selector: 'app-home-excursions',
@@ -12,19 +12,23 @@ import { HomeExcursionsHttpService } from './services/http/home-excursions-http.
 export class HomeExcursionsComponent implements OnInit, OnDestroy {
 
 	excursions?: IExcursionModel[] = undefined;
+	state: LoadingState = LoadingState.LOADING;
+
+	readonly LoadingState = LoadingState;
 
 	private _subscriptions: Subscription[] = [];
 
 	constructor(
-		private _homeExcursionsDataService: HomeExcursionsDataService,
-		private _homeExcursionsHttpService: HomeExcursionsHttpService
+		private _excursionsDataService: ExcursionsDataService
 	) { }	
 
 	ngOnInit(): void {
-		this._homeExcursionsHttpService.getExcursionsListShort();
 		this._subscriptions.push(
-			this._homeExcursionsDataService.observable.subscribe({
-				next: (value) => this.excursions = value.data
+			this._excursionsDataService.observable.subscribe({
+				next: (value) => {
+					this.excursions = value.data;
+					this.state = value.state;
+				}
 			})
 		);
 	}

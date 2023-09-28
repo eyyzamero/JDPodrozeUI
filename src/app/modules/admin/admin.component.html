@@ -1,3 +1,7 @@
-<section class="admin-container">
-	<h3 class="section-title">Wycieczki</h3>
-</section>
+<div class="admin-container flex">
+	<app-admin-menu></app-admin-menu>
+	<div class="admin-content">
+		<router-outlet></router-outlet>	
+	</div>
+	<app-admin-toasts></app-admin-toasts>
+</div>

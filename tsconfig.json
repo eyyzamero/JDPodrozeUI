@@ -28,6 +28,7 @@
 		"esModuleInterop": true,
 		"useDefineForClassFields": false,
 		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true
 	},
 	"angularCompilerOptions": {
 		"enableI18nLegacyMessageIdFormat": false,

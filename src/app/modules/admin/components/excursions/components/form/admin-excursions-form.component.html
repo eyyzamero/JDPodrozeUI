@@ -1,0 +1,51 @@
+<section class="admin-excursions-form-container">
+	<h3 class="section-title">{{ form.controls['id'].value ? 'Edycja wycieczki': 'Nowa wycieczka' }}</h3>
+	<app-loading-spinner *ngIf="state === LoadingState.LOADING; else content"></app-loading-spinner>
+	<ng-template #content>
+		<form class="form" [formGroup]="form" (ngSubmit)="onFormSubmit()">
+			<div class="col-auto">
+				<label for="title" class="form-label">Tytuł</label>
+				<input type="text" formControlName="title" class="form-control" id="title">
+			</div>
+			<div class="col-auto">
+				<label for="title" class="form-label">Krótki opis</label>
+				<input type="text" formControlName="shortDescription" class="form-control" id="title">
+			</div>
+			<div class="col-auto">
+				<label for="title" class="form-label">Opis</label>
+				<app-admin-excursions-form-editor [control]="getFormControl('description')"></app-admin-excursions-form-editor>
+			</div>
+			<div class="col-auto">
+				<label for="title" class="form-label">Zdjęcia</label>
+				<app-admin-excursions-form-images [excursionId]="form.controls['id'].value" [formArray]="images"></app-admin-excursions-form-images>
+			</div>
+			<div class="form-check">
+				<input type="checkbox" formControlName="active" class="form-check-input" id="active">
+				<label class="form-check-label" for="active">Aktywna</label>
+			</div>
+			<div class="form-check">
+				<input type="checkbox" formControlName="inCarousel" class="form-check-input" id="inCarousel">
+				<label class="form-check-label" for="inCarousel">W karuzeli</label>
+			</div>
+			<div class="col-auto date-container">
+				<label class="form-label">Daty</label>
+				<app-admin-excursions-form-dates [dateFromControl]="form.controls['dateFrom']" [dateToControl]="form.controls['dateTo']"></app-admin-excursions-form-dates>
+			</div>
+			<div class="col-auto">
+				<label for="price" class="form-label">Cena</label>
+				<input type="number" formControlName="price" class="form-control" id="price">
+			</div>
+			<div class="form-check">
+				<input type="checkbox" formControlName="discount" class="form-check-input" id="discount">
+				<label class="form-check-label" for="discount">Ulga</label>
+			</div>
+			<div *ngIf="form.controls['discount'].value === true" class="col-auto">
+				<label for="discount-price" class="form-label">Cena ulgowa</label>
+				<input type="number" formControlName="discountPrice" class="form-control" id="discount-price">
+			</div>
+			<button type="submit" class="btn form-submit-btn">
+				<span>Wyślij</span>
+			</button>
+		</form>
+	</ng-template>
+</section>

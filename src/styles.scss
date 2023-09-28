@@ -1,5 +1,7 @@
 @use 'src/styles/variables';
 @use 'src/styles/mixins';
+@use 'src/styles/partials/_toasts';
+@use 'src/styles/partials/_dropdowns';
 
 html,
 body {
@@ -8,20 +10,4 @@ body {
 
 .offcanvas {
 	overflow: auto;
-}
-
-.dropdown-menu {
-	&.show {
-		margin-top: -3px !important;
-	}
-
-	.dropdown-item {
-		overflow: hidden;
-		text-overflow: ellipsis;
-
-		&:first-child,
-		&:last-child {
-			border-radius: 4px;
-		}
-	}
 }

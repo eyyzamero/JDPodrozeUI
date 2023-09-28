@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IExcursionModel } from '../../models';
+import { IExcursionModel } from 'src/app/modules/excursions/models';
+import { configuration } from 'src/configurations/configuration';
 
 @Component({
 	selector: 'app-home-excursions-item',
@@ -8,14 +9,12 @@ import { IExcursionModel } from '../../models';
 })
 export class HomeExcursionsItemComponent {
 
-	@Input() set item(value: IExcursionModel | undefined) {
-		this._item = value;
-	}
-	get item(): IExcursionModel | undefined {
-		return this._item;
-	}
-
-	private _item?: IExcursionModel;
+	@Input() item?: IExcursionModel;
 
 	constructor() { }
+
+	getImage(): string {
+		const imageId = this.item?.imageId;
+		return imageId ? `${configuration.api}/Excursions/GetImage/${this.item!.imageId}` : '';
+	}
 }

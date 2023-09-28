@@ -1,0 +1,86 @@
+<section class="contact-container">
+	<div class="contact-content details">
+		<header>Kontakt</header>
+		<b class="company-name">Jurczyńska Dorota Podróże małe i duże</b>
+		<div class="data-container">
+			<a href="tel:+48663222912" class="data">
+				<span class="icon telephone"></span>
+				<span>
+					<b>Numer kontaktowy:</b>
+					+48 663 222 912
+				</span>
+			</a>
+			<a href="mailto:jdpodroze@gmail.com" class="data">
+				<span class="icon email"></span>
+				<span>
+					<b>Adres E-Mail:</b>
+					jdpodroze@gmail.com
+				</span>
+			</a>
+			<a class="data">
+				<span class="icon bank"></span>
+				<span>
+					<b>Wpłaty za wycieczki:</b>
+					<br>
+					ING Bank Śląski 75 1050 1621 1000 0097 8972 9952
+				</span>
+			</a>
+			<a href="https://facebook.com/jdpodroze" class="data">
+				<span class="icon facebook"></span>
+				<span>
+					<b>Facebook</b>
+				</span>
+			</a>
+			<a href="https://instagram.com/jd_podroze" class="data">
+				<span class="icon instagram"></span>
+				<span>
+					<b>Instagram</b>
+				</span>
+			</a>
+		</div>
+		<div class="info-container">
+			<div class="info transfer">
+				Dokonując wpłaty za wycieczkę przelewem tradycyjnym proszę w tytule przelewu proszę wpisać nazwę wycieczki. Dodatkowo, jeżeli dane osoby dokonującej przelewu różnią się od danych osoby rezerwującej, prosimy o wpisanie w tytule przelewu imienia i nazwiska osoby rezerwującej. Umożliwi to prawidłowe przypisanie płatności.
+			</div>
+			<div class="info cancel">
+				Organizator ma prawo odwołać wycieczkę z powodu niewystarczającej liczby chętnych. Decyzja o odwołaniu wycieczki będzie podejmowana na 7 dni przed planowanym wyjazdem. W przypadku odwołania wycieczki z powodu niewystarczającej liczby chętnych, organizator zobowiązuje się zwrócić uczestnikom pełną kwotę wpłaconą za wycieczkę w ciągu 7 dni od dnia odwołania.
+			</div>
+		</div>
+	</div>
+	<div class="contact-content form">
+		<header>Formularz kontaktowy</header>
+		<form class="contact-form" [formGroup]="form" [ngClass]="{ 'visibility-hidden': success }" (ngSubmit)="submit()">
+			<div class="col-auto">
+				<label for="nameAndSurname" class="form-label">Imię i nazwisko</label>
+				<input type="text" formControlName="nameAndSurname" class="form-control" id="nameAndSurname">
+				<div class="error" *ngIf="form.get('nameAndSurname')!.errors?.['required'] && form.get('nameAndSurname')!['touched']">Pole wymagane</div>
+				<div class="error" *ngIf="form.get('nameAndSurname')!.errors?.['maxlength'] && form.get('nameAndSurname')!['touched']">Maksymalna długość pola: 100 znaków</div>
+			</div>
+			<div class="col-auto">
+				<label for="email" class="form-label">E-Mail</label>
+				<input type="text" formControlName="email" class="form-control" id="email">
+				<div class="error" *ngIf="form.get('email')!.errors?.['required'] && form.get('email')!['touched']">Pole wymagane</div>
+				<div class="error" *ngIf="form.get('email')!.errors?.['email'] && form.get('email')!['touched']">Nieprawidłowy adres E-Mail</div>
+				<div class="error" *ngIf="form.get('email')!.errors?.['maxlength'] && form.get('email')!['touched']">Maksymalna długość pola: 150 znaków</div>
+			</div>
+			<div class="col-auto">
+				<label for="content" class="form-label">Treść wiadomości</label>
+				<textarea formControlName="content" class="form-control" rows="8" id="content"></textarea>
+				<div class="error" *ngIf="form.get('content')!.errors?.['required'] && form.get('content')!['touched']">Pole wymagane</div>
+				<div class="error" *ngIf="form.get('content')!.errors?.['maxlength'] && form.get('content')!['touched']">Maksymalna długość pola: 1024 znaków</div>
+			</div>
+			<button type="submit" class="btn submit-btn" [disabled]="success">
+				<app-loading-spinner *ngIf="loadingState === LoadingState.LOADING; else btnText" [sizePX]="21" [color]="Color.BLACK" [center]="false"></app-loading-spinner>
+				<ng-template #btnText>
+					<span>Wyślij</span>
+				</ng-template>
+			</button>
+		</form>
+		<div *ngIf="success" class="contact-state-container">
+			<span class="icon-container success">
+				<svg-icon name="check-circle-fill" class="icon"></svg-icon>
+			</span>
+			<span class="contact-state-header">Wiadomość pomyślnie wysłana</span>
+		</div>
+	</div>
+</section>

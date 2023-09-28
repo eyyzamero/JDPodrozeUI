@@ -1,0 +1,28 @@
+.admin-orders-container {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 100%;
+
+	.section-title {
+		font-weight: bold;
+		margin: 0;
+	}
+
+	.admin-orders-content {
+		display: flex;
+		flex-direction: column;
+
+		app-admin-orders-excursion {
+			display: block;
+
+			&:nth-of-type(odd) {
+				background-color: var(--app-light-orange-opacity-2-color);
+			}
+
+			&:not(&:last-of-type) {
+				border-bottom: 1px solid var(--app-black-color);
+			}
+		}
+	}
+}

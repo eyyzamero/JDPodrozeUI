@@ -1,8 +1,32 @@
 {
 	"iconImageFiles": [
 		{
+			"iconName": "bank",
+			"iconPath": "/assets/icons/bank.svg"
+		},
+		{
+			"iconName": "basket-fill",
+			"iconPath": "/assets/icons/basket-fill.svg"
+		},
+		{
+			"iconName": "basket",
+			"iconPath": "/assets/icons/basket.svg"
+		},
+		{
+			"iconName": "calendar",
+			"iconPath": "/assets/icons/calendar.svg"
+		},
+		{
 			"iconName": "cart",
 			"iconPath": "/assets/icons/cart.svg"
+		},
+		{
+			"iconName": "check-circle-fill",
+			"iconPath": "/assets/icons/check-circle-fill.svg"
+		},
+		{
+			"iconName": "check",
+			"iconPath": "/assets/icons/check.svg"
 		},
 		{
 			"iconName": "chevron-right",
@@ -13,6 +37,18 @@
 			"iconPath": "/assets/icons/close.svg"
 		},
 		{
+			"iconName": "credit-card",
+			"iconPath": "/assets/icons/credit-card.svg"
+		},
+		{
+			"iconName": "delete",
+			"iconPath": "/assets/icons/delete.svg"
+		},
+		{
+			"iconName": "edit",
+			"iconPath": "/assets/icons/edit.svg"
+		},
+		{
 			"iconName": "email",
 			"iconPath": "/assets/icons/email.svg"
 		},
@@ -21,8 +57,16 @@
 			"iconPath": "/assets/icons/facebook.svg"
 		},
 		{
+			"iconName": "image",
+			"iconPath": "/assets/icons/image.svg"
+		},
+		{
 			"iconName": "instagram",
 			"iconPath": "/assets/icons/instagram.svg"
+		},
+		{
+			"iconName": "list-fill",
+			"iconPath": "/assets/icons/list-fill.svg"
 		},
 		{
 			"iconName": "list",
@@ -55,6 +99,18 @@
 		{
 			"iconName": "table",
 			"iconPath": "/assets/icons/table.svg"
+		},
+		{
+			"iconName": "settings-fill",
+			"iconPath": "/assets/icons/settings-fill.svg"
+		},
+		{
+			"iconName": "plus",
+			"iconPath": "/assets/icons/plus.svg"
+		},
+		{
+			"iconName": "x-circle-fill",
+			"iconPath": "/assets/icons/x-circle-fill.svg"
 		}
 	],
 	"customIcons": [

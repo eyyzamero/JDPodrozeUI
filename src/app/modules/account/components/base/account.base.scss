@@ -70,6 +70,10 @@ $width: 400px;
 			text-transform: uppercase;
 			color: black;
 
+			&.home-btn {
+				background-color: var(--app-light-blue-color2);
+			}
+
 			.spinner-border {
 				--bs-spinner-width: 16px;
     			--bs-spinner-height: 16px;

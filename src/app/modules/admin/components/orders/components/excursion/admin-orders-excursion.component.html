@@ -1,0 +1,28 @@
+<section class="admin-orders-excursion-container">
+	<div class="admin-orders-excursion-colapse-trigger" (click)="collapse.toggle()">
+		<span class="admin-orders-excursion-colapse-icon-container">
+			<span class="icon-container">
+				<svg-icon class="icon" name="image"></svg-icon>
+			</span>
+		</span>
+		<span class="admin-orders-excursion-colapse-text">
+			<span class="admin-orders-excursion-colapse-text-date">{{ excursion.dateFrom && excursion.dateTo ? (excursion.dateFrom | date: 'dd.MM.yyyy') + ' - ' + (excursion.dateTo | date: 'dd.MM.yyyy') : (excursion.dateFrom | date: 'dd.MM.yyyy') }}</span>
+			<span class="admin-orders-excursion-colapse-text-title">{{ excursion.title }}</span>
+		</span>
+		<span class="admin-orders-excursion-collapse-actions-container">
+			<button type="button" class="btn admin-orders-excursion-collapse-btn" [ngClass]="{ 'opened': !isCollapsed }">
+				<span class="icon-container">
+					<svg-icon class="icon" name="chevron-right"></svg-icon>
+				</span>
+			</button>
+		</span>
+	</div>
+	<div class="admin-orders-excursion-collapse-content" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+		<b *ngIf="!excursion.orders.length; else orders" class="admin-orders-excursion-collapse-content-no-orders">Brak zamówień</b>
+		<ng-template #orders>
+			<div class="admin-orders-excursion-collapse-list">
+				<app-admin-orders-excursion-order *ngFor="let order of excursion.orders" [order]="order"></app-admin-orders-excursion-order>
+			</div>
+		</ng-template>
+	</div>
+</section>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { MenuComponent } from '../menu/menu.component';
@@ -6,13 +6,14 @@ import { NavigationService } from 'src/app/core/services/common/navigation/navig
 import { IAuthModel, INavigationTabModel } from 'src/app/core/models';
 import { AuthDataService } from 'src/app/core/services/data/auth/auth-data.service';
 import { Subscription } from 'rxjs';
+import { NavigationTarget } from 'src/app/core/enums';
 
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
 	tabs: INavigationTabModel[] = [];
 	auth?: IAuthModel | null = null;
@@ -28,7 +29,7 @@ export class HeaderComponent implements OnInit {
 
 	ngOnInit(): void {
 		this._initSubscriptions();
-		this.tabs = this._navigationService.items;
+		this.tabs = this._navigationService.items.filter(x => [NavigationTarget.ALL, NavigationTarget.HEADER].includes(x.target));
 	}
 
 	redirectToHomePage(): void {
@@ -45,5 +46,9 @@ export class HeaderComponent implements OnInit {
 				next: (value) => this.auth = value.data
 			})
 		);
+	}
+
+	ngOnDestroy(): void {
+		this._subscriptions.forEach(x => x.unsubscribe());
 	}
 }

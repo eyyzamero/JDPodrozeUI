@@ -1,0 +1,15 @@
+.dropdown-menu {
+	&.show {
+		margin-top: -3px !important;
+	}
+
+	.dropdown-item {
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		&:first-child,
+		&:last-child {
+			border-radius: 4px;
+		}
+	}
+}

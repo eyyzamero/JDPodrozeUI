@@ -4,6 +4,7 @@ import { FooterLogoComponent } from './components/logo/footer-logo.component';
 import { FooterSocialsComponent } from './components/socials/footer-socials.component';
 import { FooterVersionAndCopyrightComponent } from './components/version-and-copyright/footer-version-and-copyright.component';
 import { FooterComponent } from './footer.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	declarations: [
@@ -13,7 +14,8 @@ import { FooterComponent } from './footer.component';
 		FooterComponent
 	],
 	imports: [
-		CommonModule
+		CommonModule,
+		RouterModule
 	],
 	exports: [
 		FooterComponent

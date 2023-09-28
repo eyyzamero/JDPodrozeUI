@@ -1,0 +1,13 @@
+.admin-excursions-form-editor-container {
+	::ng-deep {
+		.ck-toolbar {
+			border-radius: 6px 6px 0 0;
+		}
+
+		.ck-editor__editable_inline {
+			border: 1px solid var(--ck-color-toolbar-border);
+			border-top: 0;
+			border-radius: 0 0 6px 6px;
+		}
+	}
+}

@@ -1,0 +1,54 @@
+.admin-excursions-form-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	.section-title {
+		font-weight: bold;
+		margin: 0;
+	}
+
+	app-loading-spinner {
+		position: relative;
+		width: 100%;
+	}
+
+	.form {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-top: 24px;
+
+		.form-submit-btn {
+			background-color: var(--app-light-orange-color);
+			color: black;
+			font-weight: bold;
+		}
+
+		.form-check {
+			.form-check-input {
+				&:checked {
+					background-color: var(--app-light-orange-color);
+					border-color: var(--app-light-orange-color);
+				}
+				
+				&:focus {
+					border-color: inherit;
+					outline: 0;
+					box-shadow: none;
+					border-color: var(--app-light-orange-color);
+				}
+			}
+		}
+
+		.date-container {
+			display: flex;
+			gap: 16px;
+
+			.form-label {
+				margin: 0;
+				line-height: 38px;
+			}
+		}
+	}
+}

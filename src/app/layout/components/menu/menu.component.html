@@ -5,17 +5,29 @@
 	</section>
 	<span class="divider"></span>
 	<section class="navigation-container">
-		<a *ngFor="let tab of tabs" class="navigation" [routerLink]="tab.path" (click)="onNavigation()">
+		<a *ngFor="let tab of tabs" class="navigation" [ngClass]="{ 'disabled': tab.disabled }" [routerLink]="tab.disabled ? '.' :  tab.path" (click)="onNavigation()">
 			<span class="text">{{ tab.name }}</span>
-			<svg-icon name="chevron-right"></svg-icon>
+			<span class="icon-container">
+				<svg-icon name="chevron-right" class="icon"></svg-icon>
+			</span>
 		</a>
-		<a class="navigation" routerLink="/account/login">
+		<a *ngIf="!auth" class="navigation" routerLink="/account/login" (click)="onNavigation()">
 			<span class="text">Zaloguj się</span>
-			<svg-icon name="chevron-right"></svg-icon>
+			<span class="icon-container">
+				<svg-icon name="chevron-right" class="icon"></svg-icon>
+			</span>
 		</a>
-		<a class="navigation" routerLink="/account/register">
+		<a *ngIf="auth" class="navigation" (click)="logout($event)">
+			<span class="text">Wyloguj się</span>
+			<span class="icon-container">
+				<svg-icon name="chevron-right" class="icon"></svg-icon>
+			</span>
+		</a>
+		<a class="navigation" routerLink="/account/register" (click)="onNavigation()">
 			<span class="text">Zarejestruj się</span>
-			<svg-icon name="chevron-right"></svg-icon>
+			<span class="icon-container">
+				<svg-icon name="chevron-right" class="icon"></svg-icon>
+			</span>
 		</a>
 	</section>
 </div>

@@ -4,11 +4,19 @@
 	min-height: 100%;
 
 	.layout-content {
-		flex: 1;
+		display: grid;
 		width: 100%;
+		min-height: calc(100vh - 80px);
+		overflow-x: hidden;
 
-		.flex {
-			flex: 1;
+		router-outlet {
+			display: none;
+		}
+
+		> *:not(router-outlet) {
+			display: block;
+			width: 100%;
+			overflow-x: hidden;
 		}
 	}
 

@@ -1,0 +1,13 @@
+<section class="admin-orders-excursion-order-participant-container" [ngClass]="{ 'minified': minified }">
+	<span *ngIf="!minified" class="admin-orders-excursion-order-participant-icon">
+		<span class="icon-container">
+			<svg-icon class="icon" name="user"></svg-icon>
+		</span>
+	</span>
+	<span class="admin-orders-excursion-order-participant-name">{{ participant.name }}</span>
+	<span class="admin-orders-excursion-order-participant-surname">{{ participant.surname }}</span>
+	<span *ngIf="participant.discount && !minified" class="admin-orders-excursion-order-participant-discount">ULGA</span>
+	<span *ngIf="participant.email && !minified" class="admin-orders-excursion-order-participant-email">({{ participant.email }})</span>
+	<span *ngIf="participant.telephoneNumber && !minified" class="admin-orders-excursion-order-participant-telephone-number">{{ participant.telephoneNumber }}</span>
+	<span *ngIf="!minified" class="admin-orders-excursion-order-participant-birth-date">{{ participant.birthDate | date: 'dd.MM.yyyy' }}</span>
+</section>

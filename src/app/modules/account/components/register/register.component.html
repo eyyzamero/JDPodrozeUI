@@ -1,5 +1,5 @@
 <div class="account-register-container">
-	<img routerLink="" class="logo" src="assets/images/logos/logo_colored.png" alt="logo">
+	<img class="logo" src="assets/images/logos/logo_colored.png" alt="logo" (click)="navigateToHomePage()">
 	<header>Zarejestruj się</header>
 	<form [formGroup]="form" (ngSubmit)="register()">
 		<input type="text" formControlName="login" placeholder="Login">
@@ -8,6 +8,11 @@
 		<input type="text" formControlName="firstName" placeholder="Imię">
 		<input type="text" formControlName="lastName" placeholder="Nazwisko">
 		<input type="email" formControlName="email" placeholder="Adres email">
-		<button type="submit">ZAREJESTRUJ</button>
+		<button type="submit">
+			<span>Zarejestruj</span>
+		</button>
+		<button type="button" class="home-btn" (click)="navigateToHomePage()">
+			<span>Powrót do strony głównej</span>
+		</button>
 	</form>
 </div>

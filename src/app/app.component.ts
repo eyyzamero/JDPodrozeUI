@@ -24,22 +24,24 @@ export class AppComponent implements OnInit, OnDestroy {
 		private _jsonWebTokenService: JsonWebTokenService
 	) { }
 
-	private _initObservables(): void {
+	private _initSubscriptions(): void {
 		this._subscriptions.push(
 			this._authJsonWebTokenLocalStorageDataService.observable.subscribe({
 				next: (value) => {
 					if (value.data && !this._jsonWebTokenService.hasTokenExpired(value.data)) {
 						const auth = this._authMapperService.jsonWebTokenToIAuthModel(value.data!)
 						this._authDataService.add(auth);
-					} else
+					} else {
 						this._authDataService.clear();
+						this._authJsonWebTokenLocalStorageDataService.clear(false);
+					}
 				}
 			})
 		);
 	}
 
 	ngOnInit(): void {
-		this._initObservables();
+		this._initSubscriptions();
 	}
 
 	ngOnDestroy(): void {

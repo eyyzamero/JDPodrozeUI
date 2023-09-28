@@ -1,0 +1,67 @@
+.admin-orders-excursion-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 8px 12px;
+
+	.icon-container {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		align-items: center;
+
+		.icon {
+			display: inline-flex;
+			width: 16px;
+			height: 16px;
+			cursor: pointer;
+
+			svg {
+				vertical-align: top;
+				width: 16px;
+				height: 16px;
+			}
+		}
+	}
+
+	.admin-orders-excursion-colapse-trigger {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		width: 100%;
+		cursor: pointer;
+
+		.admin-orders-excursion-colapse-text {
+			display: flex;
+			flex: 1;
+			font-size: 16px;
+			flex-wrap: wrap;
+
+			.admin-orders-excursion-colapse-text-date {
+				margin-right: 8px;
+				font-weight: bold;
+			}
+		}
+
+		.admin-orders-excursion-collapse-actions-container {
+			.admin-orders-excursion-collapse-btn {
+				transition: transform 0.5s ease;
+				transform: rotate(90deg);
+
+				&.opened {
+					transform: rotate(270deg);
+				}
+			}
+		}
+	}
+
+	.admin-orders-excursion-collapse-content {
+		padding: 8px 16px 0 28px;
+
+		.admin-orders-excursion-collapse-list {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+	}
+}

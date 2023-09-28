@@ -35,6 +35,24 @@
 			}
 		}
 
+		&.bank {
+			margin: 0;
+			margin-top: 16px;
+			width: 100%;
+
+			@include mixins.breakpoint(sm) {
+				margin-top: 24px;
+			}
+
+			@include mixins.breakpoint(md) {
+				align-items: center;
+			}
+
+			.social {
+				margin: 0 !important;
+			}
+		}
+
 		.social {
 			display: flex;
 			text-decoration: none;
@@ -79,6 +97,10 @@
 
 				&.facebook {
 					mask-image: url("/assets/images/socials/facebook.svg");
+				}
+
+				&.bank {
+					mask-image: url("/assets/icons/bank.svg");
 				}
 			}
 
