@@ -66,6 +66,19 @@
 							"allowedCommonJsDependencies": [
 								"@ckeditor/ckeditor5-build-decoupled-document"
 							]
+						},
+						"development-performance": {
+							"outputHashing": "all",
+							"sourceMap": true,
+							"namedChunks": false,
+							"aot": true,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": true,
+							"optimization": true,
+							"allowedCommonJsDependencies": [
+								"@ckeditor/ckeditor5-build-decoupled-document"
+							]
 						}
 					},
 					"defaultConfiguration": "production"
@@ -78,6 +91,9 @@
 						},
 						"development": {
 							"browserTarget": "jdpodroze-ui:build:development"
+						},
+						"development-performance": {
+							"browserTarget": "jdpodroze-ui:build:development-performance"
 						}
 					},
 					"defaultConfiguration": "development"
