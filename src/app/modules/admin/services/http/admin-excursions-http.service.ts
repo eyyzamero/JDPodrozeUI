@@ -31,6 +31,10 @@ export class AdminExcursionsHttpService {
 		return this._excursionsHttpService.getItem(id);
 	}
 
+	getItemWithImagesObservable(id: number): Observable<IExcursionsGetItemRes> {
+		return this._excursionsHttpService.getItemWithImages(id);
+	}
+
 	addObservable(req: IExcursionsAddReq): Observable<void> {
 		return this._excursionsHttpService.add(req);
 	}

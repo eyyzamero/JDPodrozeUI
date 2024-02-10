@@ -1,23 +1,13 @@
-<div class="excursions-details-images-container">
+<div class="excursions-details-images-container excursion-details">
 	<div class="excursions-details-carousel-container">
-		<ngb-carousel *ngIf="!imagesLoading; else imageLoadingSpinner" #carousel class="carousel" [interval]="5000"
-			[keyboard]="true" [showNavigationIndicators]="false" [pauseOnHover]="true" (slide)="onSlide($event)">
-			<ng-template *ngFor="let image of images; let i = index" ngbSlide [id]="'image-' + i" >
-				<div class="image-wrapper">
-					<img [src]="getImage(image.id)" [alt]="i" class="img-fluid">
-				</div>
-			</ng-template>
-		</ngb-carousel>
-		<ng-template #imageLoadingSpinner>
-			<div class="carousel-loading-spinner-container">
-				<div class="image-wrapper">
-					<app-loading-spinner [sizePX]="96" [center]="false"></app-loading-spinner>
-				</div>
-			</div>
-		</ng-template>
+		<app-excursions-carousel #carousel [items]="carouselItems" [showNavigationIndicators]="false" (onSlide)="onSlide($event)"></app-excursions-carousel>
 	</div>
 	<div class="excursions-details-image-selector-container">
-		<img *ngFor="let image of images; let i = index" [src]="getImage(image.id)" [alt]="i" class="img-fluid image-selectable"
-			[ngClass]="{ 'current': currentlyDisplayedImageIndex === i }" (click)="selectImage(i)">
+		<picture #imageSelector *ngFor="let image of images; let i = index">
+			<source [srcset]="getImage(image.id, ImageExtension.WEBP)" type="image/webp">
+			<source [srcset]="getImage(image.id, ImageExtension.PNG)" type="image/png">
+			<img [src]="getImage(image.id, ImageExtension.PNG)" [alt]="i" class="img-fluid image-selectable"
+				[ngClass]="{ 'current': currentlyDisplayedImageIndex === i }" (click)="selectImage(i)" loading="lazy">
+		</picture>
 	</div>
 </div>

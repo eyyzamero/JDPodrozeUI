@@ -13,6 +13,7 @@ import { ExcursionsEnrollComponent } from './components/enroll/excursions-enroll
 import { NgbDateFormatterService } from 'src/app/core/formatters/ngb-date/ngb-date-formatter.service';
 import { ExcursionsEnrollSuccessComponent } from './components/enroll/components/excursions-enroll-success/excursions-enroll-success.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { ExcursionsCarouselComponent } from './components/common/carousel/excursions-carousel.component';
 
 @NgModule({
 	declarations: [
@@ -30,6 +31,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 		ReactiveFormsModule,
 		NgbModule,
 		AngularSvgIconModule,
+		ExcursionsCarouselComponent,
 		ExcursionsRoutingModule
 	],
 	providers: [

@@ -1,18 +1,23 @@
 @use 'src/styles/mixins' as mixins;
 
+:host {
+	width: 100%;
+}
+
 .home-carousel-container {
-	display: grid;
-	grid-auto-flow: row;
 	padding: 32px;
 	gap: 16px;
 	max-width: 1920px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 	
 	@include mixins.breakpoint(sm) {
-		place-items: center;
+		justify-content: center;
 	}
 	
 	@include mixins.breakpoint(md) {
-		grid-auto-flow: column;
+		flex-direction: row;
 	}
 
 	.home-carousel-header {
@@ -21,7 +26,7 @@
 		align-items: center;
 		justify-content: center;
 		text-align: center;
-		max-width: 1920px;
+		flex: 1;
 
 		h2 {
 			margin-bottom: 32px;
@@ -31,6 +36,12 @@
 		span {
 			font-size: 20px;
 			font-weight: normal;
+
+			a {
+				color: black;
+				text-decoration-color: black;
+				font-weight: bold;
+			}
 		}
 	}
 
@@ -40,13 +51,10 @@
 		
 		.home-carousel {
 			width: 100%;
+			aspect-ratio: 16/9;
 
 			@include mixins.breakpoint(sm) {
-				width: 400px
-			}
-
-			@include mixins.breakpoint(lg) {
-				width: 480px;
+				width: 320px
 			}
 
 			@include mixins.breakpoint(xl) {
@@ -54,7 +62,7 @@
 			}
 
 			@include mixins.breakpoint(xxl) {
-				width: 800px;
+				width: 854px;
 			}
 
 			&.loading {
@@ -71,10 +79,12 @@
 			.image-wrapper {
 				position: relative;
 				height: 0;
-				padding-top: 56%;
+				padding-top: 56.25%;
 	
 				img {
 					position: absolute;
+					width: 100%;
+					height: 100%;
 					top: 0;
 					left: 0;
 					bottom: 0;

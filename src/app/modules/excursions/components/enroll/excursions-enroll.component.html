@@ -7,7 +7,11 @@
 		<div class="excursions-enroll-content">
 			<div class="excursion">
 				<div class="excursion-image-container">
-					<img [src]="excursion.images[0].base64" alt="excursion-image">
+					<picture>
+						<source [srcset]="getImage(excursion.images[0].id, ImageExtension.WEBP)" type="image/webp">
+						<source [srcset]="getImage(excursion.images[0].id, ImageExtension.PNG)" type="image/png">
+						<img [src]="getImage(excursion.images[0].id, ImageExtension.PNG)" alt="excursion-image" fetchpriority="high" loading="eager">
+					</picture>
 				</div>
 				<div class="excursion-container">
 					<span class="excursion-title">{{ excursion.title }}</span>
@@ -38,7 +42,7 @@
 				<form class="booking-person-form" [formGroup]="form">
 					<!-- Imie -->
 					<label for="bookingPersonName" class="form-label">Imię</label>
-					<input id="bookingPersonName" class="form-control" type="text" formControlName="bookingPersonName">
+					<input id="bookingPersonName" class="form-control" type="text" formControlName="bookingPersonName" autocomplete="off">
 					<div class="error" *ngIf="form.get('bookingPersonName')!.errors?.['required'] && form.get('bookingPersonName')!['touched']">
 						Pole wymagane
 					</div>
@@ -48,7 +52,7 @@
 
 					<!-- Nazwisko -->
 					<label for="bookingPersonSurname" class="form-label">Nazwisko</label>
-					<input id="bookingPersonSurname" class="form-control" type="text" formControlName="bookingPersonSurname">
+					<input id="bookingPersonSurname" class="form-control" type="text" formControlName="bookingPersonSurname" autocomplete="off">
 					<div class="error" *ngIf="form.get('bookingPersonSurname')!.errors?.['required'] && form.get('bookingPersonSurname')!['touched']">
 						Pole wymagane
 					</div>
@@ -58,7 +62,7 @@
 
 					<!-- E-mail -->
 					<label for="bookingPersonEmail" class="form-label">E-mail</label>
-					<input id="bookingPersonEmail" class="form-control" type="email" formControlName="bookingPersonEmail">
+					<input id="bookingPersonEmail" class="form-control" type="email" formControlName="bookingPersonEmail" autocomplete="off">
 					<div class="error" *ngIf="form.get('bookingPersonEmail')!.errors?.['required'] && form.get('bookingPersonEmail')!['touched']">
 						Pole wymagane
 					</div>
@@ -71,7 +75,7 @@
 
 					<!-- Telefon -->
 					<label for="bookingPersonTelephone" class="form-label">Telefon kontaktowy</label>
-					<input id="bookingPersonTelephone" class="form-control" type="tel" formControlName="bookingPersonTelephone">
+					<input id="bookingPersonTelephone" class="form-control" type="tel" formControlName="bookingPersonTelephone" autocomplete="off">
 					<div class="error" *ngIf="form.get('bookingPersonTelephone')!.errors?.['required'] && form.get('bookingPersonTelephone')!['touched']">
 						Pole wymagane
 					</div>
@@ -109,7 +113,7 @@
 						<form class="tour-participant-form" [formGroup]="participant">
 							<!-- Imię -->
 							<label [for]="'participant-name' + i" class="form-label">Imię</label>
-							<input [id]="'participant-name' + i" class="form-control" type="text" formControlName="name">
+							<input [id]="'participant-name' + i" class="form-control" type="text" formControlName="name" autocomplete="off">
 							<div class="error" *ngIf="participant.get('name')!.errors?.['required'] && participant.get('name')!['touched']">
 								Pole wymagane
 							</div>
@@ -119,7 +123,7 @@
 
 							<!-- Nazwisko -->
 							<label [for]="'participant-surname' + i" class="form-label">Nazwisko</label>
-							<input [id]="'participant-surname' + i" class="form-control" type="text" formControlName="surname">
+							<input [id]="'participant-surname' + i" class="form-control" type="text" formControlName="surname" autocomplete="off">
 							<div class="error" *ngIf="participant.get('surname')!.errors?.['required'] && participant.get('surname')!['touched']">
 								Pole wymagane
 							</div>

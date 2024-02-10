@@ -4,3 +4,5 @@ export * from './color.enum';
 export * from './navigation-target.enum';
 export * from './payment-method.enum';
 export * from './payment-status.enum';
+export * from './resolution.enum';
+export * from './image-extension.enum';

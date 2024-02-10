@@ -17,6 +17,10 @@ export class ExcursionsHttpClientService {
 		return this._httpClient.get<IExcursionsGetItemRes>(`${configuration.api}/Excursions/GetItem/${id}`);
 	}
 
+	getItemWithImages(id: number): Observable<IExcursionsGetItemRes> {
+		return this._httpClient.get<IExcursionsGetItemRes>(`${configuration.api}/Excursions/GetItemWithImages/${id}`);
+	}
+
 	getList(): Observable<IExcursionsGetListRes> {
 		return this._httpClient.get<IExcursionsGetListRes>(`${configuration.api}/Excursions/GetList`);
 	}

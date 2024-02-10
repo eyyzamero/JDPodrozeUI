@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, first } from 'rxjs';
 import { LoadingState } from 'src/app/core/enums';
 import { ToastsService } from 'src/app/core/services/common/toasts/toasts.service';
 import { AdminExcursionsHttpService } from 'src/app/modules/admin/services/http/admin-excursions-http.service';
@@ -95,8 +95,9 @@ export class AdminExcursionsFormComponent implements OnInit, OnDestroy {
 	}
 
 	private _getData(id: number): void {
-		this._subscriptions.push(
-			this._adminExcursionsHttpService.getItemObservable(id).subscribe({
+			this._adminExcursionsHttpService.getItemWithImagesObservable(id).pipe(
+				first()
+			).subscribe({
 				next: (res) => {
 					setTimeout(() => {
 						this._adminExcursionsMapperService.iExcursionsGetItemResToFormGroup(res, this.form);
@@ -104,7 +105,6 @@ export class AdminExcursionsFormComponent implements OnInit, OnDestroy {
 					});
 				}
 			})
-		);
 	}
 
 	ngOnDestroy(): void {

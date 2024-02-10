@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IExcursionModel } from 'src/app/modules/excursions/models';
+import { ImageExtension, Resolution } from 'src/app/core/enums';
+import { ExcursionModel, IExcursionModel } from 'src/app/modules/excursions/models';
 import { configuration } from 'src/configurations/configuration';
 
 @Component({
@@ -9,12 +10,14 @@ import { configuration } from 'src/configurations/configuration';
 })
 export class HomeExcursionsItemComponent {
 
-	@Input() item?: IExcursionModel;
+	@Input() item: IExcursionModel = new ExcursionModel();
+
+	readonly ImageExtension = ImageExtension;
 
 	constructor() { }
 
-	getImage(): string {
+	getImage(imageExtension: ImageExtension): string {
 		const imageId = this.item?.imageId;
-		return imageId ? `${configuration.api}/Excursions/GetImage/${this.item!.imageId}` : '';
+		return imageId ? `${configuration.api}/Excursions/GetImageNew/${this.item!.imageId}/${Resolution.nHD}/${imageExtension}` : '';
 	}
 }

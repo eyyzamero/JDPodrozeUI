@@ -7,73 +7,44 @@
 	gap: 8px;
 	overflow: hidden;
 	
-	@media(min-width: 992px) {
+	@media(min-width: 768px) {
 		flex-direction: row;
-		max-height: 358.39px;
+		max-height: 270px;
+	}
+
+	@media(min-width: 1200px) {
+		max-height: 360px;
+	}
+
+	@media(min-width: 1400px) {
+		max-height: 480px;
 	}
 
 	.excursions-details-carousel-container {
 		height: 100%;
-
-		.carousel {
-			width: 100%;
-	
-			@include mixins.breakpoint(lg) {
-				width: 640px;
-			}
-	
-			.image-wrapper {
-				position: relative;
-				height: 0;
-				padding-top: 56%;
-	
-				img {
-					position: absolute;
-					top: 0;
-					left: 0;
-					bottom: 0;
-					right: 0;
-				}
-			}
-		}
-	
-		.carousel-loading-spinner-container {
-			width: 100%;
-	
-			.image-wrapper {
-				position: relative;
-				height: 0;
-				padding-top: 56%;
-	
-				app-loading-spinner {
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-				}
-			}
-		}
 	}
 
 	.excursions-details-image-selector-container {
 		display: flex;
 		flex-wrap: nowrap;
-		flex: 1;
+		// flex: 1;
 		gap: 4px;
 		max-height: 100%;
 		overflow-x: auto;
 		overflow-y: hidden;
 		align-content: flex-start;
 
-		@include mixins.breakpoint(lg) {
-			flex-wrap: wrap;
+		@include mixins.breakpoint(md) {
+			flex-direction: column;
+			// flex-wrap: wrap;
 			gap: 8px;
 			overflow-x: hidden;
 			overflow-y: auto;
 		}
 
 		.image-selectable {
-			width: 125px;
+			min-width: 125px;
+			max-width: 125px;
 			height: fit-content;
 			transition: opacity 0.5s ease;
 			opacity: 0.5;
@@ -87,12 +58,14 @@
 				opacity: 1;
 			}
 
-			@include mixins.breakpoint(lg) {
-				width: 100%;
+			@include mixins.breakpoint(xl) {
+				min-width: 200px;
+				max-width: 200px;
 			}
 
-			@include mixins.breakpoint(xl) {
-				width: calc(50% - 4px);
+			@include mixins.breakpoint(xxl) {
+				min-width: 100%;
+				max-width: 100%;
 			}
 		}
 	}

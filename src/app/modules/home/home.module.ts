@@ -11,6 +11,7 @@ import { LoadingSpinnerModule } from '../common/loading-spinner/loading-spinner.
 import { DirectivesModule } from 'src/app/core/directives/directives.module';
 import { HomeNewsletterComponent } from './components/newsletter/home-newsletter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExcursionsCarouselComponent } from '../excursions/components/common/carousel/excursions-carousel.component';
 
 @NgModule({
 	declarations: [
@@ -28,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		DirectivesModule,
 		FormsModule,
 		ReactiveFormsModule,
+		ExcursionsCarouselComponent,
 		HomeRoutingModule
 	]
 })

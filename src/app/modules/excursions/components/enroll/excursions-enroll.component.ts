@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, map } from 'rxjs';
 import { ExcursionsMapperService } from '../../services/mapper/excursions-mapper.service';
-import { Color, LoadingState, PaymentMethod } from 'src/app/core/enums';
+import { Color, ImageExtension, LoadingState, PaymentMethod, Resolution } from 'src/app/core/enums';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbDateFormatterService } from 'src/app/core/formatters/ngb-date/ngb-date-formatter.service';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { ExcursionModel, IExcursionModel } from '../../models';
 import { ExcursionsHttpClientService } from 'src/app/core/services/clients';
+import { configuration } from 'src/configurations/configuration';
 
 @Component({
 	selector: 'app-excursions-enroll',
@@ -42,6 +43,7 @@ export class ExcursionsEnrollComponent implements OnInit {
 	readonly LoadingState = LoadingState;
 	readonly PaymentMethod = PaymentMethod;
 	readonly Color = Color;
+	readonly ImageExtension = ImageExtension;
 
 	private _subscriptions: Subscription[] = [];
 
@@ -164,6 +166,10 @@ export class ExcursionsEnrollComponent implements OnInit {
 				})
 			);
 		}
+	}
+
+	getImage(id: number, imageExtension: ImageExtension): string {
+		return `${configuration.api}/Excursions/GetImageNew/${id}/${Resolution.nHD}/${imageExtension}`;
 	}
 
 	private _getExcursion(id: number): void {

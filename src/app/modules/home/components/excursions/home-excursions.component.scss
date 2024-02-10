@@ -20,28 +20,26 @@ $gap: 36px;
 	}
 
 	.excursions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: $gap;
-		justify-content: center;
+		display: grid;
+		grid-template-columns: 1fr;
 		
-		@media(min-width: 992px) {
-			justify-content: initial;
+		@media(min-width: 768px) {
+			grid-template-columns: 1fr 1fr;
+			gap: calc($gap / 2);
+		}
+		
+		@media(min-width: 1400px) {
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: $gap;
 		}
 	
 		.excursion {
 			display: flex;
-			min-height: 250px;
-			max-width: 640px;
+			max-width: 480px;
 			width: 100%;
 
-			@media(min-width: 992px) {
-				width: calc((100% - 1 * $gap) / 2);
-				max-width: unset;
-			}
-
-			@media(min-width: 1600px) {
-				width: calc((100% - 2 * $gap) / 3);
+			@media(min-width: 768px) {
+				max-width: 640px;
 			}
 
 			.label {

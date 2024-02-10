@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription, map } from 'rxjs';
+import { Subscription, first, map } from 'rxjs';
 import { ExcursionsDetailsMapperService } from './services/mapper/excursions-details-mapper.service';
 import { LoadingState } from 'src/app/core/enums';
 import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
@@ -43,17 +43,15 @@ export class ExcursionsDetailsComponent implements OnInit, OnDestroy {
 
 	private _getData(id: number): void {
 		this.loadingState = LoadingState.LOADING;
-
-		this._subscriptions.push(
-			this._excursionsHttpService.getItem(id).pipe(
-				map(res => this._excursionsDetailsMapperService.iExcursionsGetItemResToIExcursionModel(res))
-			).subscribe({
-				next: (value) => {
-					this.excursion = value;
-					this.loadingState = LoadingState.LOADED;
-				}
-			})
-		);
+		this._excursionsHttpService.getItem(id).pipe(
+			first(),
+			map(res => this._excursionsDetailsMapperService.iExcursionsGetItemResToIExcursionModel(res))
+		).subscribe({
+			next: (value) => {
+				this.excursion = value;
+				this.loadingState = LoadingState.LOADED;
+			}
+		})
 	}
 
 	ngOnDestroy(): void {
