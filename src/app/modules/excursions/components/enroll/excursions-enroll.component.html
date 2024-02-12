@@ -10,7 +10,7 @@
 					<picture>
 						<source [srcset]="getImage(excursion.images[0].id, ImageExtension.WEBP)" type="image/webp">
 						<source [srcset]="getImage(excursion.images[0].id, ImageExtension.PNG)" type="image/png">
-						<img [src]="getImage(excursion.images[0].id, ImageExtension.PNG)" alt="excursion-image" fetchpriority="high" loading="eager">
+						<img [src]="getImage(excursion.images[0].id, ImageExtension.PNG)" alt="excursion-image" fetchpriority="high">
 					</picture>
 				</div>
 				<div class="excursion-container">
@@ -160,11 +160,11 @@
 				<div class="payment-methods-content">
 					<div class="payment-method" [ngClass]="{ 'selected': form.controls['paymentMethod'].value === PaymentMethod.TRADITIONAL_TRANSFER }"
 						(click)="selectPaymentMethod(PaymentMethod.TRADITIONAL_TRANSFER)">
-						<img src="assets/icons/credit-card.svg">
+						<img src="assets/icons/credit-card.svg" alt="traditional-transfer">
 						<span>Przelew tradycyjny</span>
 					</div>
 					<div class="payment-method disabled" [ngClass]="{ 'selected': form.controls['paymentMethod'].value === PaymentMethod.PRZELEWY_24 }">
-						<img src="assets/icons/Przelewy24_logo.svg">
+						<img src="assets/icons/Przelewy24_logo.svg" alt="Przelewy24">
 						<span>Przelewy24 (wkrótce)</span>
 					</div>
 				</div>

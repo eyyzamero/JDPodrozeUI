@@ -13,7 +13,7 @@
 		<input #dpFromDate class="form-control" placeholder="dd-mm-yyyy" name="dpFromDate" id="dateFrom" [value]="formatter.format(dateFromControl.value)"
 			(input)="dateFromControl.setValue(validateInput(dateFromControl.value, dpFromDate.value))"/>
 		<button class="btn btn-outline-secondary" (click)="datepicker.open()" type="button">
-			<img src="assets/icons/calendar.svg" loading="eager">
+			<img src="assets/icons/calendar.svg" alt="calendar">
 		</button>
 	</div>
 	<div class="input-group date">
@@ -21,7 +21,7 @@
 			(input)="dateToControl.setValue(validateInput(dateToControl.value, dpToDate.value))"/>
 		<button class="btn btn-outline-secondary" (click)="datepicker.open()" type="button">
 			<div class="icon-container">
-				<img src="assets/icons/calendar.svg" loading="eager">
+				<img src="assets/icons/calendar.svg" alt="calendar">
 			</div>
 		</button>
 	</div>

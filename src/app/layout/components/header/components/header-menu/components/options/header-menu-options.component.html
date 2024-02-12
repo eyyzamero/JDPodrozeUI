@@ -1,25 +1,25 @@
 <ul class="header-menu-options-container">
 	<li *ngIf="!auth" class="header-menu-option">
 		<a routerLink="/account/login" class="header-menu-option-link" (click)="onOptionClick()">
-			<img src="assets/icons/login.svg" loading="eager">
+			<img src="assets/icons/login.svg" alt="login">
 			<span>Zaloguj się</span>
 		</a>
 	</li>
 	<li *ngIf="!auth" class="header-menu-option">
 		<a routerLink="/account/register" class="header-menu-option-link" (click)="onOptionClick()">
-			<img src="assets/icons/user-add.svg" loading="eager">
+			<img src="assets/icons/user-add.svg" alt="user-add">
 			<span>Zarejestuj się</span>
 		</a>
 	</li>
 	<li *ngIf="auth" class="header-menu-option">
 		<a routerLink="/admin" class="header-menu-option-link" (click)="onOptionClick()">
-			<img src="assets/icons/table.svg" loading="eager">
+			<img src="assets/icons/table.svg" alt="table">
 			<span>Panel administracyjny</span>
 		</a>
 	</li>
 	<li *ngIf="auth" class="header-menu-option">
 		<a href="#" class="header-menu-option-link" (click)="logout($event)">
-			<img src="assets/icons/logout.svg" loading="eager">
+			<img src="assets/icons/logout.svg" alt="logout">
 			<span>Wyloguj się</span>
 		</a>
 	</li>

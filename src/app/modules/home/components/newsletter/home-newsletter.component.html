@@ -24,12 +24,12 @@
 	</div>
 	<div *ngIf="success" class="home-newsletter-content">
 		<div *ngIf="success" class="home-newsletter-state-container">
-			<img src="assets/icons/check-circle-fill.svg" class="success">
+			<img src="assets/icons/check-circle-fill.svg" alt="check-circle-fill" class="success">
 			<span class="home-newsletter-state-header">Zapisałeś/aś się do newslettera</span>
 		</div>
 	</div>
 	<div *ngIf="loadingState === LoadingState.ERROR" class="home-newsletter-content">
-		<img src="assets/icons/x-circle-fill.svg" class="error">
+		<img src="assets/icons/x-circle-fill.svg" alt="x-circle-fill" class="error">
 		<span class="home-newsletter-state-header">Wystąpił błąd</span>
 	</div>
 	<button *ngIf="!success && loadingState !== LoadingState.ERROR" type="button" class="btn home-newsletter-submit-btn" (click)="enroll()">

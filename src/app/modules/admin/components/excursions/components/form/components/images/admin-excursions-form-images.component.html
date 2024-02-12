@@ -2,12 +2,12 @@
 	<input #file type="file" (change)="onFileChange($event)">
 	<div *ngFor="let image of images; let i = index" class="image-container draggable" draggable="true"
 		(dragstart)="onDragStart($event, i)" (dragover)="onDragOver($event)" (drop)="onDrop($event, i)">
-		<img class="image" [src]="image.base64">
+		<img class="image" alt="image" [src]="image.base64">
 		<span class="image-delete" (click)="onDelete(image)">
-			<img src="assets/icons/delete.svg" loading="eager">
+			<img src="assets/icons/delete.svg" alt="delete">
 		</span>
 	</div>
 	<div class="image-container add" (click)="file.click()">
-		<img src="assets/icons/plus.svg" loading="eager">
+		<img src="assets/icons/plus.svg" alt="image">
 	</div>
 </section>
