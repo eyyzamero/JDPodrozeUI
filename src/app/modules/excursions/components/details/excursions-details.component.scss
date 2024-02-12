@@ -3,11 +3,16 @@
 .excursions-details-container {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	width: 100vw;
 	height: 100%;
-	padding: 32px;
+	padding: 16px;
 	max-width: 1200px;
 	margin: 0 auto;
+	overflow: hidden;
+
+	@include mixins.breakpoint(sm) {
+		padding: 32px;
+	}
 
 	.excursions-details-content {
 		position: relative;

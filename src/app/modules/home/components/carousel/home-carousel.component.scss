@@ -52,6 +52,15 @@
 		max-width: 1920px;
 		justify-content: center;
 
+		app-excursions-carousel {
+			display: block;
+			width: calc(100vw - 64px);
+
+			@include mixins.breakpoint(sm) {
+				width: auto;
+			}
+		}
+
 		@include mixins.breakpoint(md) {
 			justify-content: flex-start;
 		}

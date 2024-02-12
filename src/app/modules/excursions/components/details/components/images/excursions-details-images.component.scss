@@ -22,6 +22,15 @@
 
 	.excursions-details-carousel-container {
 		height: 100%;
+
+		app-excursions-carousel {
+			display: block;
+			width: calc(100vw - 32px);
+
+			@include mixins.breakpoint(sm) {
+				width: auto;
+			}
+		}
 	}
 
 	.excursions-details-image-selector-container {

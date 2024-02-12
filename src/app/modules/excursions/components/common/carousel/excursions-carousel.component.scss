@@ -2,6 +2,7 @@
 
 .excursions-carousel-container {
 	position: relative;
+	width: 100%;
 
 	.excursions-carousel {
 		width: 100%;
@@ -65,25 +66,5 @@
 		--bs-spinner-height: 64px;
 		--bs-spinner-border-width: 8px;
 		color: black;
-	}
-}
-
-:host-context(.excursions-details) {
-	.excursions-carousel-container {
-		.excursions-carousel {
-			width: 100% !important;
-
-			@include mixins.breakpoint(lg) {
-				width: 640px !important;
-			}
-		}
-	}
-}
-
-:host-context(.home) {
-	.exucrsions-carousel-container {
-		.excursions-carousel {
-			width: calc(100vw - 64px);
-		}
 	}
 }
