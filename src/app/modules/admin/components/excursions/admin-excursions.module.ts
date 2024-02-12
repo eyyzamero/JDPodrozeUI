@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ExcursionsRoutingModule } from './admin-excursions-routing.module';
 import { AdminExcursionsTableComponent } from './components/table/admin-excursions-table.component';
 import { AdminExcursionsComponent } from './admin-excursions.component';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { LoadingSpinnerModule } from 'src/app/modules/common/loading-spinner/loading-spinner.module';
 import { AdminExcursionsFormComponent } from './components/form/admin-excursions-form.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
@@ -26,7 +25,6 @@ import { AdminExcursionsFormEditorComponent } from './components/form/components
 	],
 	imports: [
 		CommonModule,
-		AngularSvgIconModule,
 		LoadingSpinnerModule,
 		CKEditorModule,
 		NgbModule,

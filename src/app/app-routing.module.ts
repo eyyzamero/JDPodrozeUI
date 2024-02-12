@@ -9,8 +9,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'account',
-		loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule),
-		data: { preload: true }
+		loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule)
 	},
 	{
 		path: '**',

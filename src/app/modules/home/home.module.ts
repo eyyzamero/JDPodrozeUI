@@ -6,7 +6,6 @@ import { HomeExcursionsComponent } from './components/excursions/home-excursions
 import { HomeCarouselComponent } from './components/carousel/home-carousel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeExcursionsItemComponent } from './components/excursions/components/item/home-excursions-item.component';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { LoadingSpinnerModule } from '../common/loading-spinner/loading-spinner.module';
 import { DirectivesModule } from 'src/app/core/directives/directives.module';
 import { HomeNewsletterComponent } from './components/newsletter/home-newsletter.component';
@@ -24,7 +23,6 @@ import { ExcursionsCarouselComponent } from '../excursions/components/common/car
 	imports: [
 		CommonModule,
 		NgbModule,
-		AngularSvgIconModule,
 		LoadingSpinnerModule,
 		DirectivesModule,
 		FormsModule,

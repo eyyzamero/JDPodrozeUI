@@ -26,7 +26,7 @@ export class ExcursionsCarouselComponent {
 
 	@Output() onSlide: EventEmitter<NgbSlideEvent> = new EventEmitter<NgbSlideEvent>();
 
-	isLoading: boolean = true;
+	// isLoading: boolean = true;
 
 	readonly Color = Color;
 	readonly Resolution = Resolution;
@@ -38,12 +38,12 @@ export class ExcursionsCarouselComponent {
 		return `${configuration.api}/Excursions/GetImageNew/${imageId}/${resolution}/${extension}`;
 	}
 
-	onImageLoad(index: number): void {
-		this.items[index].loaded = true;
+	// onImageLoad(index: number): void {
+	// 	this.items[index].loaded = true;
 
-		if (this.isLoading)
-			this._checkFirstImageLoaded();
-	}
+	// 	if (this.isLoading)
+	// 		this._checkFirstImageLoaded();
+	// }
 
 	selectImage(index: number): void {
 		this.carouselRef.select(`image-${index}`);
@@ -51,8 +51,8 @@ export class ExcursionsCarouselComponent {
 		this.carouselRef.cycle();
 	}
 
-	private _checkFirstImageLoaded(): void {
-		if (this.items.at(0)?.loaded)
-			this.isLoading = false;
-	}
+	// private _checkFirstImageLoaded(): void {
+	// 	if (this.items.at(0)?.loaded)
+	// 		this.isLoading = false;
+	// }
 }

@@ -12,7 +12,6 @@ import { ExcursionsDetailsImagesComponent } from './components/details/component
 import { ExcursionsEnrollComponent } from './components/enroll/excursions-enroll.component';
 import { NgbDateFormatterService } from 'src/app/core/formatters/ngb-date/ngb-date-formatter.service';
 import { ExcursionsEnrollSuccessComponent } from './components/enroll/components/excursions-enroll-success/excursions-enroll-success.component';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ExcursionsCarouselComponent } from './components/common/carousel/excursions-carousel.component';
 
 @NgModule({
@@ -30,7 +29,6 @@ import { ExcursionsCarouselComponent } from './components/common/carousel/excurs
 		FormsModule,
 		ReactiveFormsModule,
 		NgbModule,
-		AngularSvgIconModule,
 		ExcursionsCarouselComponent,
 		ExcursionsRoutingModule
 	],
