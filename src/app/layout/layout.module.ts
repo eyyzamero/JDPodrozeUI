@@ -6,10 +6,11 @@ import { FooterModule } from './components/footer/footer.module';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HeaderMenuComponent } from './components/header/components/header-menu/header-menu.component';
-import { HeaderMenuOptionsComponent } from './components/header/components/header-menu/components/header-menu-options/header-menu-options.component';
+import { HeaderMenuOptionsComponent } from './components/header/components/header-menu/components/options/header-menu-options.component';
+import { MenuChevronComponent } from './components/menu/components/chevron/menu-chevron.component';
 
 @NgModule({
 	declarations: [
@@ -17,12 +18,13 @@ import { HeaderMenuOptionsComponent } from './components/header/components/heade
 		HeaderComponent,
 		MenuComponent,
 		HeaderMenuComponent,
-		HeaderMenuOptionsComponent
+		HeaderMenuOptionsComponent,
+		MenuChevronComponent
 	],
 	imports: [
 		CommonModule,
 		FooterModule,
-		NgbModule,
+		NgbDropdownModule,
 		AngularSvgIconModule,
 		LayoutRoutingModule
 	]

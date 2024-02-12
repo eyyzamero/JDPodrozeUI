@@ -15,4 +15,10 @@
 	--app-blur-color: rgba(255, 255, 255, 0.7);
 	--app-light-black-color: #444444;
 
+	--app-black-color-filter: invert(0%) sepia(90%) saturate(7500%) hue-rotate(59deg) brightness(105%) contrast(111%);
+	--app-light-orange-color-filter: invert(82%) sepia(39%) saturate(2480%) hue-rotate(336deg) brightness(105%) contrast(100%);
+	--app-red-color-filter: invert(10%) sepia(98%) saturate(7490%) hue-rotate(5deg) brightness(103%) contrast(110%);
+	--app-green-color-filter: invert(23%) sepia(97%) saturate(2088%) hue-rotate(100deg) brightness(96%) contrast(104%);
+	--app-success-color-filter: invert(41%) sepia(90%) saturate(354%) hue-rotate(100deg) brightness(87%) contrast(97%);
+	--app-danger-color-filter: invert(35%) sepia(53%) saturate(5543%) hue-rotate(336deg) brightness(90%) contrast(91%);
 }

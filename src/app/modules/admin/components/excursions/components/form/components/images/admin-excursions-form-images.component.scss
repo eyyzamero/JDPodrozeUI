@@ -14,13 +14,18 @@
 		justify-content: center;
 		border: 1px solid black;
 		cursor: pointer;
-		min-width: 178px;
-		min-height: 108px;
 		padding: 8px;
+		aspect-ratio: 16 / 9;
+		max-width: 160px;
+		width: 100%;
 
 		&:hover {
 			border-color: var(--app-light-orange-color);
 			color: var(--app-light-orange-color);
+
+			.image {
+				opacity: 0.25;
+			}
 
 			.image-delete {
 				display: initial;
@@ -33,48 +38,23 @@
 		}
 
 		.image {
-			max-width: 160px;
-			max-height: 90px;
-		}
-
-		.icon-container {
-			display: flex;
 			width: 100%;
 			height: 100%;
-			align-items: center;
-			justify-content: center;
-
-			.icon {
-				display: inline-flex;
-				width: 36px;
-				height: 36px;
-
-				svg {
-					vertical-align: top;
-					width: 36px;
-					height: 36px;
-				}
-			}
 		}
 
 		.image-delete {
 			display: none;
 			position: absolute;
-			top: 8px;
-			right: 8px;
-			color: red;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 			cursor: pointer;
 
-			.icon-container {
-				.icon {
-					width: 16px;
-					height: 16px;
-	
-					svg {
-						width: 16px;
-						height: 16px;
-					}
-				}
+			img {
+				display: inline-flex;
+				width: 16px;
+				height: 16px;
+				filter: var(--app-red-color-filter);
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AccountBase } from '../base/account.base';
 import { AuthHttpService } from 'src/app/core/services/http/auth/auth-http.service';
 import { AuthLoginReq } from 'src/app/core/contracts';
@@ -8,10 +8,17 @@ import { Router } from '@angular/router';
 import { LoadingState } from 'src/app/core/enums';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
 	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss']
+	styleUrls: ['./login.component.scss'],
+	standalone: true,
+	imports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule
+	]
 })
 export class LoginComponent extends AccountBase implements OnInit, OnDestroy {
 

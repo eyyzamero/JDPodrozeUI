@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExcursionsHttpService } from '../excursions/services/http/excursions-http.service';
+import { ExcursionsDataService } from '../excursions/services/data/excursions-data.service';
 
 @Component({
 	selector: 'app-home',
@@ -9,10 +10,12 @@ import { ExcursionsHttpService } from '../excursions/services/http/excursions-ht
 export class HomeComponent implements OnInit {
 
 	constructor(
-		private _excursionsHttpService: ExcursionsHttpService
+		private readonly _excursionsHttpService: ExcursionsHttpService,
+		private readonly _excursionsDataService: ExcursionsDataService
 	) { }
 
 	ngOnInit(): void {
-		this._excursionsHttpService.getExcursionsListShort();
+		if (!this._excursionsDataService.currentValue.data?.length)
+			this._excursionsHttpService.getExcursionsListShort();
 	}
 }

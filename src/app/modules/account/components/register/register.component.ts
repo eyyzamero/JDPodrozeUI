@@ -1,15 +1,22 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AccountBase } from '../base/account.base';
 import { AuthHttpService } from 'src/app/core/services/http/auth/auth-http.service';
 import { Router } from '@angular/router';
 import { AuthRegisterReq } from 'src/app/core/contracts';
 import { Subscription } from 'rxjs';
 import { AuthJsonWebTokenLocalStorageDataService } from 'src/app/core/services/data/auth/jwt-local-storage/auth-json-web-token-local-storage-data.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
 	templateUrl: './register.component.html',
-	styleUrls: ['./register.component.scss']
+	styleUrls: ['./register.component.scss'],
+	standalone: true,
+	imports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule
+	]
 })
 export class RegisterComponent extends AccountBase implements OnDestroy {
 

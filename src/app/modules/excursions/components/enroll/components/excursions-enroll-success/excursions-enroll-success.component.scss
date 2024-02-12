@@ -13,22 +13,11 @@
 		padding: 32px;
 	}
 
-	.icon-container {
-		display: flex;
-		align-items: center;
-		color: var(--bs-success);
-
-		.icon {
-			display: inline-flex;
-			width: 75px;
-			height: 75px;
-
-			svg {
-				vertical-align: top;
-				width: 75px;
-				height: 75px;
-			}
-		}
+	img {
+		display: inline-block;
+		width: 75px;
+		height: 75px;
+		filter: var(--app-success-color-filter);
 	}
 
 	.text-container-header {

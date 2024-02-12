@@ -1,7 +1,7 @@
 <header class="header-container">
 	<section class="header-content">
 		<div class="logo-container">
-			<img src="assets/images/logos/logo_colored.png" alt="logo" (click)="redirectToHomePage()">
+			<img src="assets/images/logos/logo_colored_width_200.png" alt="logo" (click)="redirectToHomePage()">
 		</div>
 		<div class="navigation-container">
 			<a *ngFor="let tab of tabs" class="navigation" [ngClass]="{ 'disabled': tab.disabled }" [routerLink]="tab.disabled ? '.' :  tab.path">

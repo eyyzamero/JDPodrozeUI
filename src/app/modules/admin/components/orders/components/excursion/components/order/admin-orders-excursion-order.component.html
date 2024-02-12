@@ -1,18 +1,14 @@
 <section class="admin-orders-excursion-order-container">
 	<div class="admin-orders-excursion-order-collapse-trigger" (click)="collapse.toggle()">
 		<div class="admin-orders-excursion-order-collapse-icon-container">
-			<span class="icon-container">
-				<svg-icon class="icon" name="credit-card"></svg-icon>
-			</span>
+			<img src="assets/icons/credit-card.svg" loading="eager">
 		</div>
 		<div class="admin-orders-excursion-order-collapse-text-container">
 			<app-admin-orders-excursion-order-participant *ngIf="booker" [participant]="booker" [minified]="true"></app-admin-orders-excursion-order-participant>
 		</div>
 		<span class="admin-orders-excursion-order-collapse-actions-container">
 			<button type="button" class="btn admin-orders-excursion-order-collapse-btn" [ngClass]="{ 'opened': !isCollapsed }">
-				<span class="icon-container">
-					<svg-icon class="icon" name="chevron-right"></svg-icon>
-				</span>
+				<img src="assets/icons/chevron-right.svg" loading="eager">
 			</button>
 		</span>
 	</div>

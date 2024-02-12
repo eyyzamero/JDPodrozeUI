@@ -1,25 +1,25 @@
 <ul class="header-menu-options-container">
 	<li *ngIf="!auth" class="header-menu-option">
 		<a routerLink="/account/login" class="header-menu-option-link" (click)="onOptionClick()">
-			<svg-icon name="login" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
+			<img src="assets/icons/login.svg" loading="eager">
 			<span>Zaloguj się</span>
 		</a>
 	</li>
 	<li *ngIf="!auth" class="header-menu-option">
 		<a routerLink="/account/register" class="header-menu-option-link" (click)="onOptionClick()">
-			<svg-icon name="user-add" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
+			<img src="assets/icons/user-add.svg" loading="eager">
 			<span>Zarejestuj się</span>
 		</a>
 	</li>
 	<li *ngIf="auth" class="header-menu-option">
 		<a routerLink="/admin" class="header-menu-option-link" (click)="onOptionClick()">
-			<svg-icon name="table" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
+			<img src="assets/icons/table.svg" loading="eager">
 			<span>Panel administracyjny</span>
 		</a>
 	</li>
 	<li *ngIf="auth" class="header-menu-option">
 		<a href="#" class="header-menu-option-link" (click)="logout($event)">
-			<svg-icon name="logout" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
+			<img src="assets/icons/logout.svg" loading="eager">
 			<span>Wyloguj się</span>
 		</a>
 	</li>

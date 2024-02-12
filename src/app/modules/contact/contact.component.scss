@@ -173,28 +173,13 @@
 			top: 0;
 			left: 0;
 
-			.icon-container {
-				display: flex;
-				align-items: center;
-				
-				&.success {
-					color: var(--bs-success);
-				}
+			img {
+				display: inline-block;
+				width: 75px;
+				height: 75px;
 
-				&.error {
-					color: var(--bs-danger);
-				}
-		
-				.icon {
-					display: inline-flex;
-					width: 75px;
-					height: 75px;
-		
-					svg {
-						vertical-align: top;
-						width: 75px;
-						height: 75px;
-					}
+				&.success {
+					filter: var(--app-success-color-filter);
 				}
 			}
 

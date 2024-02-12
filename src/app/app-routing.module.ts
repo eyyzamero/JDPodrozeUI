@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppModulePreloader } from './core/preloaders';
 
 const routes: Routes = [
 	{
@@ -8,7 +9,8 @@ const routes: Routes = [
 	},
 	{
 		path: 'account',
-		loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule)
+		loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule),
+		data: { preload: true }
 	},
 	{
 		path: '**',
@@ -18,10 +20,16 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
-		RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })
+		RouterModule.forRoot(routes, {
+			scrollPositionRestoration: 'enabled',
+			preloadingStrategy: AppModulePreloader
+		})
 	],
 	exports: [
 		RouterModule
+	],
+	providers: [
+		AppModulePreloader
 	]
 })
 export class AppRoutingModule { }

@@ -78,28 +78,17 @@
 			gap: 12px;
 			width: 100%;
 
-			.icon-container {
-				display: flex;
-				align-items: center;
-				
+			img {
+				display: inline-block;
+				width: 75px;
+				height: 75px;
+
 				&.success {
-					color: var(--bs-success);
+					filter: var(--app-success-color-filter);
 				}
 
 				&.error {
-					color: var(--bs-danger);
-				}
-		
-				.icon {
-					display: inline-flex;
-					width: 75px;
-					height: 75px;
-		
-					svg {
-						vertical-align: top;
-						width: 75px;
-						height: 75px;
-					}
+					filter: var(--app-danger-color-filter);
 				}
 			}
 

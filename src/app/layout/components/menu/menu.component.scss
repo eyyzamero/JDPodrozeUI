@@ -59,23 +59,6 @@
 			.text {
 				flex: 1;
 			}
-
-			.icon-container {
-				display: flex;
-				align-items: center;
-
-				.icon {
-					display: inline-flex;
-					width: 16px;
-					height: 16px;
-
-					svg {
-						vertical-align: top;
-						width: 16px;
-						height: 16px;
-					}
-				}
-			}
 		}
 	}
 }

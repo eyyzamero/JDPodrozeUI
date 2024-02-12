@@ -4,14 +4,10 @@
 		(dragstart)="onDragStart($event, i)" (dragover)="onDragOver($event)" (drop)="onDrop($event, i)">
 		<img class="image" [src]="image.base64">
 		<span class="image-delete" (click)="onDelete(image)">
-			<div class="icon-container">
-				<svg-icon class="icon" name="delete"></svg-icon>
-			</div>
+			<img src="assets/icons/delete.svg" loading="eager">
 		</span>
 	</div>
-	<div class="image-container" (click)="file.click()">
-		<div class="icon-container">
-			<svg-icon class="icon" name="plus"></svg-icon>
-		</div>
+	<div class="image-container add" (click)="file.click()">
+		<img src="assets/icons/plus.svg" loading="eager">
 	</div>
 </section>

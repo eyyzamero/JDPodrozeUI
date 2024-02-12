@@ -25,20 +25,14 @@
 						<td class="excursion-date-from">{{ (excursion.dateFrom | date: 'dd.MM.yyyy') ?? '-' }}</td>
 						<td class="excursion-date-to">{{ (excursion.dateTo | date: 'dd.MM.yyyy') ?? '-' }}</td>
 						<td class="excursion-active">
-							<span class="icon-container">
-								<svg-icon class="icon" [ngClass]="excursion.active ? 'check': 'close'" [name]="excursion.active ? 'check': 'close'"></svg-icon>
-							</span>
+							<img [src]="excursion.active ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.active ? 'check': 'close'" loading="eager">
 						</td>
 						<td class="excursion-in-carousel">
-							<span class="icon-container">
-								<svg-icon class="icon" [ngClass]="excursion.inCarousel ? 'check': 'close'" [name]="excursion.inCarousel ? 'check': 'close'"></svg-icon>
-							</span>
+							<img [src]="excursion.inCarousel ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.inCarousel ? 'check': 'close'" loading="eager">
 						</td>
 						<td class="excursion-actions">
-							<span class="icon-container">
-								<svg-icon class="icon edit" name="edit" (click)="edit(excursion.id)"></svg-icon>
-								<svg-icon class="icon delete" name="delete" (click)="delete(excursion.id)"></svg-icon>
-							</span>
+							<img src="assets/icons/edit.svg" class="edit" (click)="edit(excursion.id)" loading="eager">
+							<img src="assets/icons/delete.svg" class="delete" (click)="delete(excursion.id)" loading="eager">
 						</td>
 					</tr>
 				</tbody>

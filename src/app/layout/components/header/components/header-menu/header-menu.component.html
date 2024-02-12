@@ -2,11 +2,11 @@
 	<button type="button" class="header-menu-toggle-btn" id="header-menu-toggle-btn" aria-label="Menu toggle button" ngbDropdownToggle>
 		<div *ngIf="auth" class="header-menu-content">
 			<section class="user">
-				<svg-icon name="user"></svg-icon>
+				<img src="assets/icons/user.svg" loading="eager">
 				<span class="user-info">{{ auth.Login }}</span>
 			</section>
 		</div>
-		<svg-icon name="menu" [stretch]="true" [svgStyle]="{ 'width.px': 24, 'height.px': 24 }"></svg-icon>
+		<img src="assets/icons/menu.svg" loading="eager">
 	</button>
 	<div ngbDropdownMenu class="header-menu-dropdown-container">
 		<app-header-menu-options [auth]="auth" (closeMenu)="headerMenuDropdown.close()"></app-header-menu-options>

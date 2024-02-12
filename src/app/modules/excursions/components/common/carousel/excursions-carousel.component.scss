@@ -79,3 +79,11 @@
 		}
 	}
 }
+
+:host-context(.home) {
+	.exucrsions-carousel-container {
+		.excursions-carousel {
+			width: calc(100vw - 64px);
+		}
+	}
+}

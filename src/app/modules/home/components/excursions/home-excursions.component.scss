@@ -22,10 +22,10 @@ $gap: 36px;
 	.excursions {
 		display: grid;
 		grid-template-columns: 1fr;
+		gap: calc($gap / 2);
 		
 		@media(min-width: 768px) {
 			grid-template-columns: 1fr 1fr;
-			gap: calc($gap / 2);
 		}
 		
 		@media(min-width: 1400px) {

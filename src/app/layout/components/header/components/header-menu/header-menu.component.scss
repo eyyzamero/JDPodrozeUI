@@ -31,18 +31,18 @@
 			display: inline-flex;
 
 			.user {
-				display: inline-flex;
-				align-items: center;
-				gap: 8px;
-
-				svg-icon {
-					color: black;
+				img {
+					width: 16px;
+					height: 16px;
+					filter: var(--app-black-color-filter);
+					margin-right: 8px;
+					vertical-align: sub;
 				}
 			}
 		}
 
-		svg-icon {
-			color: var(--app-light-orange-color);
+		img {
+			filter: var(--app-light-orange-color-filter);
 			width: 24px;
 			height: 24px;
 		}

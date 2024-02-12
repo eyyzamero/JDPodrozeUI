@@ -11,6 +11,7 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	margin: 0 auto;
 	
 	@include mixins.breakpoint(sm) {
 		justify-content: center;
@@ -46,71 +47,13 @@
 	}
 
 	.home-carousel-content {
+		display: inline-flex;
 		position: relative;
 		max-width: 1920px;
-		
-		.home-carousel {
-			width: 100%;
-			aspect-ratio: 16/9;
+		justify-content: center;
 
-			@include mixins.breakpoint(sm) {
-				width: 320px
-			}
-
-			@include mixins.breakpoint(xl) {
-				width: 640px;
-			}
-
-			@include mixins.breakpoint(xxl) {
-				width: 854px;
-			}
-
-			&.loading {
-				.image-wrapper {
-					app-loading-spinner {
-						position: absolute;
-						top: 50%;
-						left: 50%;
-						transform: translate(-50%, -50%);
-					}
-				}
-			}
-	
-			.image-wrapper {
-				position: relative;
-				height: 0;
-				padding-top: 56.25%;
-	
-				img {
-					position: absolute;
-					width: 100%;
-					height: 100%;
-					top: 0;
-					left: 0;
-					bottom: 0;
-					right: 0;
-				}
-			}
-
-			.carousel-caption {
-				p {
-					display: none;
-					
-					@include mixins.breakpoint(lg) {
-						display: initial;
-					} 
-				}
-			}
-		}
-
-		.loading-spinner {
-			position: absolute;
-			top: calc(50% - 32px);
-			left: calc(50% - 32px);
-			--bs-spinner-width: 64px;
-			--bs-spinner-height: 64px;
-			--bs-spinner-border-width: 8px;
-			color: black;
+		@include mixins.breakpoint(md) {
+			justify-content: flex-start;
 		}
 	}
 }

@@ -1,9 +1,7 @@
 <section class="admin-orders-excursion-container">
 	<div class="admin-orders-excursion-colapse-trigger" (click)="collapse.toggle()">
 		<span class="admin-orders-excursion-colapse-icon-container">
-			<span class="icon-container">
-				<svg-icon class="icon" name="image"></svg-icon>
-			</span>
+			<img src="assets/icons/image.svg" loading="eager">
 		</span>
 		<span class="admin-orders-excursion-colapse-text">
 			<span class="admin-orders-excursion-colapse-text-date">{{ excursion.dateFrom && excursion.dateTo ? (excursion.dateFrom | date: 'dd.MM.yyyy') + ' - ' + (excursion.dateTo | date: 'dd.MM.yyyy') : (excursion.dateFrom | date: 'dd.MM.yyyy') }}</span>
@@ -11,9 +9,7 @@
 		</span>
 		<span class="admin-orders-excursion-collapse-actions-container">
 			<button type="button" class="btn admin-orders-excursion-collapse-btn" [ngClass]="{ 'opened': !isCollapsed }">
-				<span class="icon-container">
-					<svg-icon class="icon" name="chevron-right"></svg-icon>
-				</span>
+				<img src="assets/icons/chevron-right.svg" loading="eager">
 			</button>
 		</span>
 	</div>
