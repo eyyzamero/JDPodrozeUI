@@ -18,6 +18,7 @@ export class AdminExcursionsFormComponent implements OnInit, OnDestroy {
 
 	state: LoadingState = LoadingState.LOADING;
 	form: FormGroup = new FormGroup({});
+	submitButtonDisabled: boolean = false;
 
 	get images(): FormArray {
 		return this.form.get('images') as FormArray<AbstractControl<IExcursionImageModel>>;
@@ -67,6 +68,7 @@ export class AdminExcursionsFormComponent implements OnInit, OnDestroy {
 	}
 
 	private _addExcursion() {
+		this.submitButtonDisabled = true;
 		const req = this._adminExcursionsMapperService.iExcursionFormGroupToIExcursionsAddReq(this.form);
 		this._subscriptions.push(
 			this._adminExcursionsHttpService.addObservable(req).subscribe({
@@ -75,12 +77,16 @@ export class AdminExcursionsFormComponent implements OnInit, OnDestroy {
 					this._router.navigate(['/admin']);
 					this._toastsService.show('Pomyślnie dodano wycieczkę', 'toast-success');
 				},
-				error: (err) => this._toastsService.show('Wystąpił błąd', 'toast-error')
+				error: () => {
+					this._toastsService.show('Wystąpił błąd', 'toast-error');
+					this.submitButtonDisabled = false;
+				}
 			})
 		);
 	}
 
 	private _editExcursion() {
+		this.submitButtonDisabled = true;
 		const req = this._adminExcursionsMapperService.iExcursionFormGroupToIExcursionsEditReq(this.form);
 		this._subscriptions.push(
 			this._adminExcursionsHttpService.editObservable(req).subscribe({
@@ -89,7 +95,10 @@ export class AdminExcursionsFormComponent implements OnInit, OnDestroy {
 					this._router.navigate(['/admin']);
 					this._toastsService.show('Pomyślnie edytowano wycieczkę', 'toast-success');
 				},
-				error: () => this._toastsService.show('Wystąpił błąd', 'toast-error')
+				error: () => {
+					this._toastsService.show('Wystąpił błąd', 'toast-error');
+					this.submitButtonDisabled = false;
+				}
 			})
 		);
 	}

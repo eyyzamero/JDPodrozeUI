@@ -1,9 +1,9 @@
 <section class="home-container">
 	<div class="home-carousel-container">
-		<app-home-carousel></app-home-carousel>
+		<app-home-carousel (onShowOfferClick)="excursions.scrollIntoView()"></app-home-carousel>
 	</div>
 	<div class="home-content">
-		<app-home-excursions></app-home-excursions>
+		<app-home-excursions #excursions></app-home-excursions>
 	</div>
 	<app-home-newsletter></app-home-newsletter>
 </section>

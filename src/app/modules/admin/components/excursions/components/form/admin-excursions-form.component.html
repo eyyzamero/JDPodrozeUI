@@ -43,7 +43,7 @@
 				<label for="discount-price" class="form-label">Cena ulgowa</label>
 				<input type="number" formControlName="discountPrice" class="form-control" id="discount-price">
 			</div>
-			<button type="submit" class="btn form-submit-btn">
+			<button type="submit" class="btn form-submit-btn" [disabled]="submitButtonDisabled">
 				<span>Wyślij</span>
 			</button>
 		</form>

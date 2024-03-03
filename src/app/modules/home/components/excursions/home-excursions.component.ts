@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoadingState } from 'src/app/core/enums';
 import { IExcursionModel } from 'src/app/modules/excursions/models';
@@ -10,6 +10,8 @@ import { ExcursionsDataService } from 'src/app/modules/excursions/services/data/
   styleUrls: ['./home-excursions.component.scss']
 })
 export class HomeExcursionsComponent implements OnInit, OnDestroy {
+
+	@ViewChild('container') private _containerRef?: ElementRef<HTMLDivElement>;
 
 	excursions?: IExcursionModel[] = undefined;
 	state: LoadingState = LoadingState.LOADING;
@@ -31,6 +33,10 @@ export class HomeExcursionsComponent implements OnInit, OnDestroy {
 				}
 			})
 		);
+	}
+
+	scrollIntoView(): void {
+		this._containerRef?.nativeElement.scrollIntoView({ behavior: 'smooth', inline: 'start' })	
 	}
 
 	ngOnDestroy(): void {

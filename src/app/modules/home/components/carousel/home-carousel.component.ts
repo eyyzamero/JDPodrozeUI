@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Color } from 'src/app/core/enums';
 import { Subscription } from 'rxjs';
 import { ExcursionsDataService } from 'src/app/modules/excursions/services/data/excursions-data.service';
@@ -11,6 +11,8 @@ import { ExcursionsCarouselItemModel, IExcursionsCarouselItemModel } from 'src/a
 	styleUrls: ['./home-carousel.component.scss']
 })
 export class HomeCarouselComponent implements OnInit, OnDestroy {
+
+	@Output() onShowOfferClick: EventEmitter<void> = new EventEmitter<void>();
 
 	excursions: IExcursionModel[] = [];
 	carouselItems: IExcursionsCarouselItemModel[] = [];
