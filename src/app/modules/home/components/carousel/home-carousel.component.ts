@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Color } from 'src/app/core/enums';
 import { Subscription } from 'rxjs';
 import { ExcursionsDataService } from 'src/app/modules/excursions/services/data/excursions-data.service';
@@ -46,7 +46,7 @@ export class HomeCarouselComponent implements OnInit, OnDestroy {
 
 	private _setCarouselData(): void {
 		this.excursions.forEach(excursion => {
-			const carouselItem = new ExcursionsCarouselItemModel(excursion.imageId, excursion.title, excursion.description);
+			const carouselItem = new ExcursionsCarouselItemModel(excursion.imageId, excursion.id, excursion.title, excursion.description);
 			this.carouselItems.push(carouselItem);
 		});
 	}
