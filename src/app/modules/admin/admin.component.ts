@@ -1,5 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AdminExcursionsHttpService } from './services/http/admin-excursions-http.service';
+import { Component, OnDestroy } from '@angular/core';
 import { ToastsService } from 'src/app/core/services/common/toasts/toasts.service';
 
 @Component({
@@ -7,16 +6,11 @@ import { ToastsService } from 'src/app/core/services/common/toasts/toasts.servic
 	templateUrl: './admin.component.html',
 	styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit, OnDestroy {
+export class AdminComponent implements OnDestroy {
 
 	constructor(
-		private _toastsService: ToastsService,
-		private _adminExcursionsHttpService: AdminExcursionsHttpService
+		private _toastsService: ToastsService
 	) { }
-
-	ngOnInit(): void {
-		this._adminExcursionsHttpService.getList();
-	}
 
 	ngOnDestroy(): void {
 		this._toastsService.clear();

@@ -21,6 +21,8 @@ export * from './requests/newsletter/enroll/inewsletter-enroll.req';
 export * from './requests/newsletter/enroll/newsletter-enroll.req';
 export * from './requests/contact/icontact.req';
 export * from './requests/contact/contact.req';
+export * from './requests/excursions/get-list/iexcursions-get-list.req';
+export * from './requests/excursions/get-list/excursions-get-list.req';
 
 // Responses
 export * from './responses/account/register/iaccount-register.res';

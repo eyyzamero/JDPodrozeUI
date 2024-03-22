@@ -1,0 +1,18 @@
+<div ngbDropdown #dropdown="ngbDropdown" class="select-container" [ngClass]="{ 'disabled': disabled }">
+    <div ngbDropdownToggle class="select-title-container" [ngClass]="{ 'is-collapsed': !dropdown.isOpen() }">
+        <div class="select-title-text-container">
+            <label>{{ label }}</label>
+            <span class="select-title-text-value">{{ formatter ? formatter(current): current }}</span>
+        </div>
+        <div class="select-toggler-container">
+            <img src="assets/icons/chevron-up.svg" [alt]="collapsed ? 'open' : 'close'" [ngClass]="{ 'is-collapsed': !dropdown.isOpen() }">
+        </div>
+    </div>
+    <div ngbDropdownMenu class="select-body-container">
+        <div class="select-body-content">
+            <div *ngFor="let option of options" ngbDropdownItem class="select-option-container" (click)="selected.emit(option)">
+                <span>{{ formatter ? formatter(option) : option }}</span>
+            </div>
+        </div>
+    </div>
+</div>

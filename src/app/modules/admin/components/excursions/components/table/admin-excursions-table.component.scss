@@ -19,6 +19,11 @@
 		}
 	}
 
+	app-admin-excursions-table-filters {
+		display: block;
+		margin-top: 16px;
+	}
+
 	app-loading-spinner {
 		display: block;
 		margin: 32px auto;
@@ -40,6 +45,20 @@
 						&.excursion-active,
 						&.excursion-in-carousel {
 							text-align: center;
+						}
+
+						&.sortable {
+							span {
+								cursor: pointer;
+								
+								&:hover {
+									color: var(--app-light-orange-color);
+								}
+							}
+						}
+
+						&.current {
+							color: var(--app-light-orange-color);
 						}
 					}
 				}

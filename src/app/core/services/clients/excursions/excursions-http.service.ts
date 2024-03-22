@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IExcursionsAddReq, IExcursionsEditReq, IExcursionsEnrollReq, IExcursionsGetItemRes, IExcursionsGetListRes, IExcursionsGetListShortRes } from 'src/app/core/contracts';
+import { IExcursionsAddReq, IExcursionsEditReq, IExcursionsEnrollReq, IExcursionsGetItemRes, IExcursionsGetListReq, IExcursionsGetListRes, IExcursionsGetListShortRes } from 'src/app/core/contracts';
 import { configuration } from 'src/configurations/configuration';
 
 @Injectable({
@@ -21,8 +21,8 @@ export class ExcursionsHttpClientService {
 		return this._httpClient.get<IExcursionsGetItemRes>(`${configuration.api}/Excursions/GetItemWithImages/${id}`);
 	}
 
-	getList(): Observable<IExcursionsGetListRes> {
-		return this._httpClient.get<IExcursionsGetListRes>(`${configuration.api}/Excursions/GetList`);
+	getList(req: IExcursionsGetListReq): Observable<IExcursionsGetListRes> {
+		return this._httpClient.post<IExcursionsGetListRes>(`${configuration.api}/Excursions/GetList`, req);
 	}
 
 	getListShort(): Observable<IExcursionsGetListShortRes> {

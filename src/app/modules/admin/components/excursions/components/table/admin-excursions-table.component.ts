@@ -6,6 +6,8 @@ import { ToastsService } from 'src/app/core/services/common/toasts/toasts.servic
 import { AdminExcursionsDataService } from 'src/app/modules/admin/services/data/admin-excursions-data.service';
 import { AdminExcursionsHttpService } from 'src/app/modules/admin/services/http/admin-excursions-http.service';
 import { IExcursionModel } from 'src/app/modules/excursions/models';
+import { AdminExcursionsSortType } from '../../enums';
+import { ExcursionsGetListReq } from 'src/app/core/contracts';
 
 @Component({
 	selector: 'app-admin-excursions-table',
@@ -16,8 +18,11 @@ export class AdminExcursionsTableComponent implements OnInit, OnDestroy {
 
 	excursions?: IExcursionModel[] = [];
 	state: LoadingState = LoadingState.LOADING;
+	sort: AdminExcursionsSortType = AdminExcursionsSortType.NONE;
+	active: boolean | null = null;
 
 	readonly LoadingState = LoadingState;
+	readonly AdminExcursionsSortType = AdminExcursionsSortType;
 
 	private _subscriptions: Subscription[] = [];
 
@@ -26,7 +31,7 @@ export class AdminExcursionsTableComponent implements OnInit, OnDestroy {
 		private _activatedRoute: ActivatedRoute,
 		private _adminExcursionsDataService: AdminExcursionsDataService,
 		private _adminExcursionsHttpService: AdminExcursionsHttpService,
-		private _toastsService: ToastsService,
+		private _toastsService: ToastsService
 	) { }
 
 	ngOnInit(): void {
@@ -49,8 +54,27 @@ export class AdminExcursionsTableComponent implements OnInit, OnDestroy {
 		})
 	}
 
+	onSort(sort: AdminExcursionsSortType) {
+		if (sort !== this.sort) {
+			this._router.navigate(['.'], {
+				queryParams: {
+					sort
+				},
+				queryParamsHandling: 'merge',
+				relativeTo: this._activatedRoute
+			});
+		}
+	}
+
 	private _initSubscriptions(): void {
 		this._subscriptions.push(
+			this._activatedRoute.queryParams.subscribe({
+				next: (queryParams) => {
+					this.sort = queryParams['sort'] ? +queryParams['sort'] as AdminExcursionsSortType : AdminExcursionsSortType.DATE_FROM;
+					this.active = queryParams['active']  ? JSON.parse(queryParams['active']) : null;
+					this._getList();
+				} 
+			}),
 			this._adminExcursionsDataService.observable.subscribe({
 				next: (value) => {
 					this.excursions = value.data;
@@ -58,6 +82,11 @@ export class AdminExcursionsTableComponent implements OnInit, OnDestroy {
 				}
 			})
 		);
+	}
+
+	private _getList() {
+		const req = new ExcursionsGetListReq(this.sort, this.active);
+		this._adminExcursionsHttpService.getList(req);
 	}
 
 	ngOnDestroy(): void {

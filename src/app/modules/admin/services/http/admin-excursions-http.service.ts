@@ -3,7 +3,7 @@ import { Observable, map } from 'rxjs';
 import { AdminExcursionsMapperService } from '../mapper/admin-excursions-mapper.service';
 import { AdminExcursionsDataService } from '../data/admin-excursions-data.service';
 import { LoadingState } from 'src/app/core/enums';
-import { IExcursionsAddReq, IExcursionsEditReq, IExcursionsGetItemRes } from 'src/app/core/contracts';
+import { ExcursionsGetListReq, IExcursionsAddReq, IExcursionsEditReq, IExcursionsGetItemRes, IExcursionsGetListReq } from 'src/app/core/contracts';
 import { ExcursionsHttpClientService } from 'src/app/core/services/clients';
 
 @Injectable({
@@ -17,9 +17,13 @@ export class AdminExcursionsHttpService {
 		private _adminExcursionsDataService: AdminExcursionsDataService
 	) { }
 
-	getList(): void {
+	getList(req?: IExcursionsGetListReq): void {
 		this._adminExcursionsDataService.updateState(LoadingState.LOADING);
-		this._excursionsHttpService.getList().pipe(
+
+		if (!req)
+			req = new ExcursionsGetListReq();
+
+		this._excursionsHttpService.getList(req).pipe(
 			map(res => this._adminExcursionsMapperService.iExcursionsGetListResToArrayOfIExcursionModel(res))
 		).subscribe({
 			next: (value) => this._adminExcursionsDataService.add(value),
