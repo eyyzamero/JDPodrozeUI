@@ -26,6 +26,7 @@ export class AdminExcursionsMapperService {
 			src.controls['price'].value,
 			src.controls['discount'].value,
 			src.controls['discountPrice'].value,
+            src.controls['seats'].value,
 			src.controls['dateFrom'].value ? this._ngbDateToDate(src.controls['dateFrom'].value) : undefined,
 			src.controls['dateTo'].value ? this._ngbDateToDate(src.controls['dateTo'].value) : undefined,
 			(src.controls['images'].value as Array<ExcursionImageModel>).map(item => this._base64ToIExcursionsAddImageReq(item))
@@ -44,6 +45,7 @@ export class AdminExcursionsMapperService {
 			src.controls['price'].value,
 			src.controls['discount'].value,
 			src.controls['discountPrice'].value,
+            src.controls['seats'].value,
 			src.controls['dateFrom'].value ? this._ngbDateToDate(src.controls['dateFrom'].value) : undefined,
 			src.controls['dateTo'].value ? this._ngbDateToDate(src.controls['dateTo'].value) : undefined,
 			(src.controls['images'].value as Array<ExcursionImageModel>).map(item => this._base64ToIExcursionsEditImageReq(item))
@@ -120,6 +122,8 @@ export class AdminExcursionsMapperService {
 			src.priceNet,
 			src.discount,
 			src.discountPrice,
+            src.seats,
+            src.availableSeats,
 			0,
 			src.images.map(image => this._iExcursionsGetListItemImageResToIExcursionImageModel(image))
 		);

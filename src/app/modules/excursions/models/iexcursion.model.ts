@@ -13,6 +13,8 @@ export interface IExcursionModel {
 	priceNet: number;
 	discount: boolean;
 	discountPrice: number;
+    seats: number;
+    availableSeats: number;
 	imageId: number;
 	images: IExcursionImageModel[];
 }

@@ -5,6 +5,7 @@ export class ExcursionsGetListReq implements IExcursionsGetListReq {
 
 	constructor(
 		public sort: AdminExcursionsSortType = AdminExcursionsSortType.DATE_FROM,
-		public active: boolean | null = null
+		public active: boolean | null = null,
+        public templates: boolean = false
 	) { }
 }

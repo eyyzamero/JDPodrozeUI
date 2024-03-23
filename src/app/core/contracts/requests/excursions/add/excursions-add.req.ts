@@ -11,6 +11,7 @@ export class ExcursionsAddReq implements IExcursionsAddReq {
 		public price: number = 0,
 		public discount: boolean = false,
 		public discountPrice: number = 0,
+        public seats: number = 0,
 		public dateFrom?: string,
 		public dateTo?: string,
 		public images: IExcursionsAddImageReq[] = []

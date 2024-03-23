@@ -28,6 +28,8 @@ export class ExcursionsMapperService {
 			0,
 			src.discount,
 			src.discountPrice,
+            src.seats,
+            src.availableSeats,
 			0,
 			src.images.map(image => this._iExcursionsGetItemImageResToIExcursionImageModel(image))
 		);
@@ -95,7 +97,7 @@ export class ExcursionsMapperService {
 	private _ngbDateToDate(src: NgbDate): string {
 		let date = new Date();
 		date.setFullYear(src.year);
-		date.setMonth(src.month);
+		date.setMonth(src.month - 1);
 		date.setDate(src.day);
 		date.setHours(0);
 		date.setMinutes(0);

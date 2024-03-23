@@ -10,6 +10,7 @@ export interface IExcursionsEditReq {
 	price: number;
 	discount: boolean;
 	discountPrice: number;
+    seats: number;
 	dateFrom?: string;
 	dateTo?: string;
 	images: IExcursionsEditImageReq[];

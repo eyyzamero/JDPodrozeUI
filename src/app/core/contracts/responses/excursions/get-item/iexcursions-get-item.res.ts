@@ -12,5 +12,7 @@ export interface IExcursionsGetItemRes {
 	price: number;
 	discount: boolean;
 	discountPrice: number;
+    seats: number;
+    availableSeats: number;
 	images: IExcursionsGetItemImageRes[];
 }

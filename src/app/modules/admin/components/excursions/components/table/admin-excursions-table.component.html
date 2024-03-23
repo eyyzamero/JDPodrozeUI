@@ -1,11 +1,11 @@
 <section class="admin-excursions-table-container">
-	<h3 class="section-title">Wycieczki</h3>
-	<div class="buttons-container">
+	<h3 class="section-title">{{ templates ? 'Szablony' : 'Wycieczki' }}</h3>
+	<div *ngIf="!templates" class="buttons-container">
 		<button type="button" class="btn add-excursion-btn" routerLink="/admin/form">
 			<span>Dodaj wycieczkę</span>
 		</button>
 	</div>
-	<app-admin-excursions-table-filters [active]="active"></app-admin-excursions-table-filters>
+	<app-admin-excursions-table-filters *ngIf="!templates" [active]="active"></app-admin-excursions-table-filters>
 	<app-loading-spinner *ngIf="state === LoadingState.LOADING; else content" [center]="false"></app-loading-spinner>
 	<ng-template #content>
 		<div *ngIf="excursions" class="admin-excursions-table-content">
@@ -15,12 +15,18 @@
 						<th scope="col" class="excursion-title">
 							<span>Nazwa</span>
 						</th>
-						<th scope="col" class="excursion-date-from sortable" [ngClass]="{ 'current': sort === AdminExcursionsSortType.DATE_FROM }" (click)="onSort(AdminExcursionsSortType.DATE_FROM)">
+						<th scope="col" class="excursion-date-from" [ngClass]="{ 'sortable': sorting, 'current': sorting && sort === AdminExcursionsSortType.DATE_FROM }" (click)="onSort(AdminExcursionsSortType.DATE_FROM)">
 							<span>Data od</span>
 						</th>
-						<th scope="col" class="excursion-date-to sortable" [ngClass]="{ 'current': sort === AdminExcursionsSortType.DATE_TO }" (click)="onSort(AdminExcursionsSortType.DATE_TO)">
+						<th scope="col" class="excursion-date-to" [ngClass]="{ 'sortable': sorting, 'current': sorting && sort === AdminExcursionsSortType.DATE_TO }" (click)="onSort(AdminExcursionsSortType.DATE_TO)">
 							<span>Data do</span>
 						</th>
+                        <th scope="col" class="excursion-seats">
+                            <span>Miejsca</span>
+                        </th>
+                        <th *ngIf="!templates" scope="col" class="excursion-available-seats">
+                            <span>Wolne</span>
+                        </th>
 						<th scope="col" class="excursion-active">
 							<span>Aktywna</span>
 						</th>
@@ -37,6 +43,8 @@
 						<td class="excursion-title">{{ excursion.title }}</td>
 						<td class="excursion-date-from">{{ (excursion.dateFrom | date: 'dd.MM.yyyy') ?? '-' }}</td>
 						<td class="excursion-date-to">{{ (excursion.dateTo | date: 'dd.MM.yyyy') ?? '-' }}</td>
+                        <td class="excursion-seats">{{ excursion.seats }}</td>
+                        <td *ngIf="!templates" class="excursion-available-seats">{{ excursion.availableSeats }}</td>
 						<td class="excursion-active">
 							<img [src]="excursion.active ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.active ? 'check': 'close'" alt="active">
 						</td>
@@ -44,9 +52,10 @@
 							<img [src]="excursion.inCarousel ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.inCarousel ? 'check': 'close'" alt="in-carousel">
 						</td>
 						<td class="excursion-actions">
-                            <div class="excursion-actions-buttons">
+                            <div class="excursion-actions-buttons" [ngClass]="{ 'disabled': !buttonsEnabled }">
                                 <img src="assets/icons/edit.svg" class="edit" (click)="edit(excursion.id)" alt="edit">
                                 <img src="assets/icons/delete.svg" class="delete" (click)="delete(excursion.id)" alt="delete">
+                                <img *ngIf="!templates" src="assets/icons/template.svg" class="template" (click)="makeTemplate(excursion.id)" alt="template">
                             </div>
 						</td>
 					</tr>

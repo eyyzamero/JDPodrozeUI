@@ -23,6 +23,8 @@ export class ExcursionsDetailsMapperService {
 			0,
 			src.discount,
 			src.discountPrice,
+            src.seats,
+            src.availableSeats,
 			0,
 			src.images.map(image => this._iExcursionsGetItemImageResToIExcursionImageModel(image))
 		);

@@ -50,4 +50,8 @@ export class AdminExcursionsHttpService {
 	deleteObservable(id: number): Observable<void> {
 		return this._excursionsHttpService.delete(id);
 	}
+
+    changeToTemplateObservable(id: number): Observable<void> {
+        return this._excursionsHttpService.changeToTemplate(id);
+    }
 }

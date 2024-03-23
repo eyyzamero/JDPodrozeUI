@@ -39,6 +39,9 @@ import { AdminExcursionsTableFiltersActiveComponent } from './components/table/c
         FormsModule,
         SelectComponent
     ],
+    exports: [
+        AdminExcursionsTableComponent
+    ],
     providers: [
         {
             provide: NgbDateParserFormatter,

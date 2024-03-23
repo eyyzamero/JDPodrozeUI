@@ -6,6 +6,7 @@ export interface IExcursionsGetListShortItemRes {
 	priceNet: number;
 	discount: boolean;
 	discountPrice: number;
+    seats: number;
 	dateFrom?: Date;
 	dateTo?: Date;
 	imageId: number;

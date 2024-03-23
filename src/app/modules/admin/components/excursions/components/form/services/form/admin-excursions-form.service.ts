@@ -31,6 +31,11 @@ export class AdminExcursionsFormService {
 				Validators.required
 			]),
 			discountPrice: new FormControl(0),
+            seats: new FormControl(0, {
+                validators: [
+                    Validators.required
+                ]
+            }),
 			images: new FormArray([])
 		});
 	}

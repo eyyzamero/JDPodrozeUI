@@ -46,7 +46,9 @@
 						&.excursion-date-to,
 						&.excursion-active,
 						&.excursion-in-carousel,
-                        &.excursion-actions {
+                        &.excursion-actions,
+                        &.excursion-seats,
+                        &.excursion-available-seats {
 							text-align: center;
 						}
 
@@ -76,7 +78,9 @@
 						&.excursion-date-from,
 						&.excursion-date-to,
 						&.excursion-active,
-						&.excursion-in-carousel {
+						&.excursion-in-carousel,
+                        &.excursion-seats,
+                        &.excursion-available-seats {
 							text-align: center;
 						}
 
@@ -93,6 +97,13 @@
                                 flex-wrap: wrap;
                                 justify-content: center;
                                 gap: 12px;
+
+                                &.disabled {
+                                    * {
+                                        opacity: 0.5;
+                                        pointer-events: none;
+                                    }
+                                }
                             }
                         }
 
@@ -101,6 +112,12 @@
                             width: 20px;
                             height: 20px;
 
+                            &.edit,
+                            &.delete,
+                            &.template {
+                                cursor: pointer;
+                            }
+
                             &.check {
                                 filter: var(--app-green-color-filter);
                             }
@@ -108,6 +125,10 @@
                             &.close,
                             &.delete {
                                 filter: var(--app-red-color-filter);
+                            }
+
+                            &.template {
+                                filter: var(--app-primary-color-filter);
                             }
                         }
 					}

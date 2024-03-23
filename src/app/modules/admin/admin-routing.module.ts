@@ -11,6 +11,10 @@ const routes: Routes = [
 				path: '',
 				loadChildren: () => import('./components/excursions/admin-excursions.module').then(m => m.ExcursionsModule)
 			},
+            {
+                path: 'templates',
+                loadChildren: () => import('./components/templates/admin-templates.module').then(m => m.AdminTemplatesModule)
+            },
 			{
 				path: 'orders',
 				loadChildren: () => import('./components/orders/admin-orders.module').then(m => m.AdminOrdersModule)

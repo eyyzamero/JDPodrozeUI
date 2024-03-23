@@ -3,4 +3,5 @@ import { AdminExcursionsSortType } from "src/app/modules/admin/components/excurs
 export interface IExcursionsGetListReq {
 	sort: AdminExcursionsSortType;
 	active: boolean | null;
+    templates: boolean;
 }

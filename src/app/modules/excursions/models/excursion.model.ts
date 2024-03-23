@@ -15,6 +15,8 @@ export class ExcursionModel implements IExcursionModel {
 		public priceNet: number = 0,
 		public discount: boolean = false,
 		public discountPrice: number = 0,
+        public seats: number = 0,
+        public availableSeats: number = 0,
 		public imageId: number = 0,
 		public images: IExcursionImageModel[] = []
 	) { }

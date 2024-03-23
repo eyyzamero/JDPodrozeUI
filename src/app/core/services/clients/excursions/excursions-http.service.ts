@@ -44,4 +44,8 @@ export class ExcursionsHttpClientService {
 	enroll(req: IExcursionsEnrollReq) {
 		return this._httpClient.post<string | undefined>(`${configuration.api}/Excursions/Enroll`, req);
 	}
+     
+    changeToTemplate(id: number) {
+        return this._httpClient.get<void>(`${configuration.api}/Excursions/ChangeToTemplate/${id}`);
+    }
 }
