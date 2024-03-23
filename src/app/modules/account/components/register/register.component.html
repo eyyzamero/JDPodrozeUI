@@ -5,12 +5,12 @@
 	<header>Zarejestruj się</header>
 	<form [formGroup]="form" (ngSubmit)="register()">
         <span class="error" *ngIf="error">Wystąpił błąd</span>
-        <app-register-login-field [formControl]="getControl('login')"></app-register-login-field>
-        <app-register-password-field [formControl]="getControl('password')"></app-register-password-field>
-        <app-register-confirm-password-field [formControl]="getControl('confirmPassword')"></app-register-confirm-password-field>
-        <app-register-first-name-field [formControl]="getControl('firstName')"></app-register-first-name-field>
-        <app-register-last-name-field [formControl]="getControl('lastName')"></app-register-last-name-field>
-        <app-register-email-field [formControl]="getControl('email')"></app-register-email-field>
+        <app-register-login-field class="form-field" [formControl]="getControl('login')"></app-register-login-field>
+        <app-register-password-field class="form-field" [formControl]="getControl('password')"></app-register-password-field>
+        <app-register-confirm-password-field class="form-field" [formControl]="getControl('confirmPassword')"></app-register-confirm-password-field>
+        <app-register-first-name-field class="form-field" [formControl]="getControl('firstName')"></app-register-first-name-field>
+        <app-register-last-name-field class="form-field" [formControl]="getControl('lastName')"></app-register-last-name-field>
+        <app-register-email-field class="form-field" [formControl]="getControl('email')"></app-register-email-field>
 		<button type="submit">
 			<span>Zarejestruj</span>
 		</button>
