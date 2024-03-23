@@ -1,10 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountBase } from '../base/account.base';
 import { AuthHttpService } from 'src/app/core/services/http/auth/auth-http.service';
 import { Router } from '@angular/router';
 import { AuthRegisterReq } from 'src/app/core/contracts';
-import { Subscription } from 'rxjs';
+import { take } from 'rxjs';
 import { AuthJsonWebTokenLocalStorageDataService } from 'src/app/core/services/data/auth/jwt-local-storage/auth-json-web-token-local-storage-data.service';
 import { IsLoginAvailableValidator, passwordsEqualValidator } from './validators';
 
@@ -12,7 +12,7 @@ import { IsLoginAvailableValidator, passwordsEqualValidator } from './validators
 	templateUrl: './register.component.html',
 	styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent extends AccountBase implements OnDestroy {
+export class RegisterComponent extends AccountBase {
 
 	form: FormGroup = new FormGroup({
 		login: new FormControl(null, {
@@ -64,8 +64,6 @@ export class RegisterComponent extends AccountBase implements OnDestroy {
 	});
     error: boolean = false;
 
-	private _subscriptions: Subscription[] = [];
-
 	constructor(
 		readonly router: Router,
 		readonly authHttpService: AuthHttpService,
@@ -85,27 +83,18 @@ export class RegisterComponent extends AccountBase implements OnDestroy {
 				true
 			);
             this.form.disable();
-			this._subscriptions.push(
-				this._authHttpService.register(request).subscribe({
-					next: (value) => {
-						this._authJsonWebTokenLocalStorageDataService.add(value.token);
-						this._router.navigate(['/']);
-					},
-                    error: () => {
-                        this.error = true;
-                        this.form.enable();
-                    }
-				})
-			)
+            this._authHttpService.register(request).pipe(
+                take(1)
+            ).subscribe({
+                next: (value) => {
+                    this._authJsonWebTokenLocalStorageDataService.add(value.token);
+                    this._router.navigate(['/']);
+                },
+                error: () => {
+                    this.error = true;
+                    this.form.enable();
+                }
+            })
 		}
-	}
-
-    getControl(controlName: string) {
-        const control = this.form.controls[controlName];
-        return control as FormControl;
-    }
-
-	ngOnDestroy(): void {
-		this._subscriptions.forEach(x => x.unsubscribe());
 	}
 }

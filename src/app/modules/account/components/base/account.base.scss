@@ -17,7 +17,6 @@ $width: 400px;
 	}
 
 	.logo {
-		width: 50%;
 		max-width: 200px;
 	}
 
@@ -45,21 +44,20 @@ $width: 400px;
 		justify-content: center;
 		width: 100%;
 
-		input,
+        .form-field,
+        button {
+            width: calc(100% - 16px);
+            
+            @include mixins.breakpoint(sm) {
+				width: $width;
+			}
+        }
+
 		button {
 			padding: 12px;
 			font-size: 14px;
 			font-weight: bold;
 			border-radius: 4px;
-			width: calc(100% - 16px);
-
-			@include mixins.breakpoint(sm) {
-				width: $width;
-			}
-		}
-
-		input {
-			border: 1px solid var(--app-light-gray-color);
 		}
 
 		button {
@@ -69,6 +67,14 @@ $width: 400px;
 			background-color: var(--app-light-orange-color);
 			text-transform: uppercase;
 			color: black;
+
+            &:focus {
+                box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25)
+            }
+
+            &:hover {
+                opacity: 0.9;
+            }
 
 			&.home-btn {
 				background-color: var(--app-light-blue-color2);

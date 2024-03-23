@@ -1,7 +1,3 @@
-@use 'src/styles/mixins' as mixins;
-
-$width: 400px;
-
 .form-field-container {
     display: flex;
     flex-direction: column;
@@ -11,11 +7,11 @@ $width: 400px;
         font-size: 14px;
         font-weight: bold;
         border-radius: 4px;
-        width: calc(100% - 16px);
+        width: 100%;
         border: 1px solid var(--app-light-gray-color);
 
-        @include mixins.breakpoint(sm) {
-            width: $width;
+        &:hover {
+            border-color: var(--app-light-orange-color);
         }
 
         &.has-error {
