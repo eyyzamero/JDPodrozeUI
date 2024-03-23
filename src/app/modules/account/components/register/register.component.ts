@@ -1,59 +1,75 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountBase } from '../base/account.base';
 import { AuthHttpService } from 'src/app/core/services/http/auth/auth-http.service';
 import { Router } from '@angular/router';
 import { AuthRegisterReq } from 'src/app/core/contracts';
 import { Subscription } from 'rxjs';
 import { AuthJsonWebTokenLocalStorageDataService } from 'src/app/core/services/data/auth/jwt-local-storage/auth-json-web-token-local-storage-data.service';
-import { CommonModule } from '@angular/common';
+import { IsLoginAvailableValidator, passwordsEqualValidator } from './validators';
 
 @Component({
 	templateUrl: './register.component.html',
-	styleUrls: ['./register.component.scss'],
-	standalone: true,
-	imports: [
-		CommonModule,
-		FormsModule,
-		ReactiveFormsModule
-	]
+	styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent extends AccountBase implements OnDestroy {
 
 	form: FormGroup = new FormGroup({
-		login: new FormControl(null, [
-			Validators.required,
-			Validators.maxLength(50)
-		]),
-		password: new FormControl(null, [
-			Validators.required,
-			Validators.maxLength(255)
-		]),
-		confirmPassword: new FormControl(null, [
-			Validators.required,
-			Validators.maxLength(255)
-		]),
-		firstName: new FormControl(null, [
-			Validators.required,
-			Validators.maxLength(50)
-		]),
-		lastName: new FormControl(null, [
-			Validators.required,
-			Validators.maxLength(50)
-		]),
-		email: new FormControl(null, [
-			Validators.required,
-			Validators.email,
-			Validators.maxLength(255)
-		])
+		login: new FormControl(null, {
+            validators: [
+                Validators.required,
+                Validators.maxLength(50),
+            ],
+            asyncValidators: [
+                IsLoginAvailableValidator.createValidator(this._authHttpService)
+            ],
+            updateOn: 'blur'
+        }),
+		password: new FormControl(null, {
+            validators: [
+                Validators.required,
+                Validators.maxLength(255)
+            ],
+            updateOn: 'blur'
+        }),
+		confirmPassword: new FormControl(null, {
+            validators: [
+                Validators.required,
+                Validators.maxLength(255),
+                passwordsEqualValidator
+            ],
+            updateOn: 'blur'
+        }),
+		firstName: new FormControl(null, {
+            validators: [
+                Validators.required,
+                Validators.maxLength(50)
+            ],
+            updateOn: 'blur'
+        }),
+		lastName: new FormControl(null, {
+            validators: [
+                Validators.required,
+                Validators.maxLength(50)
+            ],
+            updateOn: 'blur'
+        }),
+		email: new FormControl(null, {
+            validators: [
+                Validators.required,
+                Validators.email,
+                Validators.maxLength(255)
+            ]
+        })
 	});
+    error: boolean = false;
 
 	private _subscriptions: Subscription[] = [];
 
 	constructor(
-		router: Router,
-		authHttpService: AuthHttpService,
-		private _authJsonWebTokenLocalStorageDataService: AuthJsonWebTokenLocalStorageDataService
+		readonly router: Router,
+		readonly authHttpService: AuthHttpService,
+		private readonly _authJsonWebTokenLocalStorageDataService: AuthJsonWebTokenLocalStorageDataService,
 	) {
 		super(router, authHttpService);
 	}
@@ -68,16 +84,26 @@ export class RegisterComponent extends AccountBase implements OnDestroy {
 				this.form.controls['email'].value,
 				true
 			);
+            this.form.disable();
 			this._subscriptions.push(
 				this._authHttpService.register(request).subscribe({
 					next: (value) => {
 						this._authJsonWebTokenLocalStorageDataService.add(value.token);
 						this._router.navigate(['/']);
-					}
+					},
+                    error: () => {
+                        this.error = true;
+                        this.form.enable();
+                    }
 				})
 			)
 		}
 	}
+
+    getControl(controlName: string) {
+        const control = this.form.controls[controlName];
+        return control as FormControl;
+    }
 
 	ngOnDestroy(): void {
 		this._subscriptions.forEach(x => x.unsubscribe());

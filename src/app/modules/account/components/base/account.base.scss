@@ -28,7 +28,7 @@ $width: 400px;
 
 	.error {
 		font-weight: bold;
-		color: red;
+		color: var(--bs-danger);
 		width: calc(100% - 16px);
 		text-align: center;
 
@@ -83,6 +83,10 @@ $width: 400px;
 			&.disabled {
 				cursor: not-allowed;
 			}
+
+            &:disabled {
+                opacity: 0.5;
+            }
 		}
 	}
 }

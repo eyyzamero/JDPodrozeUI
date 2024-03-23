@@ -23,6 +23,8 @@ export * from './requests/contact/icontact.req';
 export * from './requests/contact/contact.req';
 export * from './requests/excursions/get-list/iexcursions-get-list.req';
 export * from './requests/excursions/get-list/excursions-get-list.req';
+export * from './requests/auth/is-login-available/iauth-is-login-available.req';
+export * from './requests/auth/is-login-available/auth-is-login-available.req';
 
 // Responses
 export * from './responses/account/register/iaccount-register.res';

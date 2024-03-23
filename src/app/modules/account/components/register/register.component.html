@@ -2,13 +2,14 @@
 	<img class="logo" src="assets/images/logos/logo_colored_width_200.png" alt="logo" (click)="navigateToHomePage()">
 	<header>Zarejestruj się</header>
 	<form [formGroup]="form" (ngSubmit)="register()">
-		<input type="text" formControlName="login" placeholder="Login">
-		<input type="password" formControlName="password" placeholder="Hasło">
-		<input type="password" formControlName="confirmPassword" placeholder="Powtórz hasło">
-		<input type="text" formControlName="firstName" placeholder="Imię">
-		<input type="text" formControlName="lastName" placeholder="Nazwisko">
-		<input type="email" formControlName="email" placeholder="Adres email">
-		<button type="submit">
+        <span class="error" *ngIf="error">Wystąpił błąd</span>
+        <app-register-login-field [formControl]="getControl('login')"></app-register-login-field>
+        <app-register-password-field [formControl]="getControl('password')"></app-register-password-field>
+        <app-register-confirm-password-field [formControl]="getControl('confirmPassword')"></app-register-confirm-password-field>
+        <app-register-first-name-field [formControl]="getControl('firstName')"></app-register-first-name-field>
+        <app-register-last-name-field [formControl]="getControl('lastName')"></app-register-last-name-field>
+        <app-register-email-field [formControl]="getControl('email')"></app-register-email-field>
+		<button type="submit" [disabled]="!form.valid">
 			<span>Zarejestruj</span>
 		</button>
 		<button type="button" class="home-btn" (click)="navigateToHomePage()">
