@@ -43,6 +43,10 @@
 				<label for="discount-price" class="form-label">Cena ulgowa</label>
 				<input type="number" formControlName="discountPrice" class="form-control" id="discount-price">
 			</div>
+            <div class="col-auto">
+                <label for="seats" class="form-label">Ilość miejsc</label>
+                <input type="number" formControlName="seats" class="form-control" id="seats">
+            </div>
 			<button type="submit" class="btn form-submit-btn" [disabled]="submitButtonDisabled">
 				<span>Wyślij</span>
 			</button>

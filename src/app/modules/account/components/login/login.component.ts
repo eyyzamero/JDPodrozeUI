@@ -60,6 +60,7 @@ export class LoginComponent extends AccountBase implements OnInit, OnDestroy {
 	}
 
 	tryToLogin(): void {
+        this.form.markAllAsTouched();
 		if (this.form.valid && !this._isLoading) {
 			this.invalidCredentialsError = false;
 			const request = new AuthLoginReq(this.form.controls['login'].value, this.form.controls['password'].value);

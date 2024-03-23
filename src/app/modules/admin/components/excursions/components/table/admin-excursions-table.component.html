@@ -44,8 +44,10 @@
 							<img [src]="excursion.inCarousel ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.inCarousel ? 'check': 'close'" alt="in-carousel">
 						</td>
 						<td class="excursion-actions">
-							<img src="assets/icons/edit.svg" class="edit" (click)="edit(excursion.id)" alt="edit">
-							<img src="assets/icons/delete.svg" class="delete" (click)="delete(excursion.id)" alt="delete">
+                            <div class="excursion-actions-buttons">
+                                <img src="assets/icons/edit.svg" class="edit" (click)="edit(excursion.id)" alt="edit">
+                                <img src="assets/icons/delete.svg" class="delete" (click)="delete(excursion.id)" alt="delete">
+                            </div>
 						</td>
 					</tr>
 				</tbody>

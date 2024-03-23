@@ -73,6 +73,7 @@ export class RegisterComponent extends AccountBase {
 	}
 
 	register(): void {
+        this.form.markAllAsTouched();
 		if (this.form.valid) {
 			const request = new AuthRegisterReq(
 				this.form.controls['login'].value,
