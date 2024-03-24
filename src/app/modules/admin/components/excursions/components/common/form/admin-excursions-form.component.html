@@ -1,0 +1,18 @@
+<section class="admin-excursions-form-container">
+    <form class="form" [formGroup]="form" (ngSubmit)="onFormSubmit()">
+        <app-admin-excursions-form-title></app-admin-excursions-form-title>
+        <app-admin-excursions-form-short-description></app-admin-excursions-form-short-description>
+        <!-- Description HERE -->
+        <!-- Images HERE -->
+        <app-admin-excursions-form-active></app-admin-excursions-form-active>
+        <app-admin-excursions-form-in-carousel></app-admin-excursions-form-in-carousel>
+        <!-- Dates HERE -->
+        <app-admin-excursions-form-price></app-admin-excursions-form-price>
+        <app-admin-excursions-form-discount></app-admin-excursions-form-discount>
+        <app-admin-excursions-form-discount-price></app-admin-excursions-form-discount-price>
+        <app-admin-excursions-form-seats></app-admin-excursions-form-seats>
+        <button type="submit" class="btn form-submit-btn" [disabled]="submitButtonDisabled">
+            <span>Wyślij</span>
+        </button>
+    </form>
+</section>
