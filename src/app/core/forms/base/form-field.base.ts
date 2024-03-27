@@ -1,18 +1,16 @@
-import { Directive, Input, WritableSignal, signal } from "@angular/core";
-import { ControlValueAccessor, FormControl } from "@angular/forms";
+import { Directive, Injector, WritableSignal, signal } from "@angular/core";
+import { ControlValueAccessor, NgControl } from "@angular/forms";
 
 @Directive()
 export abstract class FormFieldBase<TType> implements ControlValueAccessor {
 
-    @Input({ required: true }) formControl!: FormControl<TType>;
-
     get touched(): boolean {
-        const result = this.formControl.touched;
+        const result = this._control?.touched ?? false;
         return result;
     }
 
     get errorKey(): string | undefined {
-        const result = this.formControl.errors === null ? undefined : Object.keys(this.formControl.errors)[0];
+        const result = !this._control?.errors ? undefined : Object.keys(this._control.errors)[0];
         return result;
     }
 
@@ -21,8 +19,14 @@ export abstract class FormFieldBase<TType> implements ControlValueAccessor {
 
     onTouched!: () => void;
     onChange!: (value: TType) => void;
+
+    private _control?: NgControl;
     
-    constructor() { }
+    constructor(
+        injector: Injector
+    ) {
+        setTimeout(() => this._control = injector.get(NgControl, 0)); 
+    }
 
     writeValue(value: TType): void {
         this.value.set(value);

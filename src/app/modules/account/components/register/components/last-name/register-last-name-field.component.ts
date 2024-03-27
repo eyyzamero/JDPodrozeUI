@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, Injector, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormFieldBase } from 'src/app/core/forms';
 
@@ -16,7 +16,7 @@ import { FormFieldBase } from 'src/app/core/forms';
 })
 export class RegisterLastNameFieldComponent extends FormFieldBase<string> {
 
-    constructor() {
-        super();
+    constructor(injector: Injector) {
+        super(injector);
     }
 }
