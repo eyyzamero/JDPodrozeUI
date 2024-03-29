@@ -4,18 +4,9 @@
 	min-height: 100%;
 
 	.layout-content {
-		display: grid;
+		display: flex;
 		width: 100%;
 		min-height: calc(100vh - 80px);
-
-		router-outlet {
-			display: none;
-		}
-
-		> *:not(router-outlet) {
-			display: block;
-			width: 100%;
-		}
 	}
 
 	app-footer {
