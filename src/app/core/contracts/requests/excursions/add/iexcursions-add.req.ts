@@ -12,5 +12,6 @@ export interface IExcursionsAddReq {
     seats: number;
 	dateFrom?: string;
 	dateTo?: string;
+    isTemplate: boolean;
 	images: IExcursionsAddImageReq[];
 }

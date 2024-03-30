@@ -15,11 +15,11 @@ const routes: Routes = [
 			},
 			{
 				path: 'form',
-				component: AdminExcursionsFormComponent
+				loadComponent: () => AdminExcursionsFormComponent
 			},
 			{
 				path: 'form/:id',
-				component: AdminExcursionsFormComponent
+				loadComponent: () => AdminExcursionsFormComponent
 			}
 		]
 	}

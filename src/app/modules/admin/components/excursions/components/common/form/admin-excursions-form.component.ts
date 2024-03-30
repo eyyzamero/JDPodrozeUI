@@ -1,15 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AdminExcursionsFormService } from '../../form/services/form';
+import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormMode } from 'src/app/core/enums';
 import { ToastsService } from 'src/app/core/services/common/toasts/toasts.service';
 import { AdminExcursionsFormModule } from './admin-excursions-form.module';
+import { IExcursionImageModel } from 'src/app/modules/excursions/models';
 
 @Component({
-    selector: 'app-admin-excursions-form',
+    selector: 'app-admin-excursions-form-common',
     templateUrl: './admin-excursions-form.component.html',
     styleUrls: ['./admin-excursions-form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
         CommonModule,
@@ -17,32 +18,34 @@ import { AdminExcursionsFormModule } from './admin-excursions-form.module';
         ReactiveFormsModule
     ]
 })
-export class AdminExcursionsFormComponent implements OnInit {
+export class AdminExcursionsFormCommonComponent {
     
     @Input() mode: FormMode = FormMode.NEW;
 
     @Output() submit: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+    @Input() form?: FormGroup;
+    @Input() submitButtonDisabled: boolean = false;
 
-    form: FormGroup = new FormGroup({});
-    submitButtonDisabled: boolean = false;
+    get images(): FormArray {
+		return this.form!.get('images') as FormArray<AbstractControl<IExcursionImageModel>>;
+	}
 
     constructor(
-        private readonly _adminExcursionsFormService: AdminExcursionsFormService,
         private readonly _toastsService: ToastsService
     ) { }
 
-    ngOnInit(): void {
-        this._initForm();
-    }
-
-    private _initForm(): void {
-        this.form = this._adminExcursionsFormService.form;
-    }
-
     onFormSubmit(): void {
-        this.form.markAllAsTouched();
-        this.form.valid
-            ? this.submit.emit(this.form)
-            : this._toastsService.show('W formularzu znajduje się co najmniej jeden błąd', 'toast-error');
+        if (!this.submitButtonDisabled) {
+            this.form?.markAllAsTouched();
+            this.form?.updateValueAndValidity();
+            this.form?.valid
+                ? this.submit.emit(this.form)
+                : this._toastsService.show('W formularzu znajduje się co najmniej jeden błąd', 'toast-error');
+        }
+    }
+
+    getFormControl(formControlName: string) {
+        const control = this.form!.controls[formControlName];
+        return control as FormControl;
     }
 }

@@ -7,7 +7,7 @@ import { AdminExcursionsDataService } from 'src/app/modules/admin/services/data/
 import { AdminExcursionsHttpService } from 'src/app/modules/admin/services/http/admin-excursions-http.service';
 import { IExcursionModel } from 'src/app/modules/excursions/models';
 import { AdminExcursionsSortType } from '../../enums';
-import { ExcursionsGetListReq, IExcursionsGetListReq } from 'src/app/core/contracts';
+import { ExcursionsGetListReq } from 'src/app/core/contracts';
 
 @Component({
 	selector: 'app-admin-excursions-table',
@@ -17,7 +17,6 @@ import { ExcursionsGetListReq, IExcursionsGetListReq } from 'src/app/core/contra
 export class AdminExcursionsTableComponent implements OnInit, OnDestroy {
 
     @Input() sorting: boolean = true;
-    @Input() req?: IExcursionsGetListReq;
     @Input() templates: boolean = false;
 
 	excursions?: IExcursionModel[] = [];
@@ -32,31 +31,32 @@ export class AdminExcursionsTableComponent implements OnInit, OnDestroy {
 	private _subscriptions: Subscription[] = [];
 
 	constructor(
-		private _router: Router,
-		private _activatedRoute: ActivatedRoute,
-		private _adminExcursionsDataService: AdminExcursionsDataService,
-		private _adminExcursionsHttpService: AdminExcursionsHttpService,
-		private _toastsService: ToastsService
+		private readonly _router: Router,
+		private readonly _activatedRoute: ActivatedRoute,
+		private readonly _adminExcursionsDataService: AdminExcursionsDataService,
+		private readonly _adminExcursionsHttpService: AdminExcursionsHttpService,
+		private readonly _toastsService: ToastsService
 	) { }
 
 	ngOnInit(): void {
 		this._initSubscriptions();
 	}
 
-	edit(id: number) {
+	edit(id: number): void {
 		this._router.navigate([`./form/${id}`], {
-			relativeTo: this._activatedRoute
+			relativeTo: this._activatedRoute,
+            queryParamsHandling: 'merge'
 		});
 	}
 
-	delete(id: number) {
+	delete(id: number): void {
         this.buttonsEnabled = false;
 		this._adminExcursionsHttpService.deleteObservable(id).pipe(
             take(1)
         ).subscribe({
 			next: () => {
 				this._toastsService.show('Pomyślnie usunięto wycieczkę', 'toast-success');
-				this._adminExcursionsHttpService.getList();
+				this._getList();
                 this.buttonsEnabled = true;
 			},
 			error: () => {
@@ -66,7 +66,7 @@ export class AdminExcursionsTableComponent implements OnInit, OnDestroy {
 		})
 	}
 
-	onSort(sort: AdminExcursionsSortType) {
+	onSort(sort: AdminExcursionsSortType): void {
 		if (this.sorting && sort !== this.sort) {
 			this._router.navigate(['.'], {
 				queryParams: {
@@ -78,14 +78,14 @@ export class AdminExcursionsTableComponent implements OnInit, OnDestroy {
 		}
 	}
 
-    makeTemplate(excursionId: number) {
+    makeTemplate(excursionId: number): void {
         this.buttonsEnabled = false;
         this._adminExcursionsHttpService.changeToTemplateObservable(excursionId).pipe(
             take(1)
         ).subscribe({
             next: () => {
                 this._toastsService.show('Pomyślnie zmieniono wycieczkę w szablon', 'toast-success');
-				this._adminExcursionsHttpService.getList();
+				this._getList();
                 this.buttonsEnabled = true;
             },
             error: () => {
@@ -113,8 +113,8 @@ export class AdminExcursionsTableComponent implements OnInit, OnDestroy {
 		);
 	}
 
-	private _getList() {
-		const request = this.req ? this.req : new ExcursionsGetListReq(this.sort, this.active);
+	private _getList(): void {
+		const request = new ExcursionsGetListReq(this.sort, this.active, this.templates);
 		this._adminExcursionsHttpService.getList(request);
 	}
 

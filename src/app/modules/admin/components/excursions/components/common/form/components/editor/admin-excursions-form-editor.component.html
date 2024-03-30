@@ -1,0 +1,7 @@
+<section class="admin-excursions-form-editor-container">
+    <label class="form-label">Opis</label>
+	<ckeditor [editor]="editor" [formControl]="control" [config]="editorConfig" (ready)="onEditorReady($event)"></ckeditor>
+    <div *ngIf="control.errors && control.touched" class="errors">
+        <span *ngIf="control.errors['required']">Pole wymagane</span>
+    </div>
+</section>

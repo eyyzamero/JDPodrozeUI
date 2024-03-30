@@ -1,0 +1,4 @@
+<section class="admin-excursions-form-checkbox-container">
+    <input #inputRef type="checkbox" class="form-check-input" [id]="id" [checked]="value()" (change)="updateValue(!value())" [disabled]="isDisabled()">
+    <label class="form-label" [for]="id">{{ label }}</label>
+</section>

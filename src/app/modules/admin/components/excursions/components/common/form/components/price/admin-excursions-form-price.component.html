@@ -1,1 +1,8 @@
-<p>admin-excursions-form-price works!</p>
+<section class="admin-excursions-form-price-container">
+    <label for="price" class="form-label">Cena</label>
+    <input #inputRef type="number" id="price" class="form-control" [value]="value()" placeholder="Cena"
+        [disabled]="isDisabled()" (input)="updateValue(+inputRef.value)" (blur)="onTouched()">
+    <div *ngIf="errorKey && touched" class="errors" [ngSwitch]="errorKey">
+        <span *ngSwitchCase="'required'">Pole wymagane</span>
+    </div>
+</section>

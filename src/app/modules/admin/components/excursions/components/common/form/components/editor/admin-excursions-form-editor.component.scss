@@ -1,0 +1,20 @@
+@use '../base/admin-excursions-form-field.base.scss';
+
+.admin-excursions-form-editor-container {
+	::ng-deep {
+		.ck-toolbar {
+			border-radius: 6px 6px 0 0;
+		}
+
+		.ck-editor__editable_inline {
+			border: 1px solid var(--ck-color-toolbar-border);
+			border-top: 0;
+			border-radius: 0 0 6px 6px;
+
+            &.ck-focused {
+                border: 1px solid var(--app-light-gray-color);
+                box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            }
+		}
+	}
+}

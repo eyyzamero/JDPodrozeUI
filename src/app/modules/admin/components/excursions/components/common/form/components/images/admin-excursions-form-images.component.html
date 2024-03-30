@@ -1,0 +1,16 @@
+<section class="admin-excursions-form-images-container">
+	<label class="form-label">Zdjęcia</label>
+    <div class="admin-excursions-form-images-content">
+        <input #file type="file" (change)="onFileChange($event)">
+        <div *ngFor="let image of images; let i = index" class="image-container draggable" draggable="true"
+            (dragstart)="onDragStart($event, i)" (dragover)="onDragOver($event)" (drop)="onDrop($event, i)">
+            <img class="image" alt="image" [src]="image.base64">
+            <span class="image-delete" (click)="onDelete(image)">
+                <img src="assets/icons/delete.svg" alt="delete">
+            </span>
+        </div>
+        <div class="image-container add" (click)="file.click()">
+            <img src="assets/icons/plus.svg" alt="image">
+        </div>
+    </div>
+</section>

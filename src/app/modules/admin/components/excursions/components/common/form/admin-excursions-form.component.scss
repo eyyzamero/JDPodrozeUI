@@ -1,3 +1,14 @@
 .admin-excursions-form-container {
-    
+    form {
+        display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-top: 24px;
+
+        .form-submit-btn {
+			background-color: var(--app-light-orange-color);
+			color: black;
+			font-weight: bold;
+		}
+    }
 }

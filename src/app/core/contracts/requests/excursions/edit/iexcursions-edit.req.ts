@@ -13,5 +13,6 @@ export interface IExcursionsEditReq {
     seats: number;
 	dateFrom?: string;
 	dateTo?: string;
+    isTemplate: boolean;
 	images: IExcursionsEditImageReq[];
 }

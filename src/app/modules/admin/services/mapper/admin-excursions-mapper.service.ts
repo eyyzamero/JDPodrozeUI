@@ -29,6 +29,7 @@ export class AdminExcursionsMapperService {
             src.controls['seats'].value,
 			src.controls['dateFrom'].value ? this._ngbDateToDate(src.controls['dateFrom'].value) : undefined,
 			src.controls['dateTo'].value ? this._ngbDateToDate(src.controls['dateTo'].value) : undefined,
+            src.controls['template'].value,
 			(src.controls['images'].value as Array<ExcursionImageModel>).map(item => this._base64ToIExcursionsAddImageReq(item))
 		);	
 		return dest;
@@ -48,6 +49,7 @@ export class AdminExcursionsMapperService {
             src.controls['seats'].value,
 			src.controls['dateFrom'].value ? this._ngbDateToDate(src.controls['dateFrom'].value) : undefined,
 			src.controls['dateTo'].value ? this._ngbDateToDate(src.controls['dateTo'].value) : undefined,
+            src.controls['template'].value,
 			(src.controls['images'].value as Array<ExcursionImageModel>).map(item => this._base64ToIExcursionsEditImageReq(item))
 		);
 		return dest;
@@ -65,6 +67,7 @@ export class AdminExcursionsMapperService {
 		dest.controls['dateTo'].setValue(src.dateTo ? this.dateToNgbDate(new Date(src.dateTo)) : null);
 		dest.controls['discount'].setValue(src.discount);
 		dest.controls['discountPrice'].setValue(src.discountPrice);
+        dest.controls['seats'].setValue(src.seats);
 		const images = src.images.map(image => this._iExcursionsGetItemImageResToFormControlIExcursionImageModel(image));
 		(dest.controls['images'] as FormArray).clear();
 		images.forEach(image => (dest.controls['images'] as FormArray).push(image));

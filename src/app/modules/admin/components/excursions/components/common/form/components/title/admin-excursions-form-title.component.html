@@ -1,1 +1,9 @@
-<p>admin-excursions-form-title works!</p>
+<section class="admin-excursions-form-title-container">
+    <label for="title" class="form-label">Tytuł</label>
+    <input #inputRef type="text" id="title" class="form-control" [value]="value()" placeholder="Tytuł"
+        [disabled]="isDisabled()" (input)="updateValue(inputRef.value)" (blur)="onTouched()">
+    <div *ngIf="errorKey && touched" class="errors" [ngSwitch]="errorKey">
+        <span *ngSwitchCase="'required'">Pole wymagane</span>
+        <span *ngSwitchCase="'maxlength'">Maksymalna długość pola wynosi 255 znaków</span>
+    </div>
+</section>

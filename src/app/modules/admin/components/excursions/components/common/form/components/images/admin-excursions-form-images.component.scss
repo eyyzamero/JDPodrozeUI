@@ -1,0 +1,69 @@
+@use '../base/admin-excursions-form-field.base.scss';
+
+.admin-excursions-form-images-container {
+	display: flex;
+    flex-direction: column;
+
+    .admin-excursions-form-images-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        width: 100%;
+
+        input {
+            display: none;
+        }
+    
+        .image-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid black;
+            cursor: pointer;
+            padding: 8px;
+            aspect-ratio: 16 / 9;
+            max-width: 160px;
+            width: 100%;
+    
+            &:hover {
+                border-color: var(--app-light-orange-color);
+                color: var(--app-light-orange-color);
+    
+                .image {
+                    opacity: 0.25;
+                }
+    
+                .image-delete {
+                    display: initial;
+                }
+            }
+    
+            &.draggable {
+                cursor: move;
+                user-select: none;
+            }
+    
+            .image {
+                width: 100%;
+                height: 100%;
+            }
+    
+            .image-delete {
+                display: none;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                cursor: pointer;
+    
+                img {
+                    display: inline-flex;
+                    width: 16px;
+                    height: 16px;
+                    filter: var(--app-red-color-filter);
+                }
+            }
+        }
+    }
+}

@@ -1,8 +1,8 @@
 <section class="admin-excursions-table-container">
-	<h3 class="section-title">{{ templates ? 'Szablony' : 'Wycieczki' }}</h3>
-	<div *ngIf="!templates" class="buttons-container">
-		<button type="button" class="btn add-excursion-btn" routerLink="/admin/form">
-			<span>Dodaj wycieczkę</span>
+	<h3 class="section-title">{{ templates ? 'Szablony wycieczek' : 'Wycieczki' }}</h3>
+	<div class="buttons-container">
+		<button type="button" class="btn add-excursion-btn" [routerLink]="templates ? '/admin/templates/form' : '/admin/form'">
+			<span>{{ templates ? 'Dodaj szablon wycieczki' : 'Dodaj wycieczkę' }}</span>
 		</button>
 	</div>
 	<app-admin-excursions-table-filters *ngIf="!templates" [active]="active"></app-admin-excursions-table-filters>

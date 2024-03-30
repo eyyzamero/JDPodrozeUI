@@ -15,6 +15,7 @@ export class ExcursionsEditReq implements IExcursionsEditReq {
         public seats: number = 0,
 		public dateFrom?: string,
 		public dateTo?: string,
+        public isTemplate: boolean = false,
 		public images: IExcursionsEditImageReq[] = []
 	) { }
 }
