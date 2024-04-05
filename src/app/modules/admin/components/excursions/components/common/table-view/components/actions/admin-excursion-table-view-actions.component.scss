@@ -1,0 +1,33 @@
+.admin-excursion-table-view-actions-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+
+    &.disabled {
+        * {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+
+    img {
+        display: inline-flex;
+        width: 20px;
+        height: 20px;
+
+        &.edit,
+        &.delete,
+        &.template {
+            cursor: pointer;
+        }
+
+        &.delete {
+            filter: var(--app-red-color-filter);
+        }
+
+        &.template {
+            filter: var(--app-primary-color-filter);
+        }
+    }
+}

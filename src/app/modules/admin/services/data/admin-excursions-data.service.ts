@@ -8,7 +8,7 @@ import { IExcursionModel } from 'src/app/modules/excursions/models';
 export class AdminExcursionsDataService extends BaseDataService<IExcursionModel[]> {
 
 	constructor() {
-		super();
+		super([]);
 	}
 
     remove(id: number) {

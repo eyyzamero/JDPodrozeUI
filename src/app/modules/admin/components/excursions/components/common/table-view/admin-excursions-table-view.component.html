@@ -1,0 +1,62 @@
+<section class="admin-excursions-table-view-container" [ngSwitch]="context">
+    <table class="table table-striped table-hover table-responsive">
+        <thead class="table-responsive">
+            <tr>
+                <th scope="col" class="excursion-title">
+                    <span>Nazwa</span>
+                </th>
+                <th scope="col" class="excursion-date-from" [ngClass]="{ 'sortable': sorting && context === ContextType.EXCURSIONS, 'current': sortCurrent === AdminExcursionsSortType.DATE_FROM }" (click)="onSort(AdminExcursionsSortType.DATE_FROM)">
+                    <span>Data od</span>
+                </th>
+                <th scope="col" class="excursion-date-to" [ngClass]="{ 'sortable': sorting && context === ContextType.EXCURSIONS, 'current': sortCurrent === AdminExcursionsSortType.DATE_TO }" (click)="onSort(AdminExcursionsSortType.DATE_TO)">
+                    <span>Data do</span>
+                </th>
+                <th scope="col" class="excursion-seats">
+                    <span>Miejsca</span>
+                </th>
+                <th *ngSwitchCase="ContextType.EXCURSIONS" scope="col" class="excursion-available-seats">
+                    <span>Wolne</span>
+                </th>
+                <th scope="col" class="excursion-active">
+                    <span>Aktywna</span>
+                </th>
+                <th scope="col" class="excursion-in-carousel">
+                    <span>W karuzeli</span>
+                </th>
+                <th scope="col" class="excursion-actions">
+                    <span>Akcje</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="table-responsive">
+            <tr *ngFor="let excursion of excursions">
+                <td class="excursion-title">
+                    <span>{{ excursion.title }}</span>
+                </td>
+                <td class="excursion-date-from">
+                    <span>{{ (excursion.dateFrom | date: 'dd.MM.yyyy') ?? '-' }}</span>
+                </td>
+                <td class="excursion-date-to">
+                    <span>{{ (excursion.dateTo | date: 'dd.MM.yyyy') ?? '-' }}</span>
+                </td>
+                <td class="excursion-seats">
+                    <span>{{ excursion.seats }}</span>
+                </td>
+                <td *ngSwitchCase="ContextType.EXCURSIONS" class="excursion-available-seats">
+                    <span>{{ excursion.availableSeats }}</span>
+                </td>
+                <td class="excursion-active">
+                    <img [src]="excursion.active ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.active ? 'check': 'close'" alt="active">
+                </td>
+                <td class="excursion-in-carousel">
+                    <img [src]="excursion.inCarousel ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.inCarousel ? 'check': 'close'" alt="in-carousel">
+                </td>
+                <td class="excursion-actions">
+                    <app-admin-excursion-table-view-actions [context]="context" [buttonsEnabled]="buttonsEnabled"
+                        (edit)="edit.emit(excursion.id)" (delete)="delete.emit(excursion.id)" (template)="template.emit(excursion.id)">
+                    </app-admin-excursion-table-view-actions>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

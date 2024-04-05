@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminTemplatesComponent } from './admin-templates.component';
 import { AdminExcursionsFormComponent } from '../excursions/components/form/admin-excursions-form.component';
+import { AdminTemplatesTableComponent } from './components/table/admin-templates-table.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: AdminTemplatesComponent
+        loadComponent: () => AdminTemplatesTableComponent
     },
     {
         path: 'form',

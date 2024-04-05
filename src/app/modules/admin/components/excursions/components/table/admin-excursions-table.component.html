@@ -1,66 +1,16 @@
-<section class="admin-excursions-table-container">
-	<h3 class="section-title">{{ templates ? 'Szablony wycieczek' : 'Wycieczki' }}</h3>
+<section class="excursions-table-container admin-excursions-table-container">
+	<h3 class="section-title">Wycieczki</h3>
 	<div class="buttons-container">
-		<button type="button" class="btn add-excursion-btn" [routerLink]="templates ? '/admin/templates/form' : '/admin/form'">
-			<span>{{ templates ? 'Dodaj szablon wycieczki' : 'Dodaj wycieczkę' }}</span>
+		<button type="button" class="btn add-excursion-btn" routerLink="/admin/form">
+			<span>Dodaj wycieczkę</span>
 		</button>
 	</div>
-	<app-admin-excursions-table-filters *ngIf="!templates" [active]="active"></app-admin-excursions-table-filters>
-	<app-loading-spinner *ngIf="state === LoadingState.LOADING; else content" [center]="false"></app-loading-spinner>
+	<app-admin-excursions-table-filters [active]="active()"></app-admin-excursions-table-filters>
+	<app-loading-spinner *ngIf="state() === LoadingState.LOADING; else content" [center]="false"></app-loading-spinner>
 	<ng-template #content>
-		<div *ngIf="excursions" class="admin-excursions-table-content">
-			<table class="table table-striped table-hover table-responsive">
-				<thead class="table-responsive">
-					<tr>
-						<th scope="col" class="excursion-title">
-							<span>Nazwa</span>
-						</th>
-						<th scope="col" class="excursion-date-from" [ngClass]="{ 'sortable': sorting, 'current': sorting && sort === AdminExcursionsSortType.DATE_FROM }" (click)="onSort(AdminExcursionsSortType.DATE_FROM)">
-							<span>Data od</span>
-						</th>
-						<th scope="col" class="excursion-date-to" [ngClass]="{ 'sortable': sorting, 'current': sorting && sort === AdminExcursionsSortType.DATE_TO }" (click)="onSort(AdminExcursionsSortType.DATE_TO)">
-							<span>Data do</span>
-						</th>
-                        <th scope="col" class="excursion-seats">
-                            <span>Miejsca</span>
-                        </th>
-                        <th *ngIf="!templates" scope="col" class="excursion-available-seats">
-                            <span>Wolne</span>
-                        </th>
-						<th scope="col" class="excursion-active">
-							<span>Aktywna</span>
-						</th>
-						<th scope="col" class="excursion-in-carousel">
-							<span>W karuzeli</span>
-						</th>
-						<th scope="col" class="excursion-actions">
-							<span>Akcje</span>
-						</th>
-					</tr>
-				</thead>
-				<tbody class="table-responsive">
-					<tr *ngFor="let excursion of excursions">
-						<td class="excursion-title">{{ excursion.title }}</td>
-						<td class="excursion-date-from">{{ (excursion.dateFrom | date: 'dd.MM.yyyy') ?? '-' }}</td>
-						<td class="excursion-date-to">{{ (excursion.dateTo | date: 'dd.MM.yyyy') ?? '-' }}</td>
-                        <td class="excursion-seats">{{ excursion.seats }}</td>
-                        <td *ngIf="!templates" class="excursion-available-seats">{{ excursion.availableSeats }}</td>
-						<td class="excursion-active">
-							<img [src]="excursion.active ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.active ? 'check': 'close'" alt="active">
-						</td>
-						<td class="excursion-in-carousel">
-							<img [src]="excursion.inCarousel ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.inCarousel ? 'check': 'close'" alt="in-carousel">
-						</td>
-						<td class="excursion-actions">
-                            <div class="excursion-actions-buttons" [ngClass]="{ 'disabled': !buttonsEnabled }">
-                                <img src="assets/icons/edit.svg" class="edit" (click)="edit(excursion.id)" alt="edit">
-                                <img src="assets/icons/delete.svg" class="delete" (click)="delete(excursion.id)" alt="delete">
-                                <img *ngIf="!templates" src="assets/icons/template.svg" class="template" (click)="makeTemplate(excursion.id)" alt="template">
-                            </div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<app-admin-excursions-table-view [context]="context" [excursions]="excursions()" [buttonsEnabled]="buttonsEnabled()"
+            [sorting]="sorting" [sortCurrent]="sortCurrent()" (sort)="onSort($event)" (edit)="edit($event)" (delete)="delete($event)"
+            (template)="makeTemplate($event)">
+        </app-admin-excursions-table-view>
 	</ng-template>
 </section>

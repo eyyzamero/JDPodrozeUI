@@ -1,0 +1,26 @@
+.excursions-table-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	.section-title {
+		font-weight: bold;
+		margin: 0;
+	}
+
+	.buttons-container {
+		display: flex;
+		margin-top: 16px;
+
+		.add-excursion-btn {
+			background-color: var(--app-light-orange-color);
+			color: black;
+			font-weight: bold;
+		}
+	}
+
+	app-loading-spinner {
+		display: block;
+		margin: 32px auto;
+	}
+}

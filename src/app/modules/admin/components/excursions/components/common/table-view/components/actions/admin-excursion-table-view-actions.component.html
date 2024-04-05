@@ -1,0 +1,5 @@
+<div class="admin-excursion-table-view-actions-container" [ngSwitch]="context" [ngClass]="{ 'disabled': !buttonsEnabled }">
+    <img src="assets/icons/edit.svg" class="edit" (click)="edit.emit()" alt="edit">
+    <img src="assets/icons/delete.svg" class="delete" (click)="delete.emit()" alt="delete">
+    <img *ngSwitchCase="ContextType.EXCURSIONS" src="assets/icons/template.svg" class="template" (click)="template.emit()" alt="template">
+</div>

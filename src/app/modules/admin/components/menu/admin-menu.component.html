@@ -1,14 +1,14 @@
 <section class="admin-menu-container">
-	<span class="admin-menu-item" routerLink="/admin" placement="end" ngbTooltip="Wycieczki">
+	<span class="admin-menu-item" routerLink="/admin" placement="end" ngbTooltip="Wycieczki" [triggers]="'hover'">
 		<img src="assets/icons/list-fill.svg" alt="wycieczki">
 	</span>
-    <span class="admin-menu-item" routerLink="/admin/templates" placement="end" ngbTooltip="Szablony wycieczek">
+    <span class="admin-menu-item" routerLink="/admin/templates" placement="end" ngbTooltip="Szablony wycieczek" [triggers]="'hover'">
         <img src="assets/icons/template.svg" alt="szablony wycieczek">
     </span>
-	<span class="admin-menu-item" routerLink="/admin/orders" placement="end" ngbTooltip="Zamówienia">
+	<span class="admin-menu-item" routerLink="/admin/orders" placement="end" ngbTooltip="Zamówienia" [triggers]="'hover'">
 		<img src="assets/icons/basket-fill.svg" alt="zamowienia">
 	</span>
-	<span class="admin-menu-item" routerLink="/admin/settings" placement="end" ngbTooltip="Ustawienia">
+	<span class="admin-menu-item" routerLink="/admin/settings" placement="end" ngbTooltip="Ustawienia" [triggers]="'hover'">
 		<img src="assets/icons/settings-fill.svg" alt="ustawienia">
 	</span>
 </section>

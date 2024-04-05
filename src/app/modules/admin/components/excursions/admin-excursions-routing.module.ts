@@ -9,10 +9,10 @@ const routes: Routes = [
 		path: '',
 		component: AdminExcursionsComponent,
 		children: [
-			{
-				path: '',
-				component: AdminExcursionsTableComponent
-			},
+            {
+                path: '',
+                loadComponent: () => AdminExcursionsTableComponent
+            },
 			{
 				path: 'form',
 				loadComponent: () => AdminExcursionsFormComponent

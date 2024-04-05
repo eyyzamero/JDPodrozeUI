@@ -97,6 +97,12 @@
 
             .select-option-container {
                 padding: 6px 16px;
+
+                &:active,
+                &:hover {
+                    color: black;
+                    background-color: var(--app-light-orange-opacity-2-color);
+                }
             }
         }
     }
