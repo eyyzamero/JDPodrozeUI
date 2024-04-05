@@ -11,7 +11,6 @@ import { AdminExcursionsSortType } from '../../../excursions/enums';
 import { ExcursionsGetListReq } from 'src/app/core/contracts';
 
 @Component({
-    selector: 'app-admin-templates-table',
     templateUrl: './admin-templates-table.component.html',
     styleUrls: ['./admin-templates-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
