@@ -22,9 +22,10 @@ export class AdminExcursionsFormCommonComponent {
     
     @Input() mode: FormMode = FormMode.NEW;
 
-    @Output() submit: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
     @Input() form?: FormGroup;
     @Input() submitButtonDisabled: boolean = false;
+	
+    @Output() submit: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
     get images(): FormArray {
 		return this.form!.get('images') as FormArray<AbstractControl<IExcursionImageModel>>;

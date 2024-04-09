@@ -1,0 +1,16 @@
+.admin-excursions-form-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+    padding: 0 8px;
+
+	.section-title {
+		font-weight: bold;
+		margin: 0;
+	}
+
+	app-loading-spinner {
+		position: relative;
+		width: 100%;
+	}
+}

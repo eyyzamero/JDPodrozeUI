@@ -1,34 +1,33 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs';
-import { ContextType } from 'src/app/core/enums';
-import { ToastsService } from 'src/app/core/services/common/toasts/toasts.service';
-import { AdminExcursionsHttpService } from 'src/app/modules/admin/services/http/admin-excursions-http.service';
-import { AdminExcursionsMapperService } from 'src/app/modules/admin/services/mapper/admin-excursions-mapper.service';
-import { AdminExcursionsFormService } from './services/form';
-import { AdminExcursionsFormCommonComponent } from '../common/form/admin-excursions-form.component';
 import { CommonModule } from '@angular/common';
+import { AdminExcursionsFormCommonComponent } from '../../../excursions/components/common/form/admin-excursions-form.component';
 import { LoadingSpinnerModule } from 'src/app/modules/common/loading-spinner/loading-spinner.module';
+import { ContextType } from 'src/app/core/enums';
+import { AdminExcursionsFormBase } from '../../../excursions/components/common/form/base';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AdminExcursionsHttpService, AdminExcursionsMapperService } from 'src/app/modules/admin/services';
+import { AdminExcursionsFormService } from '../../../excursions/components/form/services/form';
+import { ToastsService } from 'src/app/core/services';
+import { take } from 'rxjs';
 import { ExcursionsGetListReq } from 'src/app/core/contracts';
-import { AdminExcursionsFormBase } from '../common/form/base';
 
 @Component({
-    selector: 'app-admin-excursions-form',
-    templateUrl: './admin-excursions-form.component.html',
-    styleUrls: ['./admin-excursions-form.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        CommonModule,
-        AdminExcursionsFormCommonComponent,
+	selector: 'app-admin-templates-form',
+	templateUrl: './admin-templates-form.component.html',
+	styleUrls: ['./admin-templates-form.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [
+		CommonModule,
+		AdminExcursionsFormCommonComponent,
         LoadingSpinnerModule
-    ]
+	]
 })
-export class AdminExcursionsFormComponent extends AdminExcursionsFormBase {
+export class AdminTemplatesFormComponent extends AdminExcursionsFormBase {
 
-	protected override _context: ContextType = ContextType.EXCURSIONS;
+	protected override _context: ContextType = ContextType.EXCURSIONS_TEMPLATES;
 
-    constructor(
+	constructor(
         _router: Router,
         _activatedRoute: ActivatedRoute,
         _adminExcursionsMapperService: AdminExcursionsMapperService,
@@ -39,8 +38,7 @@ export class AdminExcursionsFormComponent extends AdminExcursionsFormBase {
 		super(_adminExcursionsFormService, _router, _activatedRoute, _adminExcursionsHttpService, _adminExcursionsMapperService)
 	}
 
-    
-    protected _addExcursion(): void {
+	protected _addExcursion(): void {
         this.submitButtonDisabled.set(true);
         const req = this._adminExcursionsMapperService.iExcursionFormGroupToIExcursionsAddReq(this.form());
         this._adminExcursionsHttpService.addObservable(req).pipe(
@@ -49,7 +47,7 @@ export class AdminExcursionsFormComponent extends AdminExcursionsFormBase {
             next: () => {
                 this._getList();
                 this._navigateBackToList();
-                this._toastsService.show('Pomyślnie dodano wycieczkę', 'toast-success');
+                this._toastsService.show('Pomyślnie dodano szablon wycieczki', 'toast-success');
             },
             error: () => {
                 this._toastsService.show('Wystąpił błąd', 'toast-error');
@@ -58,7 +56,7 @@ export class AdminExcursionsFormComponent extends AdminExcursionsFormBase {
         });
     }
 
-    protected _editExcursion(): void {
+	protected _editExcursion(): void {
         this.submitButtonDisabled.set(true);
         const req = this._adminExcursionsMapperService.iExcursionFormGroupToIExcursionsEditReq(this.form());
         this._adminExcursionsHttpService.editObservable(req).pipe(
@@ -67,7 +65,7 @@ export class AdminExcursionsFormComponent extends AdminExcursionsFormBase {
             next: () => {
                 this._getList();
                 this._navigateBackToList();
-                this._toastsService.show('Pomyślnie edytowano wycieczkę', 'toast-success');
+                this._toastsService.show('Pomyślnie edytowano szablon wycieczki', 'toast-success');
             },
             error: () => {
                 this._toastsService.show('Wystąpił błąd', 'toast-error');
@@ -76,13 +74,13 @@ export class AdminExcursionsFormComponent extends AdminExcursionsFormBase {
         });
     }
 
-    protected _getList(): void {
-		const request = new ExcursionsGetListReq(this.listSortCurrent(), this.listFilterActive());
+	protected _getList(): void {
+		const request = new ExcursionsGetListReq(this.listSortCurrent(), this.listFilterActive(), true);
 		this._adminExcursionsHttpService.getList(request);
 	}
 
-    protected _navigateBackToList() {
-        this._router.navigate(['/admin'], {
+	protected _navigateBackToList() {
+        this._router.navigate(['/admin/templates'], {
             queryParamsHandling: 'merge'
         });
     }

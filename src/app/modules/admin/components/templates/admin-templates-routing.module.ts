@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminExcursionsFormComponent } from '../excursions/components/form/admin-excursions-form.component';
 import { AdminTemplatesTableComponent } from './components/table/admin-templates-table.component';
+import { AdminTemplatesFormComponent } from './components/form/admin-templates-form.component';
 
 const routes: Routes = [
     {
@@ -10,17 +10,11 @@ const routes: Routes = [
     },
     {
         path: 'form',
-        loadComponent: () => AdminExcursionsFormComponent,
-        data: {
-            template: true
-        }
+        loadComponent: () => AdminTemplatesFormComponent,
     },
     {
         path: 'form/:id',
-        loadComponent: () => AdminExcursionsFormComponent,
-        data: {
-            template: true
-        }
+        loadComponent: () => AdminTemplatesFormComponent
     }
 ];
 

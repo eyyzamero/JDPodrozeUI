@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminExcursionsFormComponent } from './admin-excursions-form.component';
+import { AdminExcursionsFormCommonComponent } from './admin-excursions-form.component';
 
-describe('AdminExcursionsFormComponent', () => {
-    let component: AdminExcursionsFormComponent;
-    let fixture: ComponentFixture<AdminExcursionsFormComponent>;
+describe('AdminExcursionsFormCommonComponent', () => {
+    let component: AdminExcursionsFormCommonComponent;
+    let fixture: ComponentFixture<AdminExcursionsFormCommonComponent>;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [AdminExcursionsFormComponent]
+            imports: [AdminExcursionsFormCommonComponent]
         });
-        fixture = TestBed.createComponent(AdminExcursionsFormComponent);
+        fixture = TestBed.createComponent(AdminExcursionsFormCommonComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

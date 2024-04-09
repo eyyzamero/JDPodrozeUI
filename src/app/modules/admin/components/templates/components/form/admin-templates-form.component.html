@@ -1,5 +1,5 @@
 <section class="admin-excursions-form-container">
-	<h3 class="section-title">{{ mode() === FormMode.EDIT ? 'Edycja wycieczki' : 'Nowa wycieczka' }}</h3>
+	<h3 class="section-title">{{ mode() === FormMode.EDIT ? 'Edycja szadblonu wycieczki': 'Nowy szablon wycieczki' }}</h3>
 	<app-loading-spinner *ngIf="state() === LoadingState.LOADING; else content"></app-loading-spinner>
 	<ng-template #content>
         <app-admin-excursions-form-common [form]="form()" [mode]="mode()" (submit)="onFormSubmit()"></app-admin-excursions-form-common>
