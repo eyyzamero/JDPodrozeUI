@@ -60,6 +60,23 @@ export class AdminExcursionsTableComponent extends AdminExcursionsTableBase {
         });
     }
 
+    delete(id: number): void {
+        this.buttonsEnabled.set(false);
+		this._adminExcursionsHttpService.deleteObservable(id).pipe(
+            take(1)
+        ).subscribe({
+			next: () => {
+				this._toastsService.show('Pomyślnie usunięto wycieczkę', 'toast-success');
+				this._getList();
+                this.buttonsEnabled.set(true);
+			},
+			error: () => {
+                this._toastsService.show('Wystąpił błąd', 'toast-error');
+                this.buttonsEnabled.set(true);
+            }
+		})
+	}
+
     protected override _handleQueryParams(queryParams: Params): void {
         this.sortCurrent.set(queryParams['sort'] ? +queryParams['sort'] as AdminExcursionsSortType : AdminExcursionsSortType.DATE_FROM);
         this.active.set(queryParams['active']  ? JSON.parse(queryParams['active']) : null);

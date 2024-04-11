@@ -9,6 +9,7 @@ import { ToastsService } from 'src/app/core/services';
 import { ContextType } from 'src/app/core/enums';
 import { AdminExcursionsSortType } from '../../../excursions/enums';
 import { ExcursionsGetListReq } from 'src/app/core/contracts';
+import { take } from 'rxjs';
 
 @Component({
     templateUrl: './admin-templates-table.component.html',
@@ -36,6 +37,23 @@ export class AdminTemplatesTableComponent extends AdminExcursionsTableBase {
 	) {
         super(_router, _activatedRoute, _toastsService, _adminExcursionsHttpService, _adminExcursionsDataService);
     }
+
+    delete(id: number): void {
+        this.buttonsEnabled.set(false);
+		this._adminExcursionsHttpService.deleteObservable(id).pipe(
+            take(1)
+        ).subscribe({
+			next: () => {
+				this._toastsService.show('Pomyślnie usunięto szablon wycieczki', 'toast-success');
+				this._getList();
+                this.buttonsEnabled.set(true);
+			},
+			error: () => {
+                this._toastsService.show('Wystąpił błąd', 'toast-error');
+                this.buttonsEnabled.set(true);
+            }
+		})
+	}
 
     protected override _handleQueryParams(queryParams: Params): void {
         this.sortCurrent.set(queryParams['sort'] ? +queryParams['sort'] as AdminExcursionsSortType : AdminExcursionsSortType.DATE_FROM);

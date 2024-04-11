@@ -9,7 +9,9 @@
         <app-admin-excursions-form-dates [dateFromControl]="getFormControl('dateFrom')" [dateToControl]="getFormControl('dateTo')"></app-admin-excursions-form-dates>
         <app-admin-excursions-form-price formControlName="price"></app-admin-excursions-form-price>
         <app-admin-excursions-form-checkbox [id]="'discount'" [label]="'Ulga'" formControlName="discount"></app-admin-excursions-form-checkbox>
-        <app-admin-excursions-form-discount-price formControlName="discountPrice"></app-admin-excursions-form-discount-price>
+        <ng-container *ngIf="getFormControl('discount').value === true">
+            <app-admin-excursions-form-discount-price formControlName="discountPrice"></app-admin-excursions-form-discount-price>
+        </ng-container>
         <app-admin-excursions-form-seats formControlName="seats"></app-admin-excursions-form-seats>
         <button type="button" class="btn form-submit-btn" [disabled]="submitButtonDisabled" (click)="onFormSubmit()">
             <span>Wyślij</span>

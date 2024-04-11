@@ -33,28 +33,13 @@ export abstract class AdminExcursionsTableBase implements OnInit, OnDestroy {
         this._initSubscriptions();
     }
 
+    abstract delete(id: number): void;
+
     edit(id: number): void {
         this._router.navigate([`./form/${id}`], {
             relativeTo: this._activatedRoute,
             queryParamsHandling: 'merge'
 		});
-	}
-
-    delete(id: number): void {
-        this.buttonsEnabled.set(false);
-		this._adminExcursionsHttpService.deleteObservable(id).pipe(
-            take(1)
-        ).subscribe({
-			next: () => {
-				this._toastsService.show('Pomyślnie usunięto wycieczkę', 'toast-success');
-				this._getList();
-                this.buttonsEnabled.set(true);
-			},
-			error: () => {
-                this._toastsService.show('Wystąpił błąd', 'toast-error');
-                this.buttonsEnabled.set(true);
-            }
-		})
 	}
 
     onSort(sort: AdminExcursionsSortType): void {
