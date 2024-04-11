@@ -33,7 +33,6 @@ export class AdminOrdersComponent implements OnInit, OnDestroy {
 				next: (value) => {
 					this.excursions = value.data;
 					this.loadingState = value.state;
-					console.log(this.excursions);
 				}
 			})
 		);

@@ -161,7 +161,6 @@ export class ExcursionsEnrollComponent implements OnInit {
 					},
 					error: () => {
 						this.excursionEnrollLoadingState = LoadingState.LOADED;
-						console.log('Nie udało się');
 					}
 				})
 			);
