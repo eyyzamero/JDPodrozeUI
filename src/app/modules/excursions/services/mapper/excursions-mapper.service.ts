@@ -3,7 +3,7 @@ import { FormArray, FormGroup } from '@angular/forms';
 import { ExcursionEnrollPersonReq, ExcursionsEnrollReq, IExcursionEnrollPersonReq, IExcursionsEnrollReq, IExcursionsGetItemImageRes, IExcursionsGetItemRes, IExcursionsGetListShortItemRes, IExcursionsGetListShortRes } from 'src/app/core/contracts';
 import { AuthDataService } from 'src/app/core/services/data/auth/auth-data.service';
 import { ExcursionImageModel, ExcursionModel, IExcursionImageModel, IExcursionModel, IExcursionsParticipantModel } from '../../models';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { DatesService } from 'src/app/core/services';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,7 +11,8 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 export class ExcursionsMapperService {
 
 	constructor(
-		private _authDataService: AuthDataService
+		private readonly _authDataService: AuthDataService,
+        private readonly _datesService: DatesService
 	) { }
 
 	iExcursionsGetItemResToIExcursionModel(src: IExcursionsGetItemRes): IExcursionModel {
@@ -53,7 +54,7 @@ export class ExcursionsMapperService {
 			src.controls['bookingPersonSurname'].value,
 			src.controls['bookingPersonEmail'].value,	
 			src.controls['bookingPersonTelephone'].value,
-			this._ngbDateToDate(src.controls['bookingPersonBirthDate'].value),
+			this._datesService.ngbDateToDate(src.controls['bookingPersonBirthDate'].value),
 			src.controls['bookingPersonDiscount'].value
 		);
 		return dest;
@@ -68,7 +69,7 @@ export class ExcursionsMapperService {
 				participant.surname,
 				undefined,
 				undefined,
-				this._ngbDateToDate(participant.birthDate),
+				this._datesService.ngbDateToDate(participant.birthDate),
 				participant.discount
 			);
 			dest.push(enrollPerson);
@@ -91,19 +92,6 @@ export class ExcursionsMapperService {
 		dest.inCarousel = src.inCarousel;
 		dest.dateFrom = src.dateFrom;
 		dest.dateTo = src.dateTo;
-		return dest;
-	}
-
-	private _ngbDateToDate(src: NgbDate): string {
-		let date = new Date();
-		date.setFullYear(src.year);
-		date.setMonth(src.month - 1);
-		date.setDate(src.day);
-		date.setHours(0);
-		date.setMinutes(0);
-		date.setSeconds(0);
-		date.setMilliseconds(0);
-		const dest = `${date.getDate().toString().padStart(2, '0')}/${date.getMonth().toString().padStart(2, '0')}/${date.getFullYear().toString().padStart(4, '0')}`;
 		return dest;
 	}
 

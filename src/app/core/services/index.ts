@@ -11,3 +11,4 @@ export * from './common/toasts/toasts.service';
 export * from './data/auth/auth-data.service';
 export * from './mappers/auth/auth-mapper.service';
 export * from './http/auth/auth-http.service';
+export * from './common/dates/dates.service';
