@@ -23,22 +23,47 @@
             text-align: center;
         }
 
-        .excursions-enroll-form-submit-btn {
+        .admin-orders-details-enroll-modal-actions {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background-color: var(--app-light-orange-color);
-            color: black;
-            font-weight: bold;
-            width: 200px;
-            min-height: 38px;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: space-between;
             margin-top: 16px;
-            align-self: flex-end;
 
-            app-loading-spinner {
-                width: 21px;
-                height: 21px;
+            .excursions-enroll-form-cancel-btn,
+            .excursions-enroll-form-submit-btn {
+                font-weight: bold;
+                width: 100%;
+                min-height: 38px;
+
+                &:active {
+                    border-color: transparent;
+                }
+            }
+
+            .excursions-enroll-form-cancel-btn {
+                background-color: var(--app-light-gray-color2);
+            }
+
+            .excursions-enroll-form-submit-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                background-color: var(--app-light-orange-color);
+                color: black;
+    
+                app-loading-spinner {
+                    width: 21px;
+                    height: 21px;
+                }
+            }
+
+            @media(min-width: 480px) {
+                .excursions-enroll-form-cancel-btn,
+                .excursions-enroll-form-submit-btn {
+                    width: 200px;
+                }
             }
         }
     }

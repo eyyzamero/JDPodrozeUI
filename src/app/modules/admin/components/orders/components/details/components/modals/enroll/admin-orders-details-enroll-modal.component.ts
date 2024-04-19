@@ -35,6 +35,10 @@ export class AdminOrdersDetailsEnrollModalComponent {
         private readonly _ngbActiveModal: NgbActiveModal
     ) { }
 
+    onCancel(): void {
+        this._ngbActiveModal.close(false);
+    }
+
     onSubmit(form: FormGroup): void {
         form.markAllAsTouched();
         form.updateValueAndValidity();

@@ -57,7 +57,6 @@ export class AdminOrdersDetailsComponent implements OnInit {
             next: (value) => {
                 this.state.set(LoadingState.LOADED);
                 this.details.set(value);
-                console.log(this.details());
             },
             error: () => this.state.set(LoadingState.ERROR)
         });
