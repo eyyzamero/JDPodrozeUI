@@ -1,0 +1,9 @@
+<section class="form-field-container">
+    <label for="email" class="form-label">E-mail</label>
+    <input type="text" id="email" [formControl]="control" class="form-control" autocomplete="off">
+    <div *ngIf="control.errors && control.touched" class="errors" [ngSwitch]="errorKey">
+        <span *ngSwitchCase="'required'" class="error">Pole wymagane</span>
+        <span *ngSwitchCase="'email'" class="error">Nieprawidłowy adres E-mail</span>
+        <span *ngSwitchCase="'maxlength'" class="error">Maksymalna długość pola: {{ control.errors['maxlength']['requiredLength'] }}</span>
+    </div>
+</section>

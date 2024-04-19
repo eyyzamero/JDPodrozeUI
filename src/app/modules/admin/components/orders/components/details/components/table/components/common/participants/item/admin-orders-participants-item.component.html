@@ -1,0 +1,12 @@
+<section class="admin-orders-participants-item-container">
+    <img src="assets/icons/user.svg" alt="user">
+    <span [ngClass]="{ 'bold': !participant?.bookerId }">{{ participant?.name }}</span>
+    <span [ngClass]="{ 'bold': !participant?.bookerId }">{{ participant?.surname }}</span>
+    <span>{{ participant?.birthDate | date: 'dd.MM.yyyy' }}</span>
+    <br *ngIf="participant?.email || participant?.telephoneNumber">
+    <span *ngIf="participant?.email">{{ participant?.email }}</span>
+    <span *ngIf="participant?.telephoneNumber">{{ participant?.telephoneNumber }}</span>
+    <span *ngIf="controls" class="admin-orders-participants-item-actions-container">
+        <img src="assets/icons/delete.svg" class="delete-btn" alt="delete">
+    </span>
+</section>

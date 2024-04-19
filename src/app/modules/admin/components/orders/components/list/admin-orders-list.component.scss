@@ -1,0 +1,8 @@
+@use '../../../excursions/base/table/admin-excursions-table.base.scss';
+
+.admin-orders-list-container {
+    app-admin-orders-list-filters {
+		display: block;
+		margin-top: 16px;
+	}
+}

@@ -16,6 +16,7 @@ export abstract class AdminExcursionsTableBase implements OnInit, OnDestroy {
     sortCurrent: WritableSignal<AdminExcursionsSortType> = signal(AdminExcursionsSortType.NONE);
 
     readonly LoadingState = LoadingState;
+    readonly abstract columns: (keyof IExcursionModel)[];
     readonly abstract sorting: boolean;
     readonly abstract context: ContextType;
 

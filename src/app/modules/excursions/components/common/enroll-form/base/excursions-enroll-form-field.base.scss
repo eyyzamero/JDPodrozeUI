@@ -1,0 +1,36 @@
+.form-field-container {
+    display: flex;
+    flex-direction: column;
+
+    .form-label {
+        margin: 8px 0;
+    }
+
+    .errors {
+        display: flex;
+        flex-direction: column;
+    
+        .error {
+            font-size: 14px;
+            color: var(--bs-danger);
+        }
+    }
+
+    .form-check {
+        margin-top: 12px;
+
+        .form-check-input {
+            &:checked {
+                background-color: var(--app-light-orange-color);
+                border-color: var(--app-light-orange-color);
+            }
+            
+            &:focus {
+                border-color: inherit;
+                outline: 0;
+                box-shadow: none;
+                border-color: var(--app-light-orange-color);
+            }
+        }
+    }
+}

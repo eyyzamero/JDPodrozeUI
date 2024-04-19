@@ -25,6 +25,8 @@ export * from './requests/excursions/get-list/iexcursions-get-list.req';
 export * from './requests/excursions/get-list/excursions-get-list.req';
 export * from './requests/auth/is-login-available/iauth-is-login-available.req';
 export * from './requests/auth/is-login-available/auth-is-login-available.req';
+export * from './requests/orders/get-list/iorder-get-list.req';
+export * from './requests/orders/get-list/order-get-list.req';
 
 // Responses
 export * from './responses/account/register/iaccount-register.res';
@@ -35,6 +37,10 @@ export * from './responses/excursions/get-list/item/iexcursions-get-list-item.re
 export * from './responses/excursions/get-list/iexcursions-get-list.res';
 export * from './responses/excursions/get-item/image/iexcursions-get-item-image.res';
 export * from './responses/excursions/get-item/iexcursions-get-item.res';
-export * from './responses/orders/get-list/item/order/participant/iorders-get-list-item-order-participant.res';
-export * from './responses/orders/get-list/item/order/iorders-get-list-item-order.res';
 export * from './responses/orders/get-list/item/iorders-get-list-item.res';
+export * from './responses/orders/get-list/iorder-get-list.res';
+export * from './responses/orders/get-excursion-orders-with-details/excursion/iorders-get-excursion-orders-with-details-excursion.res';
+export * from './responses/orders/get-excursion-orders-with-details/order/participant/user/iorders-get-excursion-orders-with-details-order-participant-user.res';
+export * from './responses/orders/get-excursion-orders-with-details/order/participant/iorders-get-excursion-orders-with-details-order-participant.res'
+export * from './responses/orders/get-excursion-orders-with-details/order/iorders-get-excursion-orders-with-details-order.res';
+export * from './responses/orders/get-excursion-orders-with-details/iorders-get-excursion-orders-with-details.res';

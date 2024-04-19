@@ -10,6 +10,7 @@ import { ContextType } from 'src/app/core/enums';
 import { AdminExcursionsSortType } from '../../../excursions/enums';
 import { ExcursionsGetListReq } from 'src/app/core/contracts';
 import { take } from 'rxjs';
+import { IExcursionModel } from 'src/app/modules/excursions/models';
 
 @Component({
     templateUrl: './admin-templates-table.component.html',
@@ -27,6 +28,7 @@ export class AdminTemplatesTableComponent extends AdminExcursionsTableBase {
 
     readonly sorting: boolean = false;
     readonly context: ContextType = ContextType.EXCURSIONS_TEMPLATES;
+    readonly columns: (keyof IExcursionModel)[] = ['title', 'dateFrom', 'dateTo', 'seats', 'active', 'inCarousel'];
 
     constructor(
 		_router: Router,

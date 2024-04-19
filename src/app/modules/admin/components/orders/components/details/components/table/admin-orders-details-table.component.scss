@@ -1,0 +1,95 @@
+.admin-orders-details-table-container {
+    display: block;
+    width: 100%;
+    overflow: auto;
+
+    table {
+        margin-top: 4px;
+
+        thead,
+        tbody {
+            tr {
+                .payment-method,
+                .payment-status,
+                .price {
+                    text-align: center;
+                }
+            }
+        }
+
+        thead {
+            tr {
+                th {
+                    padding: 4px 16px 12px 16px;
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                cursor: pointer;
+
+                td {
+                    padding: 12px 16px;
+                    vertical-align: middle;
+
+                    &.payment-status {
+                        img {
+                            width: 21px;
+                            height: 21px;
+            
+                            &.check {
+                                filter: var(--app-green-color-filter);
+                            }
+                    
+                            &.close {
+                                filter: var(--app-red-color-filter);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .participants-options-container {
+                padding: 12px 16px;
+                border: 1px solid var(--bs-border-color);
+
+                .participants-options-content {
+                    margin-bottom: 12px;
+                    padding: 0;
+
+                    label {
+                        font-size: 16px;
+                        font-weight: bold;
+                        margin-bottom: 6px;
+                        padding: 0;
+                    }
+    
+                    app-admin-orders-participants {
+                        display: block;
+                        padding: 0;
+                        margin-bottom: 12px;
+                    }
+                }
+
+                .change-status-btn {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					position: relative;
+					background-color: var(--app-light-orange-color);
+					color: black;
+					font-weight: bold;
+					width: 250px;
+					min-height: 38px;
+
+					app-loading-spinner {
+						width: 21px;
+						height: 21px;
+					}
+				}
+            }
+        }
+    }
+}

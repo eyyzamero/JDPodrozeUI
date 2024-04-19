@@ -1,0 +1,29 @@
+.admin-orders-participants-item-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+
+    span {
+        &.bold {
+            font-weight: bold;
+        }
+    }
+
+    .admin-orders-participants-item-actions-container {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+
+        img {
+            display: inline-flex;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            
+            &.delete-btn {
+                filter: var(--app-red-color-filter);
+            }
+        }
+    }
+}

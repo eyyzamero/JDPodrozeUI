@@ -12,6 +12,7 @@ import { LoadingSpinnerModule } from 'src/app/modules/common/loading-spinner/loa
 import { AdminExcursionsTableViewComponent } from '../common/table-view/admin-excursions-table-view.component';
 import { AdminExcursionsTableModule } from './admin-excursions-table.module';
 import { AdminExcursionsTableBase } from '../../base';
+import { IExcursionModel } from 'src/app/modules/excursions/models';
 
 @Component({
 	templateUrl: './admin-excursions-table.component.html',
@@ -32,6 +33,7 @@ export class AdminExcursionsTableComponent extends AdminExcursionsTableBase {
     
     readonly sorting: boolean = true;
     readonly context: ContextType = ContextType.EXCURSIONS;
+    readonly columns: (keyof IExcursionModel)[] = ['title', 'dateFrom', 'dateTo', 'seats', 'availableSeats', 'active', 'inCarousel'];
 
 	constructor(
 		_router: Router,

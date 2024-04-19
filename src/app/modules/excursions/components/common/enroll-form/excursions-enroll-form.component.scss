@@ -1,0 +1,43 @@
+.excursions-enroll-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .excursions-enroll-form-booker-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+    
+            .excursions-enroll-form-booker-header {
+                display: block;
+                font-size: 24px;
+                font-weight: bold;
+                line-height: 1;
+            }
+        }
+    
+        .excursions-enroll-form-participants-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 8px;
+    
+            .excursions-enroll-form-participants-header {
+                display: block;
+                font-size: 24px;
+                font-weight: bold;
+                line-height: 1;
+            }
+        }
+    
+        .excursions-enroll-form-info {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+    }
+}

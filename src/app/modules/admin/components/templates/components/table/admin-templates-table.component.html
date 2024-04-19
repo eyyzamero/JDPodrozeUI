@@ -8,7 +8,7 @@
     <app-loading-spinner *ngIf="state() === LoadingState.LOADING; else content" [center]="false"></app-loading-spinner>
     <ng-template #content>
         <app-admin-excursions-table-view [context]="context" [excursions]="excursions()" [buttonsEnabled]="buttonsEnabled()"
-            [sorting]="sorting" (edit)="edit($event)" (delete)="delete($event)">
+            [sorting]="sorting" [columns]="columns" (edit)="edit($event)" (delete)="delete($event)">
         </app-admin-excursions-table-view>
     </ng-template>
 </section>

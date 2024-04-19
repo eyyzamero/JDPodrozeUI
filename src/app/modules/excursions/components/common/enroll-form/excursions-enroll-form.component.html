@@ -1,0 +1,21 @@
+<section class="excursions-enroll-form-container">
+    <app-select label="Liczba uczestników wycieczki" [formatter]="participantCountFormatter" [current]="participantCountCurrent"
+        [options]="participantCountOptions" (selected)="onParticipantCountChange($event)">
+    </app-select>
+    <form [formGroup]="form">
+        <div class="excursions-enroll-form-booker-content">
+            <span class="excursions-enroll-form-booker-header">Dane osoby rezerwującej</span>
+            <app-excursions-enroll-form-booker [form]="getControlAsFormGroup('booker')" [discount]="discount"></app-excursions-enroll-form-booker>
+        </div>
+        <div *ngIf="participantCountCurrent.value > 1" class="excursions-enroll-form-participants-content">
+            <span class="excursions-enroll-form-participants-header">Dane pozostałych uczestników wycieczki</span>
+            <app-excursions-enroll-form-participant *ngFor="let participantForm of getControlAsArrayOfFormGroup('participants'); let i = index"
+                [form]="participantForm" [discount]="discount" [index]="i + 1">
+            </app-excursions-enroll-form-participant>
+        </div>
+        <div class="excursions-enroll-form-info">
+            <span>Organizator ma prawo odwołać wycieczkę z powodu niewystarczającej liczby chętnych. Decyzja o odwołaniu wycieczki będzie podejmowana na 7 dni przed planowanym wyjazdem. W przypadku odwołania wycieczki z powodu niewystarczającej liczby chętnych, organizator zobowiązuje się zwrócić uczestnikom pełną kwotę wpłaconą za wycieczkę w ciągu 7 dni od dnia odwołania.</span>
+        </div>
+        <app-excursions-enroll-form-payment-method formControlName="paymentMethod"></app-excursions-enroll-form-payment-method>
+    </form>
+</section>

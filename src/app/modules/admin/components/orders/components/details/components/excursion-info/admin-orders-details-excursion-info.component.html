@@ -1,0 +1,30 @@
+<section *ngIf="excursion" class="admin-orders-details-excursion-info-container">
+    <span>
+        <b>Data:</b> {{ excursion.dateFrom && excursion.dateTo
+            ? (excursion.dateFrom | date: 'dd.MM.yyyy') + ' - ' + (excursion.dateTo | date: 'dd.MM.yyyy')
+            : (excursion.dateFrom | date: 'dd.MM.yyyy') }}
+    </span>
+    <span>
+        <b>Cena:</b> {{ excursion.priceGross | number: '1.2-2' }} PLN
+    </span>
+    <span *ngIf="excursion.discountPriceGross">
+        <b>Cena ulgowa:</b> {{ excursion.discountPriceGross | number: '1.2-2' }} PLN
+    </span>
+    <span>
+        <b>Liczba uczestników:</b> {{ excursion.seats - excursion.availableSeats }}
+    </span>
+    <span>
+        <b>Miejsca:</b> {{ excursion.seats }}
+    </span>
+    <span>
+        <b>Miejsca wolne:</b> {{ excursion.availableSeats }}
+    </span>
+    
+    <span class="active">
+        <b>Aktywna:</b>
+        <img [src]="excursion.active ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.active ? 'check': 'close'" alt="active">
+    </span>
+    <span>
+        <b>Suma:</b> {{ excursion.sum | number: '1.2-2' }} PLN
+    </span>
+</section>

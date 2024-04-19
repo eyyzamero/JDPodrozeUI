@@ -1,0 +1,10 @@
+<section class="excursions-enroll-form-booker-container">
+    <form [formGroup]="form">
+        <app-excursions-enroll-form-booker-name [control]="getControl('name')"></app-excursions-enroll-form-booker-name>
+        <app-excursions-enroll-form-booker-surname [control]="getControl('surname')"></app-excursions-enroll-form-booker-surname>
+        <app-excursions-enroll-form-booker-email [control]="getControl('email')"></app-excursions-enroll-form-booker-email>
+        <app-excursions-enroll-form-booker-telephone [control]="getControl('telephone')"></app-excursions-enroll-form-booker-telephone>
+        <app-excursions-enroll-form-booker-birth-date [control]="getControl('birthDate')"></app-excursions-enroll-form-booker-birth-date>
+        <app-excursions-enroll-form-booker-discount *ngIf="discount" [control]="getControl('discount')"></app-excursions-enroll-form-booker-discount>
+    </form>
+</section>

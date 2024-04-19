@@ -1,0 +1,15 @@
+<section class="form-field-container">
+    <label for="birth-date" class="form-label">Data urodzenia</label>
+    <div class="input-group date">
+        <input id="birth-date" class="form-control" placeholder="DD/MM/YYYY"
+            [formControl]="control" ngbDatepicker #datepicker="ngbDatepicker"
+            [placement]="['bottom-start', 'top-start']" [value]="format(control.value)"
+            [autoClose]="'outside'" (click)="datepicker.open()" [minDate]="minDate" [maxDate]="maxDate" display="dynamic" readonly/>
+        <button class="btn btn-outline-secondary" (click)="datepicker.toggle()" type="button">
+            <img src="assets/icons/calendar.svg" alt="datepicker">
+        </button>
+    </div>
+    <div *ngIf="control.errors && control.touched" class="errors" [ngSwitch]="errorKey">
+        <span *ngSwitchCase="'required'" class="error">Pole wymagane</span>
+    </div>
+</section>

@@ -1,0 +1,9 @@
+<section class="excursions-enroll-form-participant-container">
+    <span *ngIf="index" class="excursions-enroll-form-participant-header">Dane uczestnika # {{ index }}</span>
+    <form [formGroup]="form">
+        <app-excursions-enroll-form-participant-name [control]="getControl('name')"></app-excursions-enroll-form-participant-name>
+        <app-excursions-enroll-form-participant-surname [control]="getControl('surname')"></app-excursions-enroll-form-participant-surname>
+        <app-excursions-enroll-form-participant-birth-date [control]="getControl('birthDate')"></app-excursions-enroll-form-participant-birth-date>
+        <app-excursions-enroll-form-participant-discount *ngIf="discount" [control]="getControl('discount')"></app-excursions-enroll-form-participant-discount>
+    </form>
+</section>

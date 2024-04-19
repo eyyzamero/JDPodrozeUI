@@ -15,18 +15,14 @@
         display: inline-flex;
         width: 20px;
         height: 20px;
-
-        &.edit,
-        &.delete,
-        &.template {
-            cursor: pointer;
-        }
+        cursor: pointer;
 
         &.delete {
             filter: var(--app-red-color-filter);
         }
 
-        &.template {
+        &.template,
+        &.details {
             filter: var(--app-primary-color-filter);
         }
     }

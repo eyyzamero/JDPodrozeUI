@@ -1,0 +1,43 @@
+.admin-orders-details-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	.section-title {
+		font-weight: bold;
+		margin: 0;
+	}
+
+	app-loading-spinner {
+		display: block;
+		margin: 32px auto;
+	}
+
+    .admin-orders-details-content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 0 16px;
+        margin: 16px 0;
+
+        .admin-orders-details-content-actions {
+            .btn {
+                font-weight: bold;
+                padding: 8px 12px;
+
+                &:active {
+                    border-color: transparent;
+                }
+
+                &:hover {
+                    opacity: 0.85;
+                }
+
+                &.enroll-btn {
+                    background-color: var(--app-light-orange-color);
+                    color: black;
+                }
+            }
+        }
+    }
+}

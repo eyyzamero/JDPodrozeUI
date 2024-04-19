@@ -23,10 +23,12 @@ export class AdminExcursionsTableViewComponent {
     @Input() buttonsEnabled: boolean = false;
     @Input() sorting: boolean = false;
     @Input() sortCurrent: AdminExcursionsSortType = AdminExcursionsSortType.NONE;
+    @Input() columns: (keyof IExcursionModel)[] = [];
 
     @Output() edit: EventEmitter<number> = new EventEmitter<number>();
     @Output() delete: EventEmitter<number> = new EventEmitter<number>();
     @Output() template: EventEmitter<number> = new EventEmitter<number>();
+    @Output() details: EventEmitter<number> = new EventEmitter<number>();
     @Output() sort: EventEmitter<AdminExcursionsSortType> = new EventEmitter<AdminExcursionsSortType>();
 
     readonly ContextType = ContextType;
@@ -34,8 +36,13 @@ export class AdminExcursionsTableViewComponent {
 
     constructor() { }
 
-    onSort(type: AdminExcursionsSortType) {
+    onSort(type: AdminExcursionsSortType): void {
         if (this.sorting)
             this.sort.emit(type);
+    }
+
+    shouldDisplayColumn(column: keyof IExcursionModel): boolean {
+        const result = this.columns.includes(column);
+        return result;
     }
 }

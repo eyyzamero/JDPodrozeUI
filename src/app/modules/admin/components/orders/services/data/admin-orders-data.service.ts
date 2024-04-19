@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BaseDataService } from 'src/app/core/services/data/base/base-data.service';
-import { AdminOrdersExcursionModel } from '../../models';
+import { IExcursionModel } from 'src/app/modules/excursions/models';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class AdminOrdersDataService extends BaseDataService<AdminOrdersExcursionModel[]> {
+export class AdminOrdersDataService extends BaseDataService<IExcursionModel[]> {
 
 	constructor() {
 		super([]);

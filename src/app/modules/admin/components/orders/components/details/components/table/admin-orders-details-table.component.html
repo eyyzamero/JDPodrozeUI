@@ -1,0 +1,58 @@
+<section class="admin-orders-details-table-container">
+    <table class="table table-striped table-hover table-responsive">
+        <thead class="table-responsive">
+            <tr>
+                <th scope="col" class="participants">
+                    <span>Uczestnicy</span>
+                </th>
+                <th scope="col" class="id">
+                    <span>Identyfikator</span>
+                </th>
+                <th scope="col" class="payment-method">
+                    <span>Metoda płatności</span>
+                </th>
+                <th scope="col" class="payment-status">
+                    <span>Status</span>
+                </th>
+                <th scope="col" class="price">
+                    <span>Należność</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="table-responsive">
+            <ng-container *ngFor="let order of orders">
+                <tr (click)="collapse.toggle()">
+                    <td class="participants">
+                        <app-admin-orders-participants [participants]="order.participants"></app-admin-orders-participants>
+                    </td>
+                    <td class="id">
+                        <span>{{ order.id.toUpperCase() }}</span>
+                    </td>
+                    <td class="payment-method" [ngSwitch]="order.paymentMethod">
+                        <span *ngSwitchCase="PaymentMethod.TRADITIONAL_TRANSFER">Przelew tradycyjny</span>
+                        <span *ngSwitchCase="PaymentMethod.PRZELEWY_24">Przelewy24</span>
+                    </td>
+                    <td class="payment-status" [ngSwitch]="order.paymentStatus">
+                        <img *ngSwitchCase="PaymentStatus.PAID" src="assets/icons/check.svg" class="check" alt="payment-status-paid">
+                        <img *ngSwitchCase="PaymentStatus.NOT_PAID" src="assets/icons/close.svg" class="close" alt="payment-status-not-paid">
+                    </td>
+                    <td class="price">
+                        <span>{{ order.price | number: '1.2-2' }} PLN</span>
+                    </td>
+                </tr>
+                <td class="participants-options-container" colspan="5" #collapse="ngbCollapse" [(ngbCollapse)]="order.isCollapsed" [animation]="false">
+                    <span class="participants-options-content">
+                        <label>Uczestnicy: </label>
+                        <app-admin-orders-participants [participants]="order.participants" [controls]="true"></app-admin-orders-participants>
+                    </span>
+                    <button type="button" class="btn change-status-btn" (click)="changeStatus.emit(order)">
+                        <app-loading-spinner *ngIf="statusLoadingState !== LoadingState.LOADED; else btnText" [sizePX]="21" [center]="false" [color]="Color.BLACK"></app-loading-spinner>
+                        <ng-template #btnText>
+                            <span>Oznacz jako {{ order.paymentStatus === PaymentStatus.NOT_PAID ? "zapłacone" : "nie zapłacone" }}</span>
+                        </ng-template>
+                    </button>
+                </td>
+            </ng-container>
+        </tbody>
+    </table>
+</section>

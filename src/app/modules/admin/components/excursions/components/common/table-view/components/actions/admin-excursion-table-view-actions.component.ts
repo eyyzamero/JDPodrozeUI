@@ -15,8 +15,14 @@ export class AdminExcursionTableViewActionsComponent {
     @Output() edit: EventEmitter<void> = new EventEmitter<void>();
     @Output() delete: EventEmitter<void> = new EventEmitter<void>();
     @Output() template: EventEmitter<void> = new EventEmitter<void>();
+    @Output() details: EventEmitter<void> = new EventEmitter<void>();
 
     readonly ContextType = ContextType;
 
     constructor() { }
+
+    shouldDisplayAction(contexts: ContextType[]) {
+        const result = contexts.includes(this.context);
+        return result;
+    }
 }

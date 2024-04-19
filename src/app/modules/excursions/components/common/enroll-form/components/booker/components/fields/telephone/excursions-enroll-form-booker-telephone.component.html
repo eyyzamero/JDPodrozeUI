@@ -1,0 +1,8 @@
+<section class="form-field-container">
+    <label for="telephone" class="form-label">Telefon kontaktowy</label>
+    <input type="text" id="telephone" [formControl]="control" class="form-control" autocomplete="off">
+    <div *ngIf="control.errors && control.touched" class="errors" [ngSwitch]="errorKey">
+        <span *ngSwitchCase="'required'" class="error">Pole wymagane</span>
+        <span *ngSwitchCase="'pattern'" class="error">Nieprawidłowy numer telefonu</span>
+    </div>
+</section>

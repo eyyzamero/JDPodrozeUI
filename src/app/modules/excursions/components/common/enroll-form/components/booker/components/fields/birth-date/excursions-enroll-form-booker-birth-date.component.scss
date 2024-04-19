@@ -1,0 +1,17 @@
+@use '../../../../../base/excursions-enroll-form-field.base.scss';
+
+.form-field-container {
+    .input-group {
+		&.date {
+			::ng-deep {
+				.ngb-dp-arrow-btn {
+					--bs-btn-color: var(--app-light-orange-color);
+				}
+
+				.ngb-dp-weekday {
+					color: var(--app-light-orange-color);
+				}
+			}
+		}
+	}
+}

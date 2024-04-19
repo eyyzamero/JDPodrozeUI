@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ExcursionEnrollPersonReq, ExcursionsEnrollReq, IExcursionEnrollPersonReq, IExcursionsEnrollReq, IExcursionsGetItemImageRes, IExcursionsGetItemRes, IExcursionsGetListShortItemRes, IExcursionsGetListShortRes } from 'src/app/core/contracts';
 import { AuthDataService } from 'src/app/core/services/data/auth/auth-data.service';
 import { ExcursionImageModel, ExcursionModel, IExcursionImageModel, IExcursionModel, IExcursionsParticipantModel } from '../../models';
@@ -37,6 +37,7 @@ export class ExcursionsMapperService {
 		return dest;
 	}
 
+    // TODO - DO WYWALENIA
 	formGroupToIExcursionsEnrollReq(src: FormGroup): IExcursionsEnrollReq {
 		const dest = new ExcursionsEnrollReq(
 			src.controls['excursionId'].value,
@@ -47,6 +48,17 @@ export class ExcursionsMapperService {
 		return dest;
 	}
 
+    enrollFormGroupToIExcursionsEnrollReqNew(src: FormGroup, excursionId: number): IExcursionsEnrollReq {
+        const dest = new ExcursionsEnrollReq(
+            excursionId,
+            this.enrollFormGroupToIExcursionEnrollPersonReq(src.controls['booker'] as FormGroup, 0),
+            this.enrollFormArrayToArrayOfIExcursionEnrollPersonReq(src.controls['participants'] as FormArray),
+            src.controls['paymentMethod'].value
+        );
+        return dest;
+    }
+
+    // TODO DO WYWALENIA
 	formGroupToIExcursionEnrollPersonReq(src: FormGroup): IExcursionEnrollPersonReq {
 		const dest = new ExcursionEnrollPersonReq(
 			this._authDataService.currentValue.data?.Id ?? undefined,
@@ -60,6 +72,20 @@ export class ExcursionsMapperService {
 		return dest;
 	}
 
+    enrollFormGroupToIExcursionEnrollPersonReq(src: FormGroup, userId?: number): IExcursionEnrollPersonReq {
+        const dest = new ExcursionEnrollPersonReq(
+            userId === undefined ? undefined : Number(this._authDataService.currentValue.data?.Id) ?? undefined,
+            src.controls['name'].value,
+            src.controls['surname'].value,
+            src.controls['email'] ? src.controls['email'].value : undefined,
+            src.controls['telephone'] ? src.controls['telephone'].value : undefined,
+            this._datesService.ngbDateToDate(src.controls['birthDate'].value),
+            src.controls['discount'].value
+        );
+        return dest;
+    }
+
+    // TODO DO WYWALENIA
 	formArrayToArrayOfIExcursionEnrollPersonReq(src: FormArray): IExcursionEnrollPersonReq[] {
 		let dest: IExcursionEnrollPersonReq[] = [];
 		(src.value as Array<IExcursionsParticipantModel>).forEach(participant => {
@@ -76,6 +102,11 @@ export class ExcursionsMapperService {
 		});
 		return dest;
 	}
+
+    enrollFormArrayToArrayOfIExcursionEnrollPersonReq(src: FormArray): IExcursionEnrollPersonReq[] {
+        const dest = (src.controls as Array<FormGroup>).map(formGroup => this.enrollFormGroupToIExcursionEnrollPersonReq(formGroup, undefined));
+        return dest;
+    }
 
 	iExcursionsGetListShortResToArrayOfIHomeExcursionModel(src: IExcursionsGetListShortRes): IExcursionModel[] {
 		const dest = src.items.map(x => this._iExcursionsGetListShortItemResToIHomeExcursionModel(x));

@@ -1,0 +1,41 @@
+body {
+	&.modal-open {
+		padding-right: 0 !important;
+
+		.route-closing-soon {
+			display: none;
+		}
+	}
+}
+
+.fullscreen-modal {
+	--bs-modal-width: 100% !important;
+	height: 100% !important;
+
+	&.transparent {
+		--bs-modal-bg: transparent;
+	}
+
+	.modal-dialog {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: all;
+
+		.modal-content {
+			all: unset;
+		}
+	}
+}
+
+.fullscreen-modal-backdrop {
+	width: 100% !important;
+	height: 100% !important;
+	box-sizing: border-box;
+
+	&.show {
+		&.dark {
+			opacity: 0.6;
+		}
+	}
+}

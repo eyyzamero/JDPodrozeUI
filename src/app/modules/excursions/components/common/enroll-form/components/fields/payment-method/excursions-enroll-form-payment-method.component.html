@@ -1,0 +1,14 @@
+<section class="form-field-container">
+    <label for="name" class="form-label">Sposoby płatności</label>
+    <div class="payment-methods-content">
+        <div class="payment-method" [ngClass]="{ 'selected': value() === PaymentMethod.TRADITIONAL_TRANSFER }"
+            (click)="updateValue(PaymentMethod.TRADITIONAL_TRANSFER)">
+            <img src="assets/icons/credit-card.svg" alt="traditional-transfer">
+            <span>Przelew tradycyjny</span>
+        </div>
+        <div class="payment-method disabled" [ngClass]="{ 'selected': value() === PaymentMethod.PRZELEWY_24 }">
+            <img src="assets/icons/Przelewy24_logo.svg" alt="Przelewy24">
+            <span>Przelewy24 (wkrótce)</span>
+        </div>
+    </div>
+</section>

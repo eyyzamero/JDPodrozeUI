@@ -1,0 +1,12 @@
+<section class="admin-orders-details-enroll-modal-container">
+    <div class="admin-orders-details-enroll-modal-content">
+        <h3>Zapisywanie użytkowników na wycieczkę </h3>
+        <app-excursions-enroll-form #formRef></app-excursions-enroll-form>
+        <button type="button" class="btn excursions-enroll-form-submit-btn" (click)="onSubmit(formRef.form)">
+            <app-loading-spinner *ngIf="loadingState() === LoadingState.LOADING; else btnText" [sizePX]="21" [color]="Color.BLACK" [center]="false"></app-loading-spinner>
+            <ng-template #btnText>
+                <span>Rezerwuj</span>
+            </ng-template>
+        </button>
+    </div>
+</section>
