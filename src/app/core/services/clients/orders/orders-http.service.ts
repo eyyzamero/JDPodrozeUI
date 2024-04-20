@@ -24,4 +24,8 @@ export class OrdersHttpService {
 	changePaymentStatus(orderId: string, request: IOrdersChangePaymentStatusReq): Observable<void> {
 		return this._httpClient.post<void>(`${configuration.api}/Orders/ChangePaymentStatus/${orderId}`, request);
 	}
+
+    deleteParticipant(participantId: number): Observable<string | null> {
+        return this._httpClient.delete<string | null>(`${configuration.api}/Orders/DeleteParticipant/${participantId}`);
+    }
 }

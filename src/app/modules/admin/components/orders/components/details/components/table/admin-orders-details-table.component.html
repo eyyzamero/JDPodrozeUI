@@ -43,7 +43,9 @@
                 <td class="participants-options-container" colspan="5" #collapse="ngbCollapse" [(ngbCollapse)]="order.isCollapsed" [animation]="false">
                     <span class="participants-options-content">
                         <label>Uczestnicy: </label>
-                        <app-admin-orders-participants [participants]="order.participants" [controls]="true"></app-admin-orders-participants>
+                        <app-admin-orders-participants [participants]="order.participants" [controls]="true"
+                            [actionButtonsDisabled]="actionButtonsDisabled()" (delete)="deleteParticipant($event, order)">
+                        </app-admin-orders-participants>
                     </span>
                     <button type="button" class="btn change-status-btn" (click)="changeStatus.emit(order)">
                         <app-loading-spinner *ngIf="statusLoadingState !== LoadingState.LOADED; else btnText" [sizePX]="21" [center]="false" [color]="Color.BLACK"></app-loading-spinner>

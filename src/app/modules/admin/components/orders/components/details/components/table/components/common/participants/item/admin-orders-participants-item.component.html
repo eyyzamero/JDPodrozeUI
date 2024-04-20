@@ -6,7 +6,7 @@
     <br *ngIf="participant?.email || participant?.telephoneNumber">
     <span *ngIf="participant?.email">{{ participant?.email }}</span>
     <span *ngIf="participant?.telephoneNumber">{{ participant?.telephoneNumber }}</span>
-    <span *ngIf="controls" class="admin-orders-participants-item-actions-container">
-        <img src="assets/icons/delete.svg" class="delete-btn" alt="delete">
+    <span *ngIf="controls" class="admin-orders-participants-item-actions-container" [ngClass]="{ 'disabled': actionButtonsDisabled }">
+        <img src="assets/icons/delete.svg" class="delete-btn" alt="delete" (click)="delete.emit(participant)">
     </span>
 </section>

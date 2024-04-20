@@ -37,4 +37,8 @@ export class AdminOrdersHttpService {
 	changePaymentStatusObservable(orderId: string, request: IOrdersChangePaymentStatusReq): Observable<void> {
 		return this._ordersHttpService.changePaymentStatus(orderId, request);
 	}
+
+    deleteParticipantObservable(participantId: number): Observable<string | null> {
+        return this._ordersHttpService.deleteParticipant(participantId);
+    }
 }

@@ -15,6 +15,15 @@
         justify-content: center;
         gap: 12px;
 
+        &.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+
+            img {
+                pointer-events: none;
+            }
+        }
+
         img {
             display: inline-flex;
             width: 16px;
