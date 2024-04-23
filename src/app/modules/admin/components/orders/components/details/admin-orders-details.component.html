@@ -1,16 +1,16 @@
 <section class="admin-orders-details-container">
-	<app-loading-spinner *ngIf="!details() || state() === LoadingState.LOADING; else content" [center]="false"></app-loading-spinner>
+	<app-loading-spinner *ngIf="!details || state === LoadingState.LOADING; else content" [center]="false"></app-loading-spinner>
     <ng-container>
         <ng-template #content>
-            <h3 class="section-title">{{ details()?.excursion?.title }}</h3>
+            <h3 class="section-title">{{ details?.excursion?.title }}</h3>
             <div class="admin-orders-details-content">
-                <app-admin-orders-details-excursion-info [excursion]="details()?.excursion"></app-admin-orders-details-excursion-info>
+                <app-admin-orders-details-excursion-info [excursion]="details?.excursion"></app-admin-orders-details-excursion-info>
                 <div class="admin-orders-details-content-actions">
                     <button type="button" class="btn enroll-btn" (click)="enroll()">Zapisz uczestników</button>
                 </div>
             </div>
-            <app-admin-orders-details-table [orders]="details()?.orders" [statusLoadingState]="statusLoadingState()"
-                (changeStatus)="changeStatus($event)">
+            <app-admin-orders-details-table [orders]="details?.orders" [statusLoadingState]="statusLoadingState"
+                [actionButtonsDisabled]="actionButtonsDisabled" (changeStatus)="changeStatus($event)" (delete)="deleteParticipant($event)">
             </app-admin-orders-details-table>
         </ng-template>
     </ng-container>

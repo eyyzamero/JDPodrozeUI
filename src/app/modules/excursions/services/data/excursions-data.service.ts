@@ -8,6 +8,6 @@ import { IExcursionModel } from '../../models';
 export class ExcursionsDataService extends BaseDataService<Array<IExcursionModel>> {
 
 	constructor() {
-		super();
+		super([]);
 	}
 }

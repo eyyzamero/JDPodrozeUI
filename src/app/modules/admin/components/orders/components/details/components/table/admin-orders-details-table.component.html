@@ -23,7 +23,7 @@
             <ng-container *ngFor="let order of orders">
                 <tr (click)="collapse.toggle()">
                     <td class="participants">
-                        <app-admin-orders-participants [participants]="order.participants"></app-admin-orders-participants>
+                        <app-admin-orders-participants [participants]="order.participants" [actionButtonsDisabled]="actionButtonsDisabled"></app-admin-orders-participants>
                     </td>
                     <td class="id">
                         <span>{{ order.id.toUpperCase() }}</span>
@@ -44,7 +44,7 @@
                     <span class="participants-options-content">
                         <label>Uczestnicy: </label>
                         <app-admin-orders-participants [participants]="order.participants" [controls]="true"
-                            [actionButtonsDisabled]="actionButtonsDisabled()" (delete)="deleteParticipant($event, order)">
+                            [actionButtonsDisabled]="actionButtonsDisabled" (delete)="delete.emit($event)">
                         </app-admin-orders-participants>
                     </span>
                     <button type="button" class="btn change-status-btn" (click)="changeStatus.emit(order)">
