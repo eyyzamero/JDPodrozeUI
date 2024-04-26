@@ -56,7 +56,6 @@
                 border: 1px solid var(--bs-border-color);
 
                 .participants-options-content {
-                    margin-bottom: 12px;
                     padding: 0;
 
                     label {
@@ -73,22 +72,38 @@
                     }
                 }
 
-                .change-status-btn {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					position: relative;
-					background-color: var(--app-light-orange-color);
-					color: black;
-					font-weight: bold;
-					width: 250px;
-					min-height: 38px;
+                .participants-options-buttons-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 12px;
+                    padding: 0;
+                    margin-bottom: 12px;
 
-					app-loading-spinner {
-						width: 21px;
-						height: 21px;
-					}
-				}
+                    .change-status-btn,
+                    .add-participant-btn {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+                        color: black;
+                        font-weight: bold;
+                        min-height: 38px;
+                    }
+                    
+                    .change-status-btn {
+                        width: 250px;
+                        background-color: var(--app-light-orange-color);
+    
+                        app-loading-spinner {
+                            width: 21px;
+                            height: 21px;
+                        }
+                    }
+
+                    .add-participant-btn {
+                        background-color: var(--app-light-gray-color2);
+                    }
+                }
             }
         }
     }

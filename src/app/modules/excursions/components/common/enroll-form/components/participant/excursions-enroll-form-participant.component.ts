@@ -4,6 +4,8 @@ import { ExcursionsEnrollFormParticipantModule } from './excursions-enroll-form-
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ExcursionsEnrollFormBase } from '../../base';
 import { ExcursionsEnrollForm } from '../../static';
+import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateFormatterService } from 'src/app/core/formatters/ngb-date/ngb-date-formatter.service';
 
 @Component({
     selector: 'app-excursions-enroll-form-participant',
@@ -15,6 +17,12 @@ import { ExcursionsEnrollForm } from '../../static';
         ReactiveFormsModule,
         ExcursionsEnrollFormParticipantModule
     ],
+    providers: [
+        {
+            provide: NgbDateParserFormatter,
+            useClass: NgbDateFormatterService
+        }
+    ]
 })
 export class ExcursionsEnrollFormParticipantComponent extends ExcursionsEnrollFormBase {
 

@@ -1,5 +1,5 @@
 <section class="admin-orders-participants-item-container">
-    <img src="assets/icons/user.svg" alt="user">
+    <img class="user-icon" src="assets/icons/user.svg" [ngClass]="{ 'discount': participant?.discount }" alt="user">
     <span [ngClass]="{ 'bold': !participant?.bookerId }">{{ participant?.name }}</span>
     <span [ngClass]="{ 'bold': !participant?.bookerId }">{{ participant?.surname }}</span>
     <span>{{ participant?.birthDate | date: 'dd.MM.yyyy' }}</span>
@@ -8,5 +8,6 @@
     <span *ngIf="participant?.telephoneNumber">{{ participant?.telephoneNumber }}</span>
     <span *ngIf="controls" class="admin-orders-participants-item-actions-container" [ngClass]="{ 'disabled': actionButtonsDisabled }">
         <img src="assets/icons/delete.svg" class="delete-btn" alt="delete" (click)="delete.emit(participant)">
+        <img src="assets/icons/edit.svg" class="edit-btn" alt="edit" (click)="edit.emit(participant)">
     </span>
 </section>

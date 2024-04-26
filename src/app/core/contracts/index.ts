@@ -27,6 +27,8 @@ export * from './requests/auth/is-login-available/iauth-is-login-available.req';
 export * from './requests/auth/is-login-available/auth-is-login-available.req';
 export * from './requests/orders/get-list/iorder-get-list.req';
 export * from './requests/orders/get-list/order-get-list.req';
+export * from './requests/orders/participant-add-or-edit/iorder-participant-add-or-edit.req';
+export * from './requests/orders/participant-add-or-edit/order-participant-add-or-edit.req';
 
 // Responses
 export * from './responses/account/register/iaccount-register.res';

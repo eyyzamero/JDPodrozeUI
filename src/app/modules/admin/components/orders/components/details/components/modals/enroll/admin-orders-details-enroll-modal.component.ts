@@ -23,6 +23,7 @@ import { ExcursionsMapperService } from 'src/app/modules/excursions/services/map
 export class AdminOrdersDetailsEnrollModalComponent {
 
     @Input({ required: true }) excursionId!: number;
+    @Input() discount: boolean = false;
 
     loadingState: WritableSignal<LoadingState> = signal(LoadingState.LOADED);
 

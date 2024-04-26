@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ExcursionEnrollPersonReq, ExcursionsEnrollReq, IExcursionEnrollPersonReq, IExcursionsEnrollReq, IExcursionsGetItemImageRes, IExcursionsGetItemRes, IExcursionsGetListShortItemRes, IExcursionsGetListShortRes } from 'src/app/core/contracts';
+import { FormArray, FormGroup } from '@angular/forms';
+import { ExcursionEnrollPersonReq, ExcursionsEnrollReq, IExcursionEnrollPersonReq, IExcursionsEnrollReq, IExcursionsGetItemImageRes, IExcursionsGetItemRes, IExcursionsGetListShortItemRes, IExcursionsGetListShortRes, IOrderParticipantAddOrEditReq, OrderParticipantAddOrEditReq } from 'src/app/core/contracts';
 import { AuthDataService } from 'src/app/core/services/data/auth/auth-data.service';
 import { ExcursionImageModel, ExcursionModel, IExcursionImageModel, IExcursionModel, IExcursionsParticipantModel } from '../../models';
 import { DatesService } from 'src/app/core/services';
+import { IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel } from 'src/app/modules/admin/components/orders/models';
 
 @Injectable({
 	providedIn: 'root'
@@ -112,6 +113,48 @@ export class ExcursionsMapperService {
 		const dest = src.items.map(x => this._iExcursionsGetListShortItemResToIHomeExcursionModel(x));
 		return dest;
 	}
+
+    iAdminOrdersExcursionDetailsParticipantModelToBookerFormGroup(src: IAdminOrdersExcursionDetailsParticipantModel, dest: FormGroup): FormGroup {
+        dest.controls['name'].setValue(src.name);
+        dest.controls['surname'].setValue(src.surname);
+        dest.controls['email'].setValue(src.email);
+        dest.controls['telephone'].setValue(src.telephoneNumber);
+        dest.controls['birthDate'].setValue(this._datesService.dateToNgbDate(src.birthDate));
+        dest.controls['discount'].setValue(src.discount);
+        return dest;
+    }
+    
+    iAdminOrdersExcursionDetailsParticipantModelToParticipantFormGroup(src: IAdminOrdersExcursionDetailsParticipantModel, dest: FormGroup): FormGroup {
+        dest.controls['name'].setValue(src.name);
+        dest.controls['surname'].setValue(src.surname);
+        dest.controls['birthDate'].setValue(this._datesService.dateToNgbDate(src.birthDate));
+        dest.controls['discount'].setValue(src.discount);
+        return dest;
+    }
+
+    participantFormGroupToIOrderParticipantAddOrEditReq(src: FormGroup, order: IAdminOrdersExcursionDetailsOrderModel, participantId?: number): IOrderParticipantAddOrEditReq {
+        const dest = new OrderParticipantAddOrEditReq(
+            participantId,
+            order.bookerId,
+            order.id,
+            src.controls['name'].value,
+            src.controls['surname'].value,
+            undefined,
+            undefined,
+            this._datesService.ngbDateToDate(src.controls['birthDate'].value),
+            src.controls['discount'].value
+        );
+        return dest;
+    }
+
+    bookerFormGroupToIOrderParticipantAddOrEditReq(src: FormGroup, order: IAdminOrdersExcursionDetailsOrderModel): IOrderParticipantAddOrEditReq {
+        let dest = this.participantFormGroupToIOrderParticipantAddOrEditReq(src, order);
+        dest.id = order.bookerId;
+        dest.bookerId = undefined,
+        dest.email = src.controls['email'].value,
+        dest.telephoneNumber = src.controls['telephone'].value;
+        return dest
+    }
 
 	private _iExcursionsGetListShortItemResToIHomeExcursionModel(src: IExcursionsGetListShortItemRes, dest: IExcursionModel = new ExcursionModel()): IExcursionModel {
 		dest.id = src.id;

@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-import { IOrdersGetListRes, IOrdersGetListItemRes, IOrdersGetExcursionOrdersWithDetailsRes, IOrdersGetExcursionOrdersWithDetailsExcursionRes, IOrdersGetExcursionOrdersWithDetailsOrderRes, IOrdersGetExcursionOrdersWithDetailsOrderParticipantRes, IOrdersGetExcursionOrdersWithDetailsOrderParticipantUserRes } from 'src/app/core/contracts';
+import { IOrdersGetListRes, IOrdersGetListItemRes, IOrdersGetExcursionOrdersWithDetailsRes, IOrdersGetExcursionOrdersWithDetailsExcursionRes, IOrdersGetExcursionOrdersWithDetailsOrderRes, IOrdersGetExcursionOrdersWithDetailsOrderParticipantRes, IOrdersGetExcursionOrdersWithDetailsOrderParticipantUserRes, IOrderParticipantAddOrEditReq } from 'src/app/core/contracts';
 import { ExcursionModel, IExcursionModel } from 'src/app/modules/excursions/models';
 import { AdminOrdersExcursionDetailsExcursionModel, AdminOrdersExcursionDetailsModel, AdminOrdersExcursionDetailsOrderModel, AdminOrdersExcursionDetailsParticipantModel, AdminOrdersExcursionDetailsParticipantUserModel, IAdminOrdersExcursionDetailsExcursionModel, IAdminOrdersExcursionDetailsModel, IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel, IAdminOrdersExcursionDetailsParticipantUserModel } from '../../models';
+import { DatesService } from 'src/app/core/services';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AdminOrdersMapperService {
 
-	constructor() { }
+	constructor(
+        private readonly _datesService: DatesService
+    ) { }
 
     iOrderGetListResToIExcursionModel(src: IOrdersGetListRes): IExcursionModel[] {
         const dest = src.items.map(this.iOrdersGetListItemResToIExcursionModel, this);
@@ -60,7 +63,7 @@ export class AdminOrdersMapperService {
             src.discount,
             src.email?.trim(),
             src.telephoneNumber,
-            src.birthDate,
+            new Date(src.birthDate),
             src.user ? this.iOrdersGetExcursionOrdersWithDetailsOrderParticipantUserResToIAdminOrdersExcursionDetailsParticipantUserModel(src.user) : undefined
         );
         return dest;
@@ -92,4 +95,18 @@ export class AdminOrdersMapperService {
 
         return dest;
     }
+
+    iOrderParticipantAddOrEditReqToAdminOrdersExcursionDetailsParticipantModel(src: IOrderParticipantAddOrEditReq, participantId: number | null = null): AdminOrdersExcursionDetailsParticipantModel {
+        const dest = new AdminOrdersExcursionDetailsParticipantModel(
+            participantId ? participantId : src.id,
+            src.bookerId,
+            src.name,
+            src.surname,
+            src.discount,
+            src.email,
+            src.telephoneNumber,
+            this._datesService.ngbDateStringToDate(src.birthDate)
+        );
+        return dest;
+    } 
 }

@@ -9,7 +9,7 @@ export abstract class ExcursionsEnrollFormBase {
     constructor() { }
 
     getControl(controlName: string): FormControl {
-        const control = this.form.controls[controlName] as FormControl;
+        const control = this.form!.controls[controlName] as FormControl;
         return control;
     }
 }

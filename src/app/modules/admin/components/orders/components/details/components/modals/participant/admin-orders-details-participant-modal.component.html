@@ -1,15 +1,15 @@
 <section class="admin-orders-details-modal-container">
     <div class="admin-orders-details-modal-content">
-        <h3>Zapisywanie użytkowników na wycieczkę </h3>
-        <app-excursions-enroll-form #formRef [discount]="discount"></app-excursions-enroll-form>
+        <h3>{{ mode === FormMode.NEW ? 'Zapisywanie uczestnika wycieczki' : 'Edycja uczestnika wycieczki' }}</h3>
+        <app-excursions-enroll-form-participant [form]="form" [discount]="discount"></app-excursions-enroll-form-participant>
         <div class="admin-orders-details-modal-actions">
             <button type="button" class="btn admin-orders-details-modal-cancel-btn" (click)="onCancel()">
                 <span>Anuluj</span>
             </button>
-            <button type="button" class="btn admin-orders-details-modal-submit-btn" (click)="onSubmit(formRef.form)">
+            <button type="button" class="btn admin-orders-details-modal-submit-btn" (click)="onSubmit()">
                 <app-loading-spinner *ngIf="loadingState() === LoadingState.LOADING; else btnText" [sizePX]="21" [color]="Color.BLACK" [center]="false"></app-loading-spinner>
                 <ng-template #btnText>
-                    <span>Rezerwuj</span>
+                    <span>Zapisz</span>
                 </ng-template>
             </button>
         </div>

@@ -27,4 +27,23 @@ export class DatesService {
 		);
 		return dest;
 	}
+
+    dateToString(src: Date): string {
+        const day = src.getDate().toString().padStart(2, '0');
+        const month = (src.getMonth() + 1).toString().padStart(2, '0');
+        const year = src.getFullYear().toString().padStart(4, '0');
+        const dest = `${day}/${month}/${year}`;
+		return dest;
+    }
+
+    ngbDateStringToDate(src: string): Date {
+        const dateSplitArray = src.split('/').map(x => +x);
+
+        const day = dateSplitArray[0];
+        const month = dateSplitArray[1];
+        const year = dateSplitArray[2];
+
+        const dest = new Date(year, month - 1, day, 0, 0, 0, 0);
+        return dest;
+    }
 }

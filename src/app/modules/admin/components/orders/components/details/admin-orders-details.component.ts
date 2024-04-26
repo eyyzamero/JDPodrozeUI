@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IAdminOrdersExcursionDetailsModel, IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel } from '../../models';
 import { LoadingState, PaymentStatus } from 'src/app/core/enums';
@@ -11,6 +11,8 @@ import { IOrdersChangePaymentStatusReq, OrdersChangePaymentStatusReq } from 'src
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdminOrdersDetailsEnrollModalComponent } from './components/modals/enroll/admin-orders-details-enroll-modal.component';
 import { AdminOrdersDetailsDataService } from '../../services/data/details/admin-orders-details-data.service';
+import { AdminOrdersDetailsParticipantModalComponent } from './components/modals/participant/admin-orders-details-participant-modal.component';
+import { AdminOrdersDetailsBookerModalComponent } from './components/modals/booker/admin-orders-details-booker-modal.component';
 
 @Component({
     selector: 'app-admin-orders-details',
@@ -38,7 +40,7 @@ export class AdminOrdersDetailsComponent implements OnInit {
         private readonly _activatedRoute: ActivatedRoute,
         private readonly _ngbModal: NgbModal,
         private readonly _adminOrdersHttpService: AdminOrdersHttpService,
-        private readonly _adminOrdersDetailsDataService: AdminOrdersDetailsDataService,
+        private readonly _adminOrdersDetailsDataService: AdminOrdersDetailsDataService
     ) { }
 
     ngOnInit(): void {
@@ -60,6 +62,7 @@ export class AdminOrdersDetailsComponent implements OnInit {
                     this.details = value.data;
                     this.statusLoadingState = LoadingState.LOADED;
                     this.actionButtonsDisabled = false;
+                    this._ngbModal.dismissAll();
                 }
             })
         )
@@ -78,13 +81,37 @@ export class AdminOrdersDetailsComponent implements OnInit {
 		};
 	}
 
+    addParticipant(order: IAdminOrdersExcursionDetailsOrderModel): void {
+        const addParticipantModal = this._ngbModal.open(AdminOrdersDetailsParticipantModalComponent, {
+            windowClass: 'fullscreen-modal transparent',
+            backdropClass: 'fullscreen-modal-backdrop',
+            keyboard: false
+        });
+        addParticipantModal.componentInstance.order = order;
+        addParticipantModal.componentInstance.discount = (this.details?.excursion.discountPriceGross ?? 0) > 0;
+    }
+
+    edit(payload: { participant: IAdminOrdersExcursionDetailsParticipantModel, order: IAdminOrdersExcursionDetailsOrderModel }): void {
+        const editParticipantModal = this._ngbModal.open(!payload.participant.bookerId ? AdminOrdersDetailsBookerModalComponent : AdminOrdersDetailsParticipantModalComponent, {
+            windowClass: 'fullscreen-modal transparent',
+            backdropClass: 'fullscreen-modal-backdrop',
+            keyboard: false
+        });
+        editParticipantModal.componentInstance.order = payload.order;
+        editParticipantModal.componentInstance.participant = payload.participant;
+        editParticipantModal.componentInstance.discount = (this.details?.excursion.discountPriceGross ?? 0) > 0;
+    }
+
     enroll(): void {
         const excursionId = this.details!.excursion.id
         const enrollModal = this._ngbModal.open(AdminOrdersDetailsEnrollModalComponent, {
             windowClass: 'fullscreen-modal transparent',
-            backdropClass: 'fullscreen-modal-backdrop'
+            backdropClass: 'fullscreen-modal-backdrop',
+            keyboard: false
         });
         enrollModal.componentInstance.excursionId = excursionId;
+        enrollModal.componentInstance.discount = (this.details?.excursion.discountPriceGross ?? 0) > 0;
+        
         enrollModal.result.then(result => {
             if (result === true)
                 this._getData(excursionId);     

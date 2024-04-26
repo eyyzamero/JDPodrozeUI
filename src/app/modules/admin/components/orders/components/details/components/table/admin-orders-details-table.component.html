@@ -41,18 +41,23 @@
                     </td>
                 </tr>
                 <td class="participants-options-container" colspan="5" #collapse="ngbCollapse" [(ngbCollapse)]="order.isCollapsed" [animation]="false">
+                    <div class="participants-options-buttons-container">
+                        <button type="button" class="btn change-status-btn" (click)="changeStatus.emit(order)">
+                            <app-loading-spinner *ngIf="statusLoadingState !== LoadingState.LOADED; else btnText" [sizePX]="21" [center]="false" [color]="Color.BLACK"></app-loading-spinner>
+                            <ng-template #btnText>
+                                <span>Oznacz jako {{ order.paymentStatus === PaymentStatus.NOT_PAID ? "zapłacone" : "nie zapłacone" }}</span>
+                            </ng-template>
+                        </button>
+                        <button type="button" class="btn add-participant-btn" (click)="addParticipant.emit(order)">
+                            <span>Dodaj uczestnika</span>
+                        </button>
+                    </div>
                     <span class="participants-options-content">
                         <label>Uczestnicy: </label>
                         <app-admin-orders-participants [participants]="order.participants" [controls]="true"
-                            [actionButtonsDisabled]="actionButtonsDisabled" (delete)="delete.emit($event)">
+                            [actionButtonsDisabled]="actionButtonsDisabled" (delete)="delete.emit($event)" (edit)="edit.emit({ participant: $event, order: order })">
                         </app-admin-orders-participants>
                     </span>
-                    <button type="button" class="btn change-status-btn" (click)="changeStatus.emit(order)">
-                        <app-loading-spinner *ngIf="statusLoadingState !== LoadingState.LOADED; else btnText" [sizePX]="21" [center]="false" [color]="Color.BLACK"></app-loading-spinner>
-                        <ng-template #btnText>
-                            <span>Oznacz jako {{ order.paymentStatus === PaymentStatus.NOT_PAID ? "zapłacone" : "nie zapłacone" }}</span>
-                        </ng-template>
-                    </button>
                 </td>
             </ng-container>
         </tbody>

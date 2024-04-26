@@ -3,7 +3,7 @@ import { Observable, map, take } from 'rxjs';
 import { OrdersHttpService } from 'src/app/core/services/clients/orders/orders-http.service';
 import { AdminOrdersMapperService } from '../mapper/admin-orders-mapper.service';
 import { AdminOrdersDataService } from '../data/admin-orders-data.service';
-import { IOrderGetListReq, IOrdersChangePaymentStatusReq } from 'src/app/core/contracts';
+import { IOrderGetListReq, IOrderParticipantAddOrEditReq, IOrdersChangePaymentStatusReq } from 'src/app/core/contracts';
 import { LoadingState } from 'src/app/core/enums';
 import { IAdminOrdersExcursionDetailsModel } from '../../models';
 import { AdminOrdersDetailsDataService } from '../data/details/admin-orders-details-data.service';
@@ -68,5 +68,19 @@ export class AdminOrdersHttpService {
 
     deleteParticipantObservable(participantId: number): Observable<string | null> {
         return this._ordersHttpService.deleteParticipant(participantId);
+    }
+
+    addOrEditParticipant(req: IOrderParticipantAddOrEditReq): void {
+        this._ordersHttpService.addOrEditParticipant(req).pipe(
+            take(1)
+        ).subscribe({
+            next: (participantId) => {
+                const participant = this._adminOrdersMapperService.iOrderParticipantAddOrEditReqToAdminOrdersExcursionDetailsParticipantModel(req, participantId);
+                
+                participantId
+                    ? this._adminOrdersDetailsDataService.addParticipant(participant, req.orderId)
+                    : this._adminOrdersDetailsDataService.editParticipant(participant, req.orderId);
+            }
+        })
     }
 }

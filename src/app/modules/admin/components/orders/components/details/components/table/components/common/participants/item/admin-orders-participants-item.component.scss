@@ -10,10 +10,16 @@
         }
     }
 
+    .user-icon {
+        &.discount {
+            filter: var(--app-primary-color-filter);
+        }
+    }
+
     .admin-orders-participants-item-actions-container {
         display: flex;
         justify-content: center;
-        gap: 12px;
+        gap: 8px;
 
         &.disabled {
             cursor: not-allowed;
