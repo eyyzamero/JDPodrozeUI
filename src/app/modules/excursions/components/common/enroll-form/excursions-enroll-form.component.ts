@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ExcursionsEnrollForm } from './static';
@@ -25,7 +25,7 @@ import { LoadingSpinnerModule } from 'src/app/modules/common/loading-spinner/loa
         LoadingSpinnerModule
     ]
 })
-export class ExcursionsEnrollFormComponent extends ExcursionsEnrollFormBase implements OnInit {
+export class ExcursionsEnrollFormComponent extends ExcursionsEnrollFormBase {
 
     @Input() form: FormGroup = ExcursionsEnrollForm.getEnrollForm();
     @Input() discount: boolean = false;
@@ -47,10 +47,6 @@ export class ExcursionsEnrollFormComponent extends ExcursionsEnrollFormBase impl
 
     constructor() {
         super();
-    }
-
-    ngOnInit(): void {
-
     }
 
     getControlAsFormGroup(controlName: string): FormGroup {

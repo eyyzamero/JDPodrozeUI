@@ -6,7 +6,7 @@
 		<span>Zalecamy regularne sprawdzanie skrzynki odbiorczej, w tym również folderu ze spamem, aby na bieżąco monitorować status swojej rezerwacji.</span>
 	</span>
 	<span *ngIf="paymentMethod === PaymentMethod.TRADITIONAL_TRANSFER" class="text-container">
-		<span>Prosimy o dokonanie wpłaty w wysokości <b>{{ price }} PLN</b> na poniższy numer konta.</span>
+		<span>Prosimy o dokonanie wpłaty w wysokości <b>{{ price | number: '1.2-2' }} PLN</b> na poniższy numer konta.</span>
 		<span>ING Bank Śląski <b>75 1050 1621 1000 0097 8972 9952</b></span>
 		<span>W tytule przelewu proszę wpisać nazwę wycieczki tj <b>{{ excursionName }}</b>. Jeżeli dane osoby dokonującej przelewu różnią się od danych osoby rezerwującej, prosimy o wpisanie w tytule przelewu imienia i nazwiska osoby rezerwującej. Umożliwi to prawidłowe przypisanie płatności.</span>
 	</span>

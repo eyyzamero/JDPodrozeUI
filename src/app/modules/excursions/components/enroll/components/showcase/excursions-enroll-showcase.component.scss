@@ -1,0 +1,53 @@
+@use 'src/styles/mixins' as mixins;
+
+.excursions-enroll-showcase-container {
+    display: flex;
+    gap: 16px;
+    box-shadow: var(--app-black-opacity-2-color) 0px 4px 8px 2px;
+    width: 100%;
+    padding: 16px;
+
+    @include mixins.breakpoint(sm) {
+        padding: 32px;
+    }
+
+    .excursions-enroll-showcase-image-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        picture {
+            width: 160px;
+            height: 90px;
+        
+            img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .no-image {
+                width: auto;
+                height: auto;
+                max-width: 160px;
+                max-height: 90px;
+            }
+        }
+    }
+
+    .excursions-enroll-showcase-data-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        flex: 1;
+
+        .excursions-enroll-showcase-data-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .excursions-enroll-showcase-data-date,
+        .excursions-enroll-showcase-data-price {
+            font-size: 14px;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<section class="excursions-enroll-showcase-container">
+    <div class="excursions-enroll-showcase-image-container">
+        <picture>
+            <img *ngIf="!excursion.images[0]; else image" src="assets/images/no-image.png" alt="no-image" class="no-image">
+            <ng-template #image>
+                <source [srcset]="getImage(excursion.images[0].id, ImageExtension.WEBP)" type="image/webp">
+                <source [srcset]="getImage(excursion.images[0].id, ImageExtension.PNG)" type="image/png">
+                <img [src]="getImage(excursion.images[0].id, ImageExtension.PNG)" alt="excursion-image" fetchpriority="high">
+            </ng-template>
+        </picture>
+    </div>
+    <div class="excursions-enroll-showcase-data-container">
+        <span class="excursions-enroll-showcase-data-title">{{ excursion.title }}</span>
+        <span class="excursions-enroll-showcase-data-date">Data: {{ excursion.dateFrom && excursion.dateTo ? (excursion.dateFrom | date: 'dd.MM.yyyy') + ' - ' + (excursion.dateTo | date: 'dd.MM.yyyy') : (excursion.dateFrom | date: 'dd.MM.yyyy') }}</span>
+        <span class="excursions-enroll-showcase-data-price">Cena: {{ excursion.priceGross }} PLN / os</span>
+    </div>
+</section>

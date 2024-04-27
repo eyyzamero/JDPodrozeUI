@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ExcursionsComponent } from './excursions.component';
 import { ExcursionsDetailsComponent } from './components/details/excursions-details.component';
 import { ExcursionsEnrollComponent } from './components/enroll/excursions-enroll.component';
-import { ExcursionsEnrollSuccessComponent } from './components/enroll/components/excursions-enroll-success/excursions-enroll-success.component';
+import { ExcursionsEnrollSuccessComponent } from './components/enroll/components/success/excursions-enroll-success.component';
 
 const routes: Routes = [
 	{
@@ -20,7 +20,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'enroll/:excursionId',
-				component: ExcursionsEnrollComponent
+				loadChildren: () => import('./components/enroll/excursions-enroll.module').then(m => m.ExcursionsEnrollModule)
 			}
 		]
 	}
