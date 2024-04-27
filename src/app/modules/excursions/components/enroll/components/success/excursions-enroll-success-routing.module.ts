@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { ExcursionsDetailsComponent } from "./excursions-details.component";
+import { ExcursionsEnrollSuccessComponent } from "./excursions-enroll-success.component";
 
 const routes: Routes = [
     {
-        path: ':id',
-        component: ExcursionsDetailsComponent
+        path: '',
+        component: ExcursionsEnrollSuccessComponent
     }
-];
+]
 
 @NgModule({
     imports: [
@@ -17,4 +17,4 @@ const routes: Routes = [
         RouterModule
     ]
 })
-export class ExcursionsDetailsRoutingModule { }
+export class ExcursionsEnrollSuccessRoutingModule { }

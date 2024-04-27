@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PaymentMethod } from 'src/app/core/enums';
 
 @Component({
 	selector: 'app-excursions-enroll-success',
 	templateUrl: './excursions-enroll-success.component.html',
-	styleUrls: ['./excursions-enroll-success.component.scss']
+	styleUrls: ['./excursions-enroll-success.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExcursionsEnrollSuccessComponent {
 

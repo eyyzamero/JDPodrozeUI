@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, take } from 'rxjs';
+import { filter, map, take, tap } from 'rxjs';
 import { ExcursionsMapperService } from '../../services/mapper/excursions-mapper.service';
 import { Color, LoadingState } from 'src/app/core/enums';
 import { FormArray, FormGroup } from '@angular/forms';
@@ -47,6 +47,11 @@ export class ExcursionsEnrollComponent implements OnInit {
 
 	private _initSubscriptions(): void {
         this._activatedRoute.params.pipe(
+            tap(matrixParams => {
+                if (!matrixParams['excursionId'] || isNaN(matrixParams['excursionId']))
+                    this._router.navigate(['']);
+            }),
+            filter(matrixParams => matrixParams['excursionId'] && !isNaN(matrixParams['excursionId'])),
             take(1)
         ).subscribe({
             next: (params) => {
@@ -55,6 +60,7 @@ export class ExcursionsEnrollComponent implements OnInit {
                 if (excursionId) {
                     const excursionId = +params['excursionId']; 
                     this._getExcursion(excursionId);
+                    scrollTo({ top: 0, behavior: 'smooth' });
                 }
             }
         });

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, WritableSignal, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first, map, take } from 'rxjs';
+import { filter, first, map, take, tap } from 'rxjs';
 import { ExcursionsDetailsMapperService } from './services/mapper/excursions-details-mapper.service';
 import { LoadingState } from 'src/app/core/enums';
 import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
@@ -29,12 +29,16 @@ export class ExcursionsDetailsComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-        scrollTo({ top: 0, behavior: 'smooth' });
 		this._initSubscriptions();
 	}
 
 	private _initSubscriptions(): void {
         this._activatedRoute.params.pipe(
+            tap(matrixParams => {
+                if (!matrixParams['id'] || isNaN(matrixParams['id']))
+                    this._router.navigate(['']);
+            }),
+            filter(matrixParams => matrixParams['id'] && !isNaN(matrixParams['id'])),
             take(1)
         ).subscribe({
             next: (params) => params['id'] ? this._getData(+params['id']) : this._router.navigate(['/'])
@@ -50,6 +54,7 @@ export class ExcursionsDetailsComponent implements OnInit {
 			next: (value) => {
 				this.excursion.set(value);
 				this.loadingState.set(LoadingState.LOADED);
+                scrollTo({ top: 0, behavior: 'smooth' })
 			}
 		});
 	}
