@@ -1,13 +1,13 @@
 <div class="excursions-details-images-container">
 	<div class="excursions-details-carousel-container">
-		<app-excursions-carousel #carousel [items]="carouselItems" [showNavigationIndicators]="false" (onSlide)="onSlide($event)"></app-excursions-carousel>
+		<app-excursions-carousel #carousel [items]="carouselItems()" [showNavigationIndicators]="false" (onSlide)="onSlide($event)"></app-excursions-carousel>
 	</div>
 	<div class="excursions-details-image-selector-container">
 		<picture #imageSelector *ngFor="let image of images; let i = index">
 			<source [srcset]="getImage(image.id, ImageExtension.WEBP)" type="image/webp">
 			<source [srcset]="getImage(image.id, ImageExtension.PNG)" type="image/png">
 			<img [src]="getImage(image.id, ImageExtension.PNG)" [alt]="i" class="img-fluid image-selectable"
-				[ngClass]="{ 'current': currentlyDisplayedImageIndex === i }" (click)="selectImage(i)" loading="lazy">
+				[ngClass]="{ 'current': currentlyDisplayedImageIndex() === i }" (click)="selectImage(i)" loading="lazy">
 		</picture>
 	</div>
 </div>

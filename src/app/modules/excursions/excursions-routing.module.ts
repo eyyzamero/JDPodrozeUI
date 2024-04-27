@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ExcursionsComponent } from './excursions.component';
-import { ExcursionsDetailsComponent } from './components/details/excursions-details.component';
-import { ExcursionsEnrollComponent } from './components/enroll/excursions-enroll.component';
 import { ExcursionsEnrollSuccessComponent } from './components/enroll/components/success/excursions-enroll-success.component';
 
 const routes: Routes = [
@@ -12,7 +10,7 @@ const routes: Routes = [
 		children: [
 			{
 				path: "details/:id",
-				component: ExcursionsDetailsComponent
+				loadChildren: () => import('./components/details/excursions-details.module').then(m => m.ExcursionsDetailsModule)
 			},
 			{
 				path: 'enroll/success',

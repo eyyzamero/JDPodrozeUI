@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { IExcursionsGetItemImageRes, IExcursionsGetItemRes } from 'src/app/core/contracts';
 import { ExcursionImageModel, ExcursionModel, IExcursionImageModel, IExcursionModel } from 'src/app/modules/excursions/models';
 
-@Injectable({
-	providedIn: 'root'
-})
+@Injectable()
 export class ExcursionsDetailsMapperService {
 
 	constructor() { }

@@ -1,20 +1,20 @@
 <section class="excursions-details-container">
-	<div *ngIf="loadingState === LoadingState.LOADING; else content" class="excursions-details-content">
+	<div *ngIf="loadingState() === LoadingState.LOADING; else content" class="excursions-details-content">
 		<app-loading-spinner></app-loading-spinner>
 	</div>
 	<ng-template #content>
 		<div class="excursions-details-content">
-			<span class="title">{{ excursion.title }}</span>
-			<span class="date">Data: {{ excursion.dateFrom && excursion.dateTo ? (excursion.dateFrom | date: 'dd.MM.yyyy') + ' - ' + (excursion.dateTo | date: 'dd.MM.yyyy') : (excursion.dateFrom | date: 'dd.MM.yyyy') }}</span>
-			<app-excursions-details-images [images]="excursion.images"></app-excursions-details-images>
+			<span class="title">{{ excursion().title }}</span>
+			<span class="date">Data: {{ excursion().dateFrom && excursion().dateTo ? (excursion().dateFrom | date: 'dd.MM.yyyy') + ' - ' + (excursion().dateTo | date: 'dd.MM.yyyy') : (excursion().dateFrom | date: 'dd.MM.yyyy') }}</span>
+			<app-excursions-details-images [images]="excursion().images"></app-excursions-details-images>
 			<div class="col-auto description">
 				<label for="description" class="form-label">Opis wycieczki</label>
-				<ckeditor id="description" class="ckeditor-viewer" [editor]="editor" [ngModel]="excursion.description" [config]="{ toolbar: []}" [disabled]="true"></ckeditor>
+				<ckeditor id="description" class="ckeditor-viewer" [editor]="editor" [ngModel]="excursion().description" [config]="{ toolbar: []}" [disabled]="true"></ckeditor>
 			</div>
-			<div *ngIf="excursion.priceGross > 0" class="price-container">
-				<span class="price">Cena za osobę: <b>{{ excursion.priceGross | number: '1.2-2' }} PLN</b></span>
-				<span *ngIf="excursion.discountPrice > 0" class="price">Cena ulgowa: <b>{{ excursion.discountPrice | number: '1.2-2' }} PLN</b></span>
-				<a [routerLink]="['/excursions/enroll/' + excursion.id]">
+			<div *ngIf="excursion().priceGross > 0" class="price-container">
+				<span class="price">Cena za osobę: <b>{{ excursion().priceGross | number: '1.2-2' }} PLN</b></span>
+				<span *ngIf="excursion().discountPrice > 0" class="price">Cena ulgowa: <b>{{ excursion().discountPrice | number: '1.2-2' }} PLN</b></span>
+				<a [routerLink]="['/excursions/enroll/' + excursion().id]">
 					<button type="button" class="btn sign-up-btn">Zapisz się na wycieczkę</button>
 				</a>
 			</div>
