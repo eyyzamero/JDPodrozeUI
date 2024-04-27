@@ -5,7 +5,10 @@
 	<ng-template #content>
 		<div class="excursions-details-content">
 			<span class="title">{{ excursion().title }}</span>
-			<span class="date">Data: {{ excursion().dateFrom && excursion().dateTo ? (excursion().dateFrom | date: 'dd.MM.yyyy') + ' - ' + (excursion().dateTo | date: 'dd.MM.yyyy') : (excursion().dateFrom | date: 'dd.MM.yyyy') }}</span>
+			<span class="date">
+                <span class="date-label">Data: </span>
+                <span>{{ excursion().dateFrom && excursion().dateTo ? (excursion().dateFrom | date: 'dd.MM.yyyy') + ' - ' + (excursion().dateTo | date: 'dd.MM.yyyy') : (excursion().dateFrom | date: 'dd.MM.yyyy') }}</span>
+            </span>
 			<app-excursions-details-images [images]="excursion().images"></app-excursions-details-images>
 			<div class="col-auto description">
 				<label for="description" class="form-label">Opis wycieczki</label>

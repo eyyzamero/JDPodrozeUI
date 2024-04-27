@@ -29,7 +29,10 @@
 
 		.date {
 			font-size: 18px;
-			font-weight: bold;
+            
+            .date-label {
+                font-weight: bold;
+            }
 		}
 
 		.images-carousel-container {
@@ -130,6 +133,10 @@
 				font-size: 14px;
 				font-weight: bold;
 				width: 200px;
+
+                &:hover {
+                    color: black;
+                }
 			}
 		}
 	}

@@ -48,10 +48,13 @@
 				justify-content: center;
 				position: relative;
 				background-color: var(--app-light-orange-color);
-				color: black;
 				font-weight: bold;
 				width: 200px;
 				min-height: 38px;
+
+                &:hover {
+                    color: black;
+                }
 
 				app-loading-spinner {
 					width: 21px;

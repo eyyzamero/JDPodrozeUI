@@ -1,4 +1,4 @@
-<section class="excursions-enroll-showcase-container">
+<a [routerLink]="['/excursions/details/', excursion.id]" class="excursions-enroll-showcase-container">
     <div class="excursions-enroll-showcase-image-container">
         <picture>
             <img *ngIf="!excursion.images[0]; else image" src="assets/images/no-image.png" alt="no-image" class="no-image">
@@ -14,4 +14,4 @@
         <span class="excursions-enroll-showcase-data-date">Data: {{ excursion.dateFrom && excursion.dateTo ? (excursion.dateFrom | date: 'dd.MM.yyyy') + ' - ' + (excursion.dateTo | date: 'dd.MM.yyyy') : (excursion.dateFrom | date: 'dd.MM.yyyy') }}</span>
         <span class="excursions-enroll-showcase-data-price">Cena: {{ excursion.priceGross }} PLN / os</span>
     </div>
-</section>
+</a>
