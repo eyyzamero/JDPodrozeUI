@@ -3,12 +3,12 @@
         <img class="logo" src="assets/images/logos/logo_colored_width_200.png" alt="logo">
     </a>
 	<header>Zaloguj się</header>
-	<span *ngIf="invalidCredentialsError" class="error">Nieprawidłowe dane logowania</span>
+	<span *ngIf="invalidCredentialsError()" class="error">Nieprawidłowe dane logowania</span>
 	<form [formGroup]="form" (ngSubmit)="tryToLogin()">
         <app-login-login-field class="form-field" formControlName="login"></app-login-login-field>
         <app-login-password-field class="form-field" formControlName="password"></app-login-password-field>
-		<button type="submit" [ngClass]="{ 'disabled': loadingState === LoadingState.LOADING }">
-			<div *ngIf="loadingState === LoadingState.LOADING; else btnText" class="spinner-border" role="status"></div>
+		<button type="submit" [ngClass]="{ 'disabled': loadingState() === LoadingState.LOADING }">
+			<div *ngIf="loadingState() === LoadingState.LOADING; else btnText" class="spinner-border" role="status"></div>
 			<ng-template #btnText>
 				<span>Zaloguj</span>
 			</ng-template>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, WritableSignal, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountBase } from '../base/account.base';
 import { AuthHttpService } from 'src/app/core/services/http/auth/auth-http.service';
@@ -32,13 +32,13 @@ export class LoginComponent extends AccountBase implements OnInit, OnDestroy {
             updateOn: 'blur'
         })
 	});
-	loadingState: LoadingState = LoadingState.LOADED;
-	invalidCredentialsError: boolean = false;
+	loadingState: WritableSignal<LoadingState> = signal(LoadingState.LOADED);
+	invalidCredentialsError: WritableSignal<boolean> = signal(false);
 
 	readonly LoadingState = LoadingState;
 
 	private get _isLoading(): boolean {
-		return this.loadingState === LoadingState.LOADING;
+		return this.loadingState() === LoadingState.LOADING;
 	}
 
 	private _subscriptions: Subscription[] = [];
@@ -54,7 +54,7 @@ export class LoginComponent extends AccountBase implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this._subscriptions.push(
 			this._authJsonWebTokenLocalStorageDataService.observable.subscribe({
-				next: (value) => this.loadingState = value.state
+				next: (value) => this.loadingState.set(value.state)
 			})
 		);
 	}
@@ -62,7 +62,8 @@ export class LoginComponent extends AccountBase implements OnInit, OnDestroy {
 	tryToLogin(): void {
         this.form.markAllAsTouched();
 		if (this.form.valid && !this._isLoading) {
-			this.invalidCredentialsError = false;
+            this.form.disable();
+			this.invalidCredentialsError.set(false);
 			const request = new AuthLoginReq(this.form.controls['login'].value, this.form.controls['password'].value);
             this._authHttpService.login(request).pipe(
                 take(1)
@@ -72,9 +73,10 @@ export class LoginComponent extends AccountBase implements OnInit, OnDestroy {
                     this._router.navigate(['/']);
                 },
                 error: (error: HttpErrorResponse) => {
-                    if (error.status === 400)
-                        this.invalidCredentialsError = true;
-                        
+                    if (error.status === 400) {
+                        this.invalidCredentialsError.set(true);
+                    }
+                    this.form.enable();
                     this._authJsonWebTokenLocalStorageDataService.addError(error);
                 }
             })
