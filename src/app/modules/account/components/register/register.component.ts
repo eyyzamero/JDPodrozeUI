@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, WritableSignal, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountBase } from '../base/account.base';
 import { AuthHttpService } from 'src/app/core/services/http/auth/auth-http.service';
@@ -10,7 +10,8 @@ import { IsLoginAvailableValidator, passwordsEqualValidator } from './validators
 
 @Component({
 	templateUrl: './register.component.html',
-	styleUrls: ['./register.component.scss']
+	styleUrls: ['./register.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent extends AccountBase {
 
@@ -62,7 +63,7 @@ export class RegisterComponent extends AccountBase {
             ]
         })
 	});
-    error: boolean = false;
+    error: WritableSignal<boolean> = signal(false);
 
 	constructor(
 		readonly router: Router,
@@ -92,7 +93,7 @@ export class RegisterComponent extends AccountBase {
                     this._router.navigate(['/']);
                 },
                 error: () => {
-                    this.error = true;
+                    this.error.set(true);
                     this.form.enable();
                 }
             })

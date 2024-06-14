@@ -4,7 +4,7 @@
     </a>
 	<header>Zarejestruj się</header>
 	<form [formGroup]="form" (ngSubmit)="register()">
-        <span class="error" *ngIf="error">Wystąpił błąd</span>
+        <span class="error" *ngIf="error()">Wystąpił błąd</span>
         <app-register-login-field class="form-field" formControlName="login"></app-register-login-field>
         <app-register-password-field class="form-field" formControlName="password"></app-register-password-field>
         <app-register-confirm-password-field class="form-field" formControlName="confirmPassword"></app-register-confirm-password-field>
