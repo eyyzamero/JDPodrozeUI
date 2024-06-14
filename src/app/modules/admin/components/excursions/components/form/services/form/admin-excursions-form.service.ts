@@ -47,6 +47,7 @@ export class AdminExcursionsFormService {
                 ]
             }),
             template: new FormControl(false),
+            pickupPoints: new FormArray([]),
 			images: new FormArray([])
 		});
 	}

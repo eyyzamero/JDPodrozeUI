@@ -1,4 +1,4 @@
-import { IExcursionsAddImageReq, IExcursionsAddReq } from '../../..';
+import { IExcursionsAddImageReq, IExcursionsAddPickupPointReq, IExcursionsAddReq } from '../../..';
 
 export class ExcursionsAddReq implements IExcursionsAddReq {
 	
@@ -15,6 +15,7 @@ export class ExcursionsAddReq implements IExcursionsAddReq {
 		public dateFrom?: string,
 		public dateTo?: string,
         public isTemplate: boolean = false,
-		public images: IExcursionsAddImageReq[] = []
+		public images: IExcursionsAddImageReq[] = [],
+        public pickupPoints: IExcursionsAddPickupPointReq[] = []
 	) { }
 }

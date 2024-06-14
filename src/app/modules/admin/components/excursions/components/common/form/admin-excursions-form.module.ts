@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AdminExcursionsFormImagesComponent } from "./components/images/admin-excursions-form-images.component";
 import { AdminExcursionsFormCheckboxComponent } from './components/checkbox/admin-excursions-form-checkbox.component';
 import { AdminExcursionsFormDatesComponent } from "./components/dates/admin-excursions-form-dates.component";
+import { AdminExcursionsFormPickupPointsComponent } from './components/pickup-points/admin-excursions-form-pickup-points.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { AdminExcursionsFormDatesComponent } from "./components/dates/admin-excu
         AdminExcursionsFormEditorComponent,
         AdminExcursionsFormImagesComponent,
         AdminExcursionsFormCheckboxComponent,
-        AdminExcursionsFormDatesComponent
+        AdminExcursionsFormDatesComponent,
+        AdminExcursionsFormPickupPointsComponent
     ],
     imports: [
         CommonModule,
@@ -41,7 +43,8 @@ import { AdminExcursionsFormDatesComponent } from "./components/dates/admin-excu
         AdminExcursionsFormEditorComponent,
         AdminExcursionsFormImagesComponent,
         AdminExcursionsFormCheckboxComponent,
-        AdminExcursionsFormDatesComponent
+        AdminExcursionsFormDatesComponent,
+        AdminExcursionsFormPickupPointsComponent
     ],
     providers: [
         {

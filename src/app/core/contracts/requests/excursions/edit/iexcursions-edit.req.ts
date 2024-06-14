@@ -1,4 +1,4 @@
-import { IExcursionsEditImageReq } from '../../..';
+import { IExcursionsAddPickupPointReq, IExcursionsEditImageReq } from '../../..';
 
 export interface IExcursionsEditReq {
 	id: number;
@@ -15,4 +15,5 @@ export interface IExcursionsEditReq {
 	dateTo?: string;
     isTemplate: boolean;
 	images: IExcursionsEditImageReq[];
+    pickupPoints: IExcursionsAddPickupPointReq[];
 }

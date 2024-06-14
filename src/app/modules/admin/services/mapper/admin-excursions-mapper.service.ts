@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ExcursionsAddImageReq, ExcursionsAddReq, ExcursionsEditImageReq, ExcursionsEditReq, IExcursionsAddImageReq, IExcursionsAddReq, IExcursionsEditImageReq, IExcursionsEditReq, IExcursionsGetItemImageRes, IExcursionsGetItemRes, IExcursionsGetListItemImageRes, IExcursionsGetListItemRes, IExcursionsGetListRes } from 'src/app/core/contracts';
+import { ExcursionsAddImageReq, ExcursionsAddPickupPointReq, ExcursionsAddReq, ExcursionsEditImageReq, ExcursionsEditReq, IExcursionsAddImageReq, IExcursionsAddPickupPointReq, IExcursionsAddReq, IExcursionsEditImageReq, IExcursionsEditReq, IExcursionsGetItemImageRes, IExcursionsGetItemPickupPointRes, IExcursionsGetItemRes, IExcursionsGetListItemImageRes, IExcursionsGetListItemRes, IExcursionsGetListRes } from 'src/app/core/contracts';
 import { DatesService } from 'src/app/core/services';
-import { ExcursionImageModel, ExcursionModel, IExcursionImageModel, IExcursionModel } from 'src/app/modules/excursions/models';
+import { ExcursionImageModel, ExcursionModel, ExcursionPickupPointModel, IExcursionImageModel, IExcursionModel, IExcursionPickupPointModel } from 'src/app/modules/excursions/models';
 
 @Injectable({
 	providedIn: 'root'
@@ -32,7 +32,8 @@ export class AdminExcursionsMapperService {
 			src.controls['dateFrom'].value ? this._datesService.ngbDateToDate(src.controls['dateFrom'].value) : undefined,
 			src.controls['dateTo'].value ? this._datesService.ngbDateToDate(src.controls['dateTo'].value) : undefined,
             src.controls['template'].value,
-			(src.controls['images'].value as Array<ExcursionImageModel>).map(item => this._base64ToIExcursionsAddImageReq(item))
+			(src.controls['images'].value as Array<ExcursionImageModel>).map(item => this._base64ToIExcursionsAddImageReq(item)),
+            (src.controls['pickupPoints'].value as Array<IExcursionPickupPointModel>).map(item => this._iExcursionPickupPointModelToIExcursionsAddPickupPointReq(item))
 		);	
 		return dest;
 	}
@@ -52,7 +53,8 @@ export class AdminExcursionsMapperService {
 			src.controls['dateFrom'].value ? this._datesService.ngbDateToDate(src.controls['dateFrom'].value) : undefined,
 			src.controls['dateTo'].value ? this._datesService.ngbDateToDate(src.controls['dateTo'].value) : undefined,
             src.controls['template'].value,
-			(src.controls['images'].value as Array<ExcursionImageModel>).map(item => this._base64ToIExcursionsEditImageReq(item))
+			(src.controls['images'].value as Array<ExcursionImageModel>).map(item => this._base64ToIExcursionsEditImageReq(item)),
+            (src.controls['pickupPoints'].value as Array<IExcursionPickupPointModel>).map(item => this._iExcursionPickupPointModelToIExcursionsAddPickupPointReq(item))
 		);
 		return dest;
 	}
@@ -73,6 +75,9 @@ export class AdminExcursionsMapperService {
 		const images = src.images.map(image => this._iExcursionsGetItemImageResToFormControlIExcursionImageModel(image));
 		(dest.controls['images'] as FormArray).clear();
 		images.forEach(image => (dest.controls['images'] as FormArray).push(image));
+        const pickupPoints = src.pickupPoints.map(this._iExcursionsGetItemPickupPointResToIExcursionPickupPointModel, this);
+        (dest.controls['pickupPoints'] as FormArray).clear();
+        pickupPoints.forEach(pickupPoint => (dest.controls['pickupPoints'] as FormArray).push(pickupPoint));
 		return dest;
 	}
 
@@ -97,6 +102,14 @@ export class AdminExcursionsMapperService {
 		);
 		return dest;
 	}
+
+    private _iExcursionPickupPointModelToIExcursionsAddPickupPointReq(src: IExcursionPickupPointModel): IExcursionsAddPickupPointReq {
+        const dest = new ExcursionsAddPickupPointReq(
+            src.id,
+            src.name
+        );
+        return dest;
+    }
 
 	private _iExcursionsGetListItemResToIExcursionModel(src: IExcursionsGetListItemRes): IExcursionModel {
 		const dest = new ExcursionModel(
@@ -125,6 +138,12 @@ export class AdminExcursionsMapperService {
 		const dest = new FormControl(image);
 		return dest;
 	}
+
+    private _iExcursionsGetItemPickupPointResToIExcursionPickupPointModel(src: IExcursionsGetItemPickupPointRes): FormControl<IExcursionPickupPointModel | null> {
+        const pickupPoint = new ExcursionPickupPointModel(src.id, src.name);
+        const dest = new FormControl(pickupPoint);
+        return dest;
+    }
 
 	private _iExcursionsGetListItemImageResToIExcursionImageModel(src: IExcursionsGetListItemImageRes): IExcursionImageModel {
 		const dest = new ExcursionImageModel(src.id, src.excursionId, 0, src.name, src.type);

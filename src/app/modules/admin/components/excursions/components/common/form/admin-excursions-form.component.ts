@@ -4,7 +4,7 @@ import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule
 import { FormMode } from 'src/app/core/enums';
 import { ToastsService } from 'src/app/core/services/common/toasts/toasts.service';
 import { AdminExcursionsFormModule } from './admin-excursions-form.module';
-import { IExcursionImageModel } from 'src/app/modules/excursions/models';
+import { IExcursionImageModel, IExcursionPickupPointModel } from 'src/app/modules/excursions/models';
 
 @Component({
     selector: 'app-admin-excursions-form-common',
@@ -30,6 +30,10 @@ export class AdminExcursionsFormCommonComponent {
     get images(): FormArray {
 		return this.form!.get('images') as FormArray<AbstractControl<IExcursionImageModel>>;
 	}
+
+    get pickupPoints(): FormArray {
+        return this.form!.get('pickupPoints') as FormArray<AbstractControl<IExcursionPickupPointModel>>;
+    }
 
     constructor(
         private readonly _toastsService: ToastsService

@@ -1,0 +1,16 @@
+<section class="admin-excursions-form-pickup-points-container">
+    <label for="pickup-points" class="form-label">Przystanki</label>
+    <div class="admin-excursions-form-pickup-points-content">
+        <input #addInput type="text" class="form-control admin-excursions-form-pickup-points-add-input" placeholder="Wpisz nazwę przystanku"
+            (keyup.enter)="add(addInput)" (input)="onInput(addInput.value)">
+        <button type="button" class="btn admin-excursions-form-pickup-points-add-btn" (click)="add(addInput)" [disabled]="addBtnDisabled">
+            <span>Dodaj</span>
+        </button>
+    </div>
+    <div class="admin-excursions-form-pickup-points-data-container">
+        <span *ngFor="let pickupPoint of control.controls; let i = index" class="admin-excursions-form-pickup-point">
+            <span>{{ pickupPoint.value.name }}</span>
+            <img src="assets/icons/delete.svg" (click)="delete(i)">
+        </span>
+    </div>
+</section>

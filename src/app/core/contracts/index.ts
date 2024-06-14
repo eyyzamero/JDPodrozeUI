@@ -5,6 +5,8 @@ export * from './requests/auth/register/iauth-register.req';
 export * from './requests/auth/register/auth-register.req';
 export * from './requests/excursions/add/image/iexcursions-add-image.req';
 export * from './requests/excursions/add/image/excursions-add-image.req';
+export * from './requests/excursions/add/pickup-point/iexcursions-add-pickup-point.req';
+export * from './requests/excursions/add/pickup-point/excursions-add-pickup-point.req';
 export * from './requests/excursions/add/iexcursions-add.req';
 export * from './requests/excursions/add/excursions-add.req';
 export * from './requests/excursions/edit/image/iexcursions-edit-image.req';
@@ -38,6 +40,7 @@ export * from './responses/excursions/get-list/item/images/iexcursions-get-list-
 export * from './responses/excursions/get-list/item/iexcursions-get-list-item.res';
 export * from './responses/excursions/get-list/iexcursions-get-list.res';
 export * from './responses/excursions/get-item/image/iexcursions-get-item-image.res';
+export * from './responses/excursions/get-item/pickup-point/iexcursions-get-item-pickup-point.res';
 export * from './responses/excursions/get-item/iexcursions-get-item.res';
 export * from './responses/orders/get-list/item/iorders-get-list-item.res';
 export * from './responses/orders/get-list/iorder-get-list.res';

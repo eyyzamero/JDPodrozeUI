@@ -1,4 +1,4 @@
-import { IExcursionsGetItemImageRes } from '../../..';
+import { IExcursionsGetItemImageRes, IExcursionsGetItemPickupPointRes } from '../../..';
 
 export interface IExcursionsGetItemRes {
 	id: number;
@@ -15,4 +15,5 @@ export interface IExcursionsGetItemRes {
     seats: number;
     availableSeats: number;
 	images: IExcursionsGetItemImageRes[];
+    pickupPoints: IExcursionsGetItemPickupPointRes[];
 }

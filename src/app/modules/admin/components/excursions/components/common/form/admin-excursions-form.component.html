@@ -4,6 +4,7 @@
         <app-admin-excursions-form-short-description formControlName="shortDescription"></app-admin-excursions-form-short-description>
         <app-admin-excursions-form-editor [control]="getFormControl('description')"></app-admin-excursions-form-editor>
         <app-admin-excursions-form-images [excursionId]="getFormControl('id').value" [formArray]="images"></app-admin-excursions-form-images>
+        <app-admin-excursions-form-pickup-points [control]="pickupPoints"></app-admin-excursions-form-pickup-points>
         <app-admin-excursions-form-checkbox [id]="'active'" [label]="'Aktywna'" formControlName="active"></app-admin-excursions-form-checkbox>
         <app-admin-excursions-form-checkbox [id]="'in-carousel'" [label]="'W karuzeli'" formControlName="inCarousel"></app-admin-excursions-form-checkbox>
         <app-admin-excursions-form-dates [dateFromControl]="getFormControl('dateFrom')" [dateToControl]="getFormControl('dateTo')"></app-admin-excursions-form-dates>

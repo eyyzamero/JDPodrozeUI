@@ -1,0 +1,46 @@
+.admin-excursions-form-pickup-points-container {
+    .admin-excursions-form-pickup-points-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+
+        .admin-excursions-form-pickup-points-add-input {
+            max-width: 300px;
+        }
+
+        .admin-excursions-form-pickup-points-add-btn {
+            background-color: var(--app-light-orange-color);
+            color: black;
+            font-weight: bold;
+            border: none;
+        }
+    }
+    
+    .admin-excursions-form-pickup-points-data-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+
+        .admin-excursions-form-pickup-point {
+            display: inline-flex;
+            padding: 8px 12px;
+            background-color: var(--app-light-gray-color2);
+            color: black;
+            border-radius: 8px;
+            gap: 8px;
+            align-items: center;
+
+            span {
+                line-height: 1;
+            }
+
+            img {
+                width: 16px;
+                height: 16px;
+                cursor: pointer;
+                filter: var(--app-red-color-filter);
+            }
+        }
+    }
+}
