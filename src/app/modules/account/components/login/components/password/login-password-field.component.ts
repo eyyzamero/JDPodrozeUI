@@ -1,23 +1,15 @@
-import { ChangeDetectionStrategy, Component, Injector, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FormFieldBase } from 'src/app/core/forms';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-login-password-field',
     templateUrl: './login-password-field.component.html',
     styleUrls: ['./login-password-field.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => LoginPasswordFieldComponent),
-            multi: true
-        }
-    ]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginPasswordFieldComponent extends FormFieldBase<string> {
+export class LoginPasswordFieldComponent {
 
-    constructor(injector: Injector) {
-        super(injector);
-    }
+    @Input({ required: true }) control!: FormControl<string>;
+
+    constructor() { }
 }

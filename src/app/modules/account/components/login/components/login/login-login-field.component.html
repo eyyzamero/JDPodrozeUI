@@ -1,8 +1,6 @@
-<div class="form-field-container login-login-field-container">
-    <input #inputRef type="text" class="form-control" [ngModel]="value()" [placeholder]="'Login'" [disabled]="isDisabled()"
-        [ngClass]="{ 'has-error': errorKey && touched }" (ngModelChange)="updateValue(inputRef.value)" (blur)="onTouched()">
-    <div *ngIf="touched && errorKey" class="errors" [ngSwitch]="errorKey">
-        <span *ngSwitchCase="'required'" class="error">Pole wymagane</span>
-        <span *ngSwitchCase="'maxlength'" class="error">Pole może zawierać maksymalnie 50 znaków</span>
-    </div>
+<div class="login-login-field-container">
+    <app-form-control-input class="form-field" type="text" label="Nazwa użytkownika" [control]="control" [id]="'login'">
+        <form-control-error *ngIf="control.touched && control.hasError('required')">Pole wymagane</form-control-error>
+        <form-control-error *ngIf="control.touched && control.hasError('maxlength')">Pole może zawierać maksymalnie {{ control.errors!['maxlength'].requiredLength }} znaków</form-control-error>
+    </app-form-control-input>
 </div>

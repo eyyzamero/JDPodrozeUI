@@ -5,8 +5,8 @@
 	<header>Zaloguj się</header>
 	<span *ngIf="invalidCredentialsError()" class="error">Nieprawidłowe dane logowania</span>
 	<form [formGroup]="form" (ngSubmit)="tryToLogin()">
-        <app-login-login-field class="form-field" formControlName="login"></app-login-login-field>
-        <app-login-password-field class="form-field" formControlName="password"></app-login-password-field>
+        <app-login-login-field class="form-field" [control]="getFormControl('login')"></app-login-login-field>
+        <app-login-password-field class="form-field" [control]="getFormControl('password')"></app-login-password-field>
 		<button type="submit" [ngClass]="{ 'disabled': loadingState() === LoadingState.LOADING }">
 			<div *ngIf="loadingState() === LoadingState.LOADING; else btnText" class="spinner-border" role="status"></div>
 			<ng-template #btnText>

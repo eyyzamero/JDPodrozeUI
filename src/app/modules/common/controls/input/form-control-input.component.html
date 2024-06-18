@@ -1,0 +1,12 @@
+<div class="form-control-input-container">
+    <div class="form-floating form-control-input-content">
+        <input *ngIf="control" [type]="type" class="form-control" [formControl]="control"
+            [ngClass]="{ 'is-invalid': isInvalid }" [placeholder]="placeholder ? placeholder : label" [attr.id]="id ? id : null">
+        <label>{{ label }}</label>
+    </div>
+    <div class="form-control-info-content">
+        <div class="form-control-errors-container">
+            <span *ngFor="let errorMessage of errorMessages" class="form-control-error">{{ errorMessage }}</span>
+        </div>
+    </div>
+</div>

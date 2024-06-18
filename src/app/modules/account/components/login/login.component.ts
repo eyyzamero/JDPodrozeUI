@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { LoadingState } from 'src/app/core/enums';
 import { Subscription, take } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { getControl } from 'src/app/core/helpers';
 
 @Component({
 	templateUrl: './login.component.html',
@@ -21,15 +22,13 @@ export class LoginComponent extends AccountBase implements OnInit, OnDestroy {
             validators: [
                 Validators.required,
                 Validators.maxLength(50)
-            ],
-            updateOn: 'blur'
+            ]
         }),
 		password: new FormControl(null, {
             validators: [
                 Validators.required,
                 Validators.maxLength(255)
-            ],
-            updateOn: 'blur'
+            ]
         })
 	});
 	loadingState: WritableSignal<LoadingState> = signal(LoadingState.LOADED);
@@ -82,6 +81,10 @@ export class LoginComponent extends AccountBase implements OnInit, OnDestroy {
             })
 		}
 	}
+
+    getFormControl(controlName: string): FormControl {
+        return getControl<FormControl>(this.form, controlName);
+    }
 
 	ngOnDestroy(): void {
 		this._subscriptions.forEach(x => x.unsubscribe());
