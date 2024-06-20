@@ -1,0 +1,7 @@
+<div *ngIf="errors" class="form-control-input-errors-container">
+    <span class="form-control-error" *ngIf="touched && errors['required']">Pole wymagane</span>
+    <span class="form-control-error" *ngIf="touched && errors['minlength']">Pole musi zawierać minimalnie {{ errors!['minlength'].requiredLength }} znaków</span>
+    <span class="form-control-error" *ngIf="touched && errors['maxlength']">Pole może zawierać maksymalnie {{ errors!['maxlength'].requiredLength }} znaków</span>
+    <span class="form-control-error" *ngIf="touched && errors['pattern']">Nieprawidłowy zestaw znaków</span>
+    <span class="form-control-error" *ngIf="touched && errors['email']">Nieprawidłowy adres E-Mail</span>
+</div>

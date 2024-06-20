@@ -82,10 +82,6 @@ export class LoginComponent extends AccountBase implements OnInit, OnDestroy {
 		}
 	}
 
-    getFormControl(controlName: string): FormControl {
-        return getControl<FormControl>(this.form, controlName);
-    }
-
 	ngOnDestroy(): void {
 		this._subscriptions.forEach(x => x.unsubscribe());
 	}

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, WritableSignal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, WritableSignal, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountBase } from '../base/account.base';
 import { AuthHttpService } from 'src/app/core/services/http/auth/auth-http.service';
@@ -7,6 +7,7 @@ import { AuthRegisterReq } from 'src/app/core/contracts';
 import { take } from 'rxjs';
 import { AuthJsonWebTokenLocalStorageDataService } from 'src/app/core/services/data/auth/jwt-local-storage/auth-json-web-token-local-storage-data.service';
 import { IsLoginAvailableValidator, passwordsEqualValidator } from './validators';
+import { debounceTimeValidator } from 'src/app/core/validators';
 
 @Component({
 	templateUrl: './register.component.html',
@@ -19,41 +20,39 @@ export class RegisterComponent extends AccountBase {
 		login: new FormControl(null, {
             validators: [
                 Validators.required,
+                Validators.minLength(8),
                 Validators.maxLength(50),
             ],
             asyncValidators: [
-                IsLoginAvailableValidator.createValidator(this._authHttpService)
-            ],
-            updateOn: 'blur'
+                debounceTimeValidator(IsLoginAvailableValidator.createValidator(this._authHttpService, this._changeDetectorRef), 500) 
+            ]
         }),
 		password: new FormControl(null, {
             validators: [
                 Validators.required,
+                Validators.minLength(8),
                 Validators.maxLength(255)
-            ],
-            updateOn: 'blur'
+            ]
         }),
 		confirmPassword: new FormControl(null, {
             validators: [
                 Validators.required,
+                Validators.minLength(8),
                 Validators.maxLength(255),
                 passwordsEqualValidator
-            ],
-            updateOn: 'blur'
+            ]
         }),
 		firstName: new FormControl(null, {
             validators: [
                 Validators.required,
                 Validators.maxLength(50)
-            ],
-            updateOn: 'blur'
+            ]
         }),
 		lastName: new FormControl(null, {
             validators: [
                 Validators.required,
                 Validators.maxLength(50)
-            ],
-            updateOn: 'blur'
+            ]
         }),
 		email: new FormControl(null, {
             validators: [
@@ -69,11 +68,13 @@ export class RegisterComponent extends AccountBase {
 		readonly router: Router,
 		readonly authHttpService: AuthHttpService,
 		private readonly _authJsonWebTokenLocalStorageDataService: AuthJsonWebTokenLocalStorageDataService,
+        private readonly _changeDetectorRef: ChangeDetectorRef
 	) {
 		super(router, authHttpService);
 	}
 
 	register(): void {
+        this.error.set(false);
         this.form.markAllAsTouched();
 		if (this.form.valid) {
 			const request = new AuthRegisterReq(

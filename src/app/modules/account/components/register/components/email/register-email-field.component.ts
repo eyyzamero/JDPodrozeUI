@@ -1,22 +1,14 @@
-import { Component, Injector, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FormFieldBase } from 'src/app/core/forms';
+import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-register-email-field',
     templateUrl: './register-email-field.component.html',
-    styleUrls: ['./register-email-field.component.scss'],
-    providers: [
-        {
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => RegisterEmailFieldComponent),
-			multi: true
-		}
-    ]
+    styleUrls: ['./register-email-field.component.scss']
 })
-export class RegisterEmailFieldComponent extends FormFieldBase<string> {
+export class RegisterEmailFieldComponent {
 
-    constructor(injector: Injector) {
-        super(injector);
-    }
+    @Input({ required: true }) control!: FormControl<string>;
+
+    constructor() { }
 }

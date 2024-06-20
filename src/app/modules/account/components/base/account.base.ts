@@ -1,6 +1,7 @@
 import { Directive } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { getControl } from 'src/app/core/helpers';
 import { AuthHttpService } from 'src/app/core/services/http/auth/auth-http.service';
 
 @Directive()
@@ -16,4 +17,8 @@ export abstract class AccountBase {
 	navigateToHomePage(): void {
 		this._router.navigate(['/']);
 	}
+
+    getFormControl(controlName: string): FormControl {
+        return getControl<FormControl>(this.form, controlName);
+    }
 }

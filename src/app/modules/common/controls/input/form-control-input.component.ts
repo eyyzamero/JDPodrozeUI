@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormControlBase } from '../base';
 import { ExtractTypescriptType, HtmlInputType } from '../types';
+import { FormControlInputErrorsComponent } from './components/errors/form-control-input-errors.component';
 
 @Component({
     selector: 'app-form-control-input',
@@ -11,8 +12,11 @@ import { ExtractTypescriptType, HtmlInputType } from '../types';
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
-        CommonModule,
-        ReactiveFormsModule
+        NgIf,
+        NgFor,
+        NgClass,
+        ReactiveFormsModule,
+        FormControlInputErrorsComponent
     ]
 })
 export class FormControlInputComponent extends FormControlBase<ExtractTypescriptType<HtmlInputType>> {

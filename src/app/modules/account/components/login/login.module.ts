@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
@@ -16,7 +16,8 @@ import { FormControlErrorDirective } from 'src/app/modules/common/controls/direc
         LoginPasswordFieldComponent
     ],
     imports: [
-        CommonModule,
+        NgIf,
+        NgClass,
         FormsModule,
 		ReactiveFormsModule,
         FormControlInputComponent,

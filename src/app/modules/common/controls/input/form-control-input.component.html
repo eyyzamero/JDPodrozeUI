@@ -7,6 +7,7 @@
     <div class="form-control-info-content">
         <div class="form-control-errors-container">
             <span *ngFor="let errorMessage of errorMessages" class="form-control-error">{{ errorMessage }}</span>
+            <app-form-control-input-errors [errors]="control.errors" [touched]="control.touched"></app-form-control-input-errors>
         </div>
     </div>
 </div>

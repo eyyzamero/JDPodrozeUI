@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { FooterModule } from './components/footer/footer.module';
 
@@ -10,6 +9,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderMenuComponent } from './components/header/components/menu/header-menu.component';
 import { HeaderMenuOptionsComponent } from './components/header/components/menu/components/options/header-menu-options.component';
 import { MenuChevronComponent } from './components/menu/components/chevron/menu-chevron.component';
+import { NgClass } from '@angular/common';
 
 @NgModule({
 	declarations: [
@@ -21,7 +21,7 @@ import { MenuChevronComponent } from './components/menu/components/chevron/menu-
 		MenuChevronComponent
 	],
 	imports: [
-		CommonModule,
+        NgClass,
 		FooterModule,
 		NgbDropdownModule,
 		LayoutRoutingModule

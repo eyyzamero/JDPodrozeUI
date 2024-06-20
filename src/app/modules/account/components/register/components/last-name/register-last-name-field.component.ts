@@ -1,22 +1,14 @@
-import { Component, Injector, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FormFieldBase } from 'src/app/core/forms';
+import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-register-last-name-field',
     templateUrl: './register-last-name-field.component.html',
-    styleUrls: ['./register-last-name-field.component.scss'],
-    providers: [
-        {
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => RegisterLastNameFieldComponent),
-			multi: true
-		}
-    ]
+    styleUrls: ['./register-last-name-field.component.scss']
 })
-export class RegisterLastNameFieldComponent extends FormFieldBase<string> {
+export class RegisterLastNameFieldComponent {
 
-    constructor(injector: Injector) {
-        super(injector);
-    }
+    @Input({ required: true }) control!: FormControl<string>;
+
+    constructor() { }
 }

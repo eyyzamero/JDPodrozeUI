@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 
 import { RegisterRoutingModule } from './register-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,6 +11,8 @@ import { RegisterFirstNameFieldComponent } from './components/first-name/registe
 import { RegisterLastNameFieldComponent } from './components/last-name/register-last-name-field.component';
 import { RegisterEmailFieldComponent } from './components/email/register-email-field.component';
 import { RegisterComponent } from './register.component';
+import { FormControlInputComponent } from 'src/app/modules/common/controls/input/form-control-input.component';
+import { FormControlErrorDirective } from 'src/app/modules/common/controls/directives';
 
 @NgModule({
     declarations: [
@@ -23,9 +25,11 @@ import { RegisterComponent } from './register.component';
         RegisterComponent
     ],
     imports: [
-        CommonModule,
+        NgIf,
 		FormsModule,
 		ReactiveFormsModule,
+        FormControlInputComponent,
+        FormControlErrorDirective,
         RegisterRoutingModule
     ]
 })

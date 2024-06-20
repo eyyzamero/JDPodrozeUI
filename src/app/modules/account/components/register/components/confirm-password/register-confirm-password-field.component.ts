@@ -1,22 +1,14 @@
-import { Component, Injector, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FormFieldBase } from 'src/app/core/forms';
+import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-register-confirm-password-field',
     templateUrl: './register-confirm-password-field.component.html',
-    styleUrls: ['./register-confirm-password-field.component.scss'],
-    providers: [
-        {
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => RegisterConfirmPasswordFieldComponent),
-			multi: true
-		}
-    ]
+    styleUrls: ['./register-confirm-password-field.component.scss']
 })
-export class RegisterConfirmPasswordFieldComponent extends FormFieldBase<string> {
+export class RegisterConfirmPasswordFieldComponent {
 
-    constructor(injector: Injector) {
-        super(injector);
-    }
+    @Input({ required: true }) control!: FormControl<string>;
+
+    constructor() { }
 }
