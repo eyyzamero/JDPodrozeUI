@@ -9,7 +9,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderMenuComponent } from './components/header/components/menu/header-menu.component';
 import { HeaderMenuOptionsComponent } from './components/header/components/menu/components/options/header-menu-options.component';
 import { MenuChevronComponent } from './components/menu/components/chevron/menu-chevron.component';
-import { NgClass } from '@angular/common';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 
 @NgModule({
 	declarations: [
@@ -21,7 +21,9 @@ import { NgClass } from '@angular/common';
 		MenuChevronComponent
 	],
 	imports: [
+        NgIf,
         NgClass,
+        NgForOf,
 		FooterModule,
 		NgbDropdownModule,
 		LayoutRoutingModule
