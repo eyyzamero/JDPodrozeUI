@@ -1,0 +1,70 @@
+@use 'src/styles/mixins' as mixins;
+
+:host {
+	width: 100%;
+}
+
+.excursions-home-carousel-container {
+	padding: 32px;
+	gap: 16px;
+	max-width: 1920px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 0 auto;
+	
+	@include mixins.breakpoint(sm) {
+		justify-content: center;
+	}
+	
+	@include mixins.breakpoint(md) {
+		flex-direction: row;
+	}
+
+	.excursions-home-carousel-content {
+		display: inline-flex;
+		position: relative;
+		max-width: 1920px;
+		justify-content: center;
+
+		app-excursions-carousel {
+			display: block;
+			width: calc(100vw - 64px);
+
+			@include mixins.breakpoint(sm) {
+				width: auto;
+			}
+		}
+
+		@include mixins.breakpoint(md) {
+			justify-content: flex-start;
+		}
+	}
+
+    .excursions-home-carousel-header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		flex: 1;
+
+		h2 {
+			margin-bottom: 32px;
+			font-weight: bold;
+		}
+
+		span {
+			font-size: 20px;
+			font-weight: normal;
+
+			a {
+				color: black;
+				text-decoration: underline;
+				text-decoration-color: black;
+				font-weight: bold;
+				cursor: pointer;
+			}
+		}
+	}
+}

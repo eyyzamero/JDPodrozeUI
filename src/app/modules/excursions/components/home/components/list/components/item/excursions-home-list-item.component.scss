@@ -1,0 +1,68 @@
+.excursions-home-list-item-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	cursor: pointer;
+
+	&:hover {
+		.excursions-home-list-item-content {
+			background-color: var(--app-light-orange-opacity-2-color);
+		}
+	}
+
+	.excursions-home-list-item-content {
+		--bs-card-height: 100%;
+		position: relative;
+	
+		.excursions-home-list-item-image {
+			display: block;
+			aspect-ratio: 16 / 9;
+			object-fit: cover;
+			object-position: center;
+		}
+	
+		.excursions-home-list-item-header-container {
+			display: flex;
+			flex-direction: column;
+			padding-top: 16px;
+			
+			.excursions-home-list-item-header {
+				flex: 1;
+	
+				.excursions-home-list-item-header-text {
+					font-size: 20px;
+					font-weight: bold;
+					margin: 0;
+				}
+			}
+		}
+	
+		.excursions-home-list-item-price-container {
+			display: inline-flex;
+			flex-direction: column;
+			padding: 8px;
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			background-color: var(--app-gray-color);
+			border-radius: 8px;
+			
+			.excursions-home-list-item-price-value,
+			.excursions-home-list-item-price-text {
+				width: 100%;
+				text-align: right;
+				line-height: 1;
+			}
+	
+			.excursions-home-list-item-price-value {
+				font-weight: bold;
+				font-size: 20px;
+				margin-bottom: 4px;
+			}
+	
+			.excursions-home-list-item-price-text {
+				font-size: 14px;
+			}
+		}
+	}
+}

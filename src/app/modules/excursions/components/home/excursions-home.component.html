@@ -1,0 +1,9 @@
+<section class="excursions-home-container">
+    <div class="excursions-home-carousel-container">
+        <app-excursions-home-carousel (onShowOfferClick)="excursions.scrollIntoView()"></app-excursions-home-carousel>
+    </div>
+    <div class="excursions-home-content">
+        <app-excursions-home-list #excursions></app-excursions-home-list>
+    </div>
+    <app-excursions-home-newsletter></app-excursions-home-newsletter>
+</section>

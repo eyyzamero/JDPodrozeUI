@@ -1,0 +1,116 @@
+.excursions-home-newsletter-modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 16px;
+
+    .excursions-home-newsletter-modal-content {
+        display: flex;
+        flex-direction: column;
+        max-width: 576px;
+        max-height: 100%;
+        width: 100%;
+        padding: 16px;
+        gap: 16px;
+        background-color: white;
+        overflow: auto;
+        border-radius: 8px;
+
+        header {
+            text-align: center;
+            width: 100%;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .excursions-home-newsletter-error {
+            color: var(--bs-danger);
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .excursions-home-newsletter-form-container {
+            position: relative;
+
+            .excursions-home-newsletter-form {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                width: 100%;
+
+                &.submitted {
+                    visibility: collapse;
+                }
+
+                .excursions-home-newsletter-form-action-buttons {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 16px;
+
+                    .excursions-home-newsletter-form-submit-btn,
+                    .excursions-home-newsletter-form-cancel-btn {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: bold;
+                        padding: 8px 12px;
+                        max-width: 200px;
+                        width: 100%;
+                    }
+
+                    .excursions-home-newsletter-form-cancel-btn {
+                        background-color: var(--app-light-gray-color2);
+                    }
+
+                    .excursions-home-newsletter-form-submit-btn {
+                        position: relative;
+                        background-color: var(--app-light-orange-color);
+                        color: black;
+
+                        app-loading-spinner {
+                            width: 21px;
+                            height: 21px;
+                        }
+                    }
+                }
+            }
+
+            .excursions-home-newsletter-form-message {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                background-color: white;
+
+                img {
+                    display: inline-block;
+                    width: 75px;
+                    height: 75px;
+                    filter: var(--app-success-color-filter);
+                }
+
+                .excursions-home-newsletter-form-close-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    padding: 8px 12px;
+                    max-width: 200px;
+                    width: 100%;
+                    background-color: var(--app-light-gray-color2);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+<section *ngIf="item" class="excursions-home-list-item-container">
+	<div [routerLink]="'/excursions/details/' + item.id" class="card excursions-home-list-item-content">
+		<picture>
+			<source [srcset]="getImage(ImageExtension.WEBP)" type="image/webp">
+			<source [srcset]="getImage(ImageExtension.PNG)" type="image/png">
+			<img [src]="getImage(ImageExtension.PNG)" [alt]="item.title" class="card-img-top excursions-home-list-item-image" loading="lazy">
+		</picture>
+		<div class="card-body excursions-home-list-item-header-container">
+			<div class="excursions-home-list-item-header">
+				<span class="card-title excursions-home-list-item-header-text">[{{ item.dateFrom && item.dateTo ? (item.dateFrom | date: 'dd.MM.yyyy') + ' - ' + (item.dateTo | date: 'dd.MM.yyyy') : (item.dateFrom | date: 'dd.MM.yyyy') }}] - {{ item.title }}</span>
+			</div>
+		</div>
+		<span class="excursions-home-list-item-price-container">
+			<span *ngIf="item.priceGross === 0; else price" class="excursions-home-list-item-price-value">Cena wkrótce</span>
+			<ng-template #price>
+				<span class="excursions-home-list-item-price-value">{{ item.priceGross | number: '1.2-2' }} PLN</span>
+				<span class="excursions-home-list-item-price-text">za osobę</span>
+			</ng-template>
+		</span>
+	</div>
+</section>

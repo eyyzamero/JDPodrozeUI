@@ -5,6 +5,7 @@ import { AuthDataService } from 'src/app/core/services/data/auth/auth-data.servi
 import { ExcursionImageModel, ExcursionModel, IExcursionImageModel, IExcursionModel, IExcursionsParticipantModel } from '../../models';
 import { DatesService } from 'src/app/core/services';
 import { IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel } from 'src/app/modules/admin/components/orders/models';
+import { ExcursionsCarouselItemModel, IExcursionsCarouselItemModel } from '../../components/common/carousel/models';
 
 @Injectable({
 	providedIn: 'root'
@@ -154,6 +155,16 @@ export class ExcursionsMapperService {
         dest.email = src.controls['email'].value,
         dest.telephoneNumber = src.controls['telephone'].value;
         return dest
+    }
+
+    arrayOfIExcursionModelToArrayOfIExcursionsCarouselItemModel(src: IExcursionModel[]): IExcursionsCarouselItemModel[] {
+        const dest = src.map(this._IExcursionModelToIExcursionsCarouselItemModel, this);
+        return dest;
+    }
+
+    private _IExcursionModelToIExcursionsCarouselItemModel(src: IExcursionModel): IExcursionsCarouselItemModel {
+       const dest = new ExcursionsCarouselItemModel(src.imageId, src.id, src.title, src.description);
+       return dest;
     }
 
 	private _iExcursionsGetListShortItemResToIHomeExcursionModel(src: IExcursionsGetListShortItemRes, dest: IExcursionModel = new ExcursionModel()): IExcursionModel {

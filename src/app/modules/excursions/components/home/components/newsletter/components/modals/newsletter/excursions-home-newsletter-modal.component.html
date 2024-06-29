@@ -1,0 +1,30 @@
+<section class="excursions-home-newsletter-modal-container">
+    <div class="excursions-home-newsletter-modal-content">
+        <header>Zapisywanie do Newslettera</header>
+        <span *ngIf="loadingState === LoadingState.ERROR" class="excursions-home-newsletter-error">Błąd zapisu</span>
+        <div class="excursions-home-newsletter-form-container">
+            <form class="excursions-home-newsletter-form" [formGroup]="form" [ngClass]="{ 'submitted': success }">
+                <app-form-control-input type="text" [control]="getControl('name')" label="Imię"></app-form-control-input>
+                <app-form-control-input type="email" [control]="getControl('email')" label="E-Mail"></app-form-control-input>
+                <div class="excursions-home-newsletter-form-action-buttons">
+                    <button type="button" class="btn excursions-home-newsletter-form-submit-btn" [disabled]="form.disabled" (click)="enroll()">
+                        <app-loading-spinner *ngIf="loadingState === LoadingState.LOADING; else btnText" [sizePX]="21" [color]="Color.BLACK" [center]="false"></app-loading-spinner>
+                        <ng-template #btnText>
+                            <span>Zapisz się</span>
+                        </ng-template>
+                    </button>
+                    <button type="button" class="btn excursions-home-newsletter-form-cancel-btn" (click)="cancel()">
+                        <span>Anuluj</span>
+                    </button>
+                </div>
+            </form>
+            <div *ngIf="success" class="excursions-home-newsletter-form-message">
+                <img src="assets/icons/check-circle-fill.svg" alt="check-circle-fill" class="success">
+                <span class="excursions-home-newsletter-state-header">Zapisałeś/aś się do newslettera</span>
+                <button type="button" class="btn excursions-home-newsletter-form-close-btn" (click)="cancel()">
+                    <span>Zamknij</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

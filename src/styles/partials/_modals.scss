@@ -1,10 +1,6 @@
 body {
 	&.modal-open {
 		padding-right: 0 !important;
-
-		.route-closing-soon {
-			display: none;
-		}
 	}
 }
 

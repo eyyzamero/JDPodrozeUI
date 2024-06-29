@@ -1,0 +1,13 @@
+<section #container class="excursions-home-list-container">
+    <h3>Wycieczki</h3>
+    <div *ngIf="state === LoadingState.LOADING; else content" class="excursions-home-list-loading-container">
+        <app-loading-spinner [center]="false"></app-loading-spinner>
+    </div>
+    <ng-template #content>
+        <div *ngIf="excursions" class="excursions-home-list-content">
+			<article *ngFor="let excursion of excursions" class="excursions-home-list-item-container">
+				<app-excursions-home-list-item [item]="excursion"></app-excursions-home-list-item>
+			</article>
+		</div>
+    </ng-template>
+</section>
