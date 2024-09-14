@@ -6,7 +6,7 @@ import { LoadingSpinnerModule } from 'src/app/modules/common/loading-spinner/loa
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup } from '@angular/forms';
 import { ExcursionsEnrollForm } from 'src/app/modules/excursions/components/common/enroll-form/static';
-import { AdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel } from '../../../../../models';
+import { AdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel, IAdminOrdersExcursionDetailsPickupPointModel } from '../../../../../models';
 import { ExcursionsMapperService } from 'src/app/modules/excursions/services/mapper/excursions-mapper.service';
 import { AdminOrdersHttpService } from '../../../../../services/http/admin-orders-http.service';
 
@@ -31,6 +31,7 @@ export class AdminOrdersDetailsParticipantModalComponent {
         this.mode = FormMode.EDIT;
     }
     @Input() discount: boolean = false;
+    @Input() pickupPoints: IAdminOrdersExcursionDetailsPickupPointModel[] = [];
     
     form: FormGroup = ExcursionsEnrollForm.getParticipantForm();
     participantId?: number;

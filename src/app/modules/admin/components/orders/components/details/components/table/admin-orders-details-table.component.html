@@ -5,6 +5,9 @@
                 <th scope="col" class="participants">
                     <span>Uczestnicy</span>
                 </th>
+                <th scope="col" class="pickup-point">
+                    <span>Punkt odbioru</span>
+                </th>
                 <th scope="col" class="id">
                     <span>Identyfikator</span>
                 </th>
@@ -25,6 +28,9 @@
                     <td class="participants">
                         <app-admin-orders-participants [participants]="order.participants" [actionButtonsDisabled]="actionButtonsDisabled"></app-admin-orders-participants>
                     </td>
+                    <td class="pickup-point">
+                        <span>{{ order.pickupPoint?.name }}</span>
+                    </td>
                     <td class="id">
                         <span>{{ order.id.toUpperCase() }}</span>
                     </td>
@@ -40,7 +46,7 @@
                         <span>{{ order.price | number: '1.2-2' }} PLN</span>
                     </td>
                 </tr>
-                <td class="participants-options-container" colspan="5" #collapse="ngbCollapse" [(ngbCollapse)]="order.isCollapsed" [animation]="false">
+                <td class="participants-options-container" colspan="6" #collapse="ngbCollapse" [(ngbCollapse)]="order.isCollapsed" [animation]="false">
                     <div class="participants-options-buttons-container">
                         <button type="button" class="btn change-status-btn" (click)="changeStatus.emit(order)">
                             <app-loading-spinner *ngIf="statusLoadingState !== LoadingState.LOADED; else btnText" [sizePX]="21" [center]="false" [color]="Color.BLACK"></app-loading-spinner>
@@ -50,6 +56,9 @@
                         </button>
                         <button type="button" class="btn add-participant-btn" (click)="addParticipant.emit(order)">
                             <span>Dodaj uczestnika</span>
+                        </button>
+                        <button type="button" class="btn set-pickup-point-btn" (click)="setPickupPoint.emit(order)">
+                            <span>Ustaw punkt odbioru</span>
                         </button>
                     </div>
                     <span class="participants-options-content">

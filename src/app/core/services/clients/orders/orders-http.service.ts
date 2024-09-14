@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IOrdersGetListRes, IOrdersChangePaymentStatusReq, IOrderGetListReq, IOrdersGetExcursionOrdersWithDetailsRes, IOrderParticipantAddOrEditReq } from 'src/app/core/contracts';
+import { IOrdersGetListRes, IOrdersChangePaymentStatusReq, IOrderGetListReq, IOrdersGetExcursionOrdersWithDetailsRes, IOrderParticipantAddOrEditReq, IOrderSetPickupPointReq } from 'src/app/core/contracts';
 import { configuration } from 'src/configurations/configuration';
 
 @Injectable({
@@ -31,5 +31,9 @@ export class OrdersHttpService {
 
     addOrEditParticipant(request: IOrderParticipantAddOrEditReq): Observable<number | null> {
         return this._httpClient.post<number | null>(`${configuration.api}/Orders/Participant/AddOrEdit`, request);
+    }
+
+    setPickupPoint(request: IOrderSetPickupPointReq): Observable<void> {
+        return this._httpClient.post<void>(`${configuration.api}/Orders/SetPickupPoint`, request);
     }
 }

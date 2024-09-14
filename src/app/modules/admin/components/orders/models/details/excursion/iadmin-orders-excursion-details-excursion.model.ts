@@ -1,3 +1,5 @@
+import { IAdminOrdersExcursionDetailsPickupPointModelBase } from "../..";
+
 export interface IAdminOrdersExcursionDetailsExcursionModel {
     id: number;
     title: string;
@@ -8,5 +10,6 @@ export interface IAdminOrdersExcursionDetailsExcursionModel {
     discountPriceGross: number;
     seats: number;
     availableSeats: number;
+    pickupPoints: IAdminOrdersExcursionDetailsPickupPointModelBase[];
     sum: number;
 }

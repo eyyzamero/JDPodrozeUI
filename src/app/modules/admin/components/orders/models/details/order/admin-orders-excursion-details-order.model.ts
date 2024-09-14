@@ -1,5 +1,5 @@
 import { PaymentMethod, PaymentStatus } from "src/app/core/enums";
-import { IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel } from "../..";
+import { IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel, IAdminOrdersExcursionDetailsPickupPointModelBase } from "../..";
 
 export class AdminOrdersExcursionDetailsOrderModel implements IAdminOrdersExcursionDetailsOrderModel {
     
@@ -10,6 +10,7 @@ export class AdminOrdersExcursionDetailsOrderModel implements IAdminOrdersExcurs
         public bookerId: number = 0,
         public price: number = 0,
         public participants: IAdminOrdersExcursionDetailsParticipantModel[] = [],
+        public pickupPoint?: IAdminOrdersExcursionDetailsPickupPointModelBase,
         public isCollapsed: boolean = true
     ) { }
 } 

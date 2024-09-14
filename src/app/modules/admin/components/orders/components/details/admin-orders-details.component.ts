@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IAdminOrdersExcursionDetailsModel, IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel } from '../../models';
+import { IAdminOrdersExcursionDetailsExcursionModel, IAdminOrdersExcursionDetailsModel, IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel } from '../../models';
 import { LoadingState, PaymentStatus } from 'src/app/core/enums';
 import { AdminOrdersHttpService } from '../../services/http/admin-orders-http.service';
 import { Subscription, filter, map, take } from 'rxjs';
@@ -13,6 +13,7 @@ import { AdminOrdersDetailsEnrollModalComponent } from './components/modals/enro
 import { AdminOrdersDetailsDataService } from '../../services/data/details/admin-orders-details-data.service';
 import { AdminOrdersDetailsParticipantModalComponent } from './components/modals/participant/admin-orders-details-participant-modal.component';
 import { AdminOrdersDetailsBookerModalComponent } from './components/modals/booker/admin-orders-details-booker-modal.component';
+import { AdminOrdersDetailsPickupPointModalComponent } from './components/modals/pickup-point/admin-orders-details-pickup-point-modal.component';
 
 @Component({
     selector: 'app-admin-orders-details',
@@ -28,6 +29,7 @@ import { AdminOrdersDetailsBookerModalComponent } from './components/modals/book
 export class AdminOrdersDetailsComponent implements OnInit {
 
     details: IAdminOrdersExcursionDetailsModel | undefined = undefined;
+    excursion: IAdminOrdersExcursionDetailsExcursionModel | undefined = undefined;
     state: LoadingState = LoadingState.LOADING;
     statusLoadingState: LoadingState = LoadingState.LOADED;
     actionButtonsDisabled: boolean = true;
@@ -121,5 +123,16 @@ export class AdminOrdersDetailsComponent implements OnInit {
     deleteParticipant(participant: IAdminOrdersExcursionDetailsParticipantModel): void {
         this.actionButtonsDisabled = true;
         this._adminOrdersHttpService.deleteParticipant(participant.id);
+    }
+
+    setPickupPoint(order: IAdminOrdersExcursionDetailsOrderModel): void {
+        const setPickupPointModal = this._ngbModal.open(AdminOrdersDetailsPickupPointModalComponent, {
+            windowClass: 'fullscreen-modal transparent',
+            backdropClass: 'fullscreen-modal-backdrop',
+            keyboard: false
+        });
+        setPickupPointModal.componentInstance.orderId = order.id;
+        setPickupPointModal.componentInstance.pickupPointId = order.pickupPoint?.id;
+        setPickupPointModal.componentInstance.pickupPoints = this.details?.excursion?.pickupPoints;
     }
 }

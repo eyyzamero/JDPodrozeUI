@@ -19,7 +19,6 @@
     <span>
         <b>Miejsca wolne:</b> {{ excursion.availableSeats }}
     </span>
-    
     <span class="active">
         <b>Aktywna:</b>
         <img [src]="excursion.active ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.active ? 'check': 'close'" alt="active">

@@ -3,7 +3,7 @@ import { Observable, map, take } from 'rxjs';
 import { OrdersHttpService } from 'src/app/core/services/clients/orders/orders-http.service';
 import { AdminOrdersMapperService } from '../mapper/admin-orders-mapper.service';
 import { AdminOrdersDataService } from '../data/admin-orders-data.service';
-import { IOrderGetListReq, IOrderParticipantAddOrEditReq, IOrdersChangePaymentStatusReq } from 'src/app/core/contracts';
+import { IOrderGetListReq, IOrderParticipantAddOrEditReq, IOrdersChangePaymentStatusReq, IOrderSetPickupPointReq } from 'src/app/core/contracts';
 import { LoadingState } from 'src/app/core/enums';
 import { IAdminOrdersExcursionDetailsModel } from '../../models';
 import { AdminOrdersDetailsDataService } from '../data/details/admin-orders-details-data.service';
@@ -81,6 +81,12 @@ export class AdminOrdersHttpService {
                     ? this._adminOrdersDetailsDataService.addParticipant(participant, req.orderId)
                     : this._adminOrdersDetailsDataService.editParticipant(participant, req.orderId);
             }
-        })
+        });
+    }
+
+    setPickupPointObservable(request: IOrderSetPickupPointReq): Observable<void> {
+        return this._ordersHttpService.setPickupPoint(request).pipe(
+            take(1)
+        );
     }
 }

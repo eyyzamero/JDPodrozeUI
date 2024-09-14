@@ -1,0 +1,21 @@
+<section class="admin-orders-details-modal-container">
+    <div class="admin-orders-details-modal-content">
+        <h3>Ustawianie miejsca odbioru</h3>
+        <div *ngFor="let pickupPoint of pickupPoints" class="form-check">
+            <input type="radio" class="form-check-input" id="pp-{{ pickupPoint.id }}" name="pickup-point" 
+                [value]="pickupPoint.id" (change)="onPickupPointChange(pickupPoint)" [checked]="selectedPickupPoint?.id === pickupPoint.id">
+            <label class="form-check-label" for="pp-{{ pickupPoint.id }}">{{ pickupPoint.name }}</label>
+        </div>
+        <div class="admin-orders-details-modal-actions">
+            <button ngbAutofocus type="button" class="btn admin-orders-details-modal-cancel-btn" (click)="onCancel()">
+                <span>Anuluj</span>
+            </button>
+            <button type="button" class="btn admin-orders-details-modal-submit-btn" (click)="onSubmit()">
+                <app-loading-spinner *ngIf="loadingState() === LoadingState.LOADING; else btnText" [sizePX]="21" [color]="Color.BLACK" [center]="false"></app-loading-spinner>
+                <ng-template #btnText>
+                    <span>Zapisz</span>
+                </ng-template>
+            </button>
+        </div>
+    </div>
+</section>

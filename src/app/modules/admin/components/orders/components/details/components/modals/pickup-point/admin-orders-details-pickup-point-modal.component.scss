@@ -1,0 +1,19 @@
+@use '../base/admin-orders-details-modal.base.scss';
+
+.admin-orders-details-modal-container {
+    .admin-orders-details-modal-content {
+        max-width: 450px;
+        justify-content: space-between;
+
+        .form-check-input {
+            &:focus {
+                box-shadow: 0 0 0 0.25rem var(--app-orange-color-opacity-25-color);
+            }
+
+            &:checked {
+                background-color: var(--app-light-orange-color);
+                border-color: var(--app-light-orange-color);
+            }
+        }
+    }
+}

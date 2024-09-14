@@ -8,4 +8,5 @@ export interface IOrdersGetExcursionOrdersWithDetailsOrderRes {
     bookerId: number;
     price: number;
     participants: IOrdersGetExcursionOrdersWithDetailsOrderParticipantRes[];
+    pickupPointId?: string;
 }

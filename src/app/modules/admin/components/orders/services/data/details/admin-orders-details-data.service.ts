@@ -71,6 +71,16 @@ export class AdminOrdersDetailsDataService extends BaseDataService<IAdminOrdersE
         }
     }
 
+    setPickupPoint(orderId: string, pickupPointId: string): void {
+        const orderIndex = this.currentValue.data?.orders.findIndex(x => x.id === orderId);
+
+        if (this.currentValue.data && orderIndex !== undefined && orderIndex !== -1) {
+            const pickupPoint = this.currentValue.data.excursion.pickupPoints.find(x => x.id === pickupPointId);
+            this.currentValue.data!.orders[orderIndex].pickupPoint = pickupPoint;
+            this.add(this.currentValue.data);
+        }
+    }
+
     private _removeParticipant(orderIndex: number, participantIndex: number): void {
         this.currentValue.data!.orders[orderIndex].participants.splice(participantIndex, 1);
     }

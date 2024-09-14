@@ -11,7 +11,8 @@
             tr {
                 .payment-method,
                 .payment-status,
-                .price {
+                .price,
+                .pickup-point {
                     text-align: center;
                 }
             }
@@ -80,7 +81,8 @@
                     margin-bottom: 12px;
 
                     .change-status-btn,
-                    .add-participant-btn {
+                    .add-participant-btn,
+                    .set-pickup-point-btn {
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -100,7 +102,8 @@
                         }
                     }
 
-                    .add-participant-btn {
+                    .add-participant-btn,
+                    .set-pickup-point-btn {
                         background-color: var(--app-light-gray-color2);
                     }
                 }

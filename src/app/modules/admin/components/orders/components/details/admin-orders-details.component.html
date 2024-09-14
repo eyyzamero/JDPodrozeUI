@@ -11,7 +11,7 @@
             </div>
             <app-admin-orders-details-table [orders]="details?.orders" [statusLoadingState]="statusLoadingState"
                 [actionButtonsDisabled]="actionButtonsDisabled" (changeStatus)="changeStatus($event)" (delete)="deleteParticipant($event)"
-                (edit)="edit($event)" (addParticipant)="addParticipant($event)">
+                (edit)="edit($event)" (addParticipant)="addParticipant($event)" (setPickupPoint)="setPickupPoint($event)">
             </app-admin-orders-details-table>
         </ng-template>
     </ng-container>

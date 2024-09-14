@@ -1,3 +1,5 @@
+import { IOrdersGetExcursionOrdersWithDetailsExcursionPickupPointRes } from "../../../..";
+
 export interface IOrdersGetExcursionOrdersWithDetailsExcursionRes {
     id: number;
     title: string;
@@ -8,4 +10,5 @@ export interface IOrdersGetExcursionOrdersWithDetailsExcursionRes {
     discountPriceGross: number;
     seats: number;
     availableSeats: number;
+    pickupPoints: IOrdersGetExcursionOrdersWithDetailsExcursionPickupPointRes[];
 }

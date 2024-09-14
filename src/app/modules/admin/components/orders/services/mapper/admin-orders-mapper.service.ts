@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { IOrdersGetListRes, IOrdersGetListItemRes, IOrdersGetExcursionOrdersWithDetailsRes, IOrdersGetExcursionOrdersWithDetailsExcursionRes, IOrdersGetExcursionOrdersWithDetailsOrderRes, IOrdersGetExcursionOrdersWithDetailsOrderParticipantRes, IOrdersGetExcursionOrdersWithDetailsOrderParticipantUserRes, IOrderParticipantAddOrEditReq } from 'src/app/core/contracts';
+import { IOrdersGetListRes, IOrdersGetListItemRes, IOrdersGetExcursionOrdersWithDetailsRes, IOrdersGetExcursionOrdersWithDetailsExcursionRes, IOrdersGetExcursionOrdersWithDetailsOrderRes, IOrdersGetExcursionOrdersWithDetailsOrderParticipantRes, IOrdersGetExcursionOrdersWithDetailsOrderParticipantUserRes, IOrderParticipantAddOrEditReq, IOrdersGetExcursionOrdersWithDetailsExcursionPickupPointRes } from 'src/app/core/contracts';
 import { ExcursionModel, IExcursionModel } from 'src/app/modules/excursions/models';
-import { AdminOrdersExcursionDetailsExcursionModel, AdminOrdersExcursionDetailsModel, AdminOrdersExcursionDetailsOrderModel, AdminOrdersExcursionDetailsParticipantModel, AdminOrdersExcursionDetailsParticipantUserModel, IAdminOrdersExcursionDetailsExcursionModel, IAdminOrdersExcursionDetailsModel, IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel, IAdminOrdersExcursionDetailsParticipantUserModel } from '../../models';
+import { AdminOrdersExcursionDetailsExcursionModel, AdminOrdersExcursionDetailsExcursionPickupPointModel, AdminOrdersExcursionDetailsModel, AdminOrdersExcursionDetailsOrderModel, AdminOrdersExcursionDetailsParticipantModel, AdminOrdersExcursionDetailsParticipantUserModel, IAdminOrdersExcursionDetailsExcursionModel, IAdminOrdersExcursionDetailsExcursionPickupPointModel, IAdminOrdersExcursionDetailsModel, IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel, IAdminOrdersExcursionDetailsParticipantUserModel } from '../../models';
 import { DatesService } from 'src/app/core/services';
 
 @Injectable({
@@ -31,6 +31,11 @@ export class AdminOrdersMapperService {
         return dest;
     }
 
+    IOrdersGetExcursionOrdersWithDetailsExcursionPickupPointResToIAdminOrdersExcursionDetailsExcursionPickupPointModel(src: IOrdersGetExcursionOrdersWithDetailsExcursionPickupPointRes): IAdminOrdersExcursionDetailsExcursionPickupPointModel {
+        const dest = new AdminOrdersExcursionDetailsExcursionPickupPointModel(src.id, src.name);
+        return dest;
+    }
+
     iOrdersGetExcursionOrdersWithDetailsExcursionResToIAdminOrdersExcursionDetailsExcursionModel(src: IOrdersGetExcursionOrdersWithDetailsExcursionRes): IAdminOrdersExcursionDetailsExcursionModel {
         const dest = new AdminOrdersExcursionDetailsExcursionModel(
             src.id,
@@ -41,7 +46,8 @@ export class AdminOrdersMapperService {
             src.priceGross,
             src.discountPriceGross,
             src.seats,
-            src.availableSeats
+            src.availableSeats,
+            src.pickupPoints.map(this.IOrdersGetExcursionOrdersWithDetailsExcursionPickupPointResToIAdminOrdersExcursionDetailsExcursionPickupPointModel, this)
         );
         return dest;
     }
@@ -69,24 +75,24 @@ export class AdminOrdersMapperService {
         return dest;
     }
 
-    iOrdersGetExcursionOrdersWithDetailsOrderResToIAdminOrdersExcursionDetailsOrderModel(src: IOrdersGetExcursionOrdersWithDetailsOrderRes): IAdminOrdersExcursionDetailsOrderModel {
+    iOrdersGetExcursionOrdersWithDetailsOrderResToIAdminOrdersExcursionDetailsOrderModel(src: IOrdersGetExcursionOrdersWithDetailsOrderRes, pickupPoints: IAdminOrdersExcursionDetailsExcursionPickupPointModel[]): IAdminOrdersExcursionDetailsOrderModel {
         const dest = new AdminOrdersExcursionDetailsOrderModel(
             src.id,
             src.paymentMethod,
             src.paymentStatus,
             src.bookerId,
             src.price,
-            src.participants.map(this.iOrdersGetExcursionOrdersWithDetailsOrderParticipantResToIAdminOrdersExcursionDetailsParticipantModel, this)
+            src.participants.map(this.iOrdersGetExcursionOrdersWithDetailsOrderParticipantResToIAdminOrdersExcursionDetailsParticipantModel, this),
+            src.pickupPointId ? pickupPoints.find(x => x.id === src.pickupPointId) : undefined
         );
         return dest;
     }
 
     iOrdersGetExcursionOrdersWithDetailsResToIAdminOrdersExcursionDetailsModel(src: IOrdersGetExcursionOrdersWithDetailsRes): IAdminOrdersExcursionDetailsModel {
-        const dest = new AdminOrdersExcursionDetailsModel(
-            this.iOrdersGetExcursionOrdersWithDetailsExcursionResToIAdminOrdersExcursionDetailsExcursionModel(src.excursion),
-            src.orders.map(this.iOrdersGetExcursionOrdersWithDetailsOrderResToIAdminOrdersExcursionDetailsOrderModel, this)
-        );
-
+        const dest = new AdminOrdersExcursionDetailsModel();
+        dest.excursion = this.iOrdersGetExcursionOrdersWithDetailsExcursionResToIAdminOrdersExcursionDetailsExcursionModel(src.excursion),
+        dest.orders = src.orders.map(order => this.iOrdersGetExcursionOrdersWithDetailsOrderResToIAdminOrdersExcursionDetailsOrderModel(order, dest.excursion.pickupPoints), this)
+        
         let sum = 0;
         dest.orders.forEach(order => {
             sum += order.participants.reduce((accumulator, item) => accumulator += item.discount ? dest.excursion.discountPriceGross : dest.excursion.priceGross, 0);
@@ -108,5 +114,5 @@ export class AdminOrdersMapperService {
             this._datesService.ngbDateStringToDate(src.birthDate)
         );
         return dest;
-    } 
+    }
 }

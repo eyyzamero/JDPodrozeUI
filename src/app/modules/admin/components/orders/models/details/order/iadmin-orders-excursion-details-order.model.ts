@@ -1,5 +1,5 @@
 import { PaymentMethod, PaymentStatus } from "src/app/core/enums";
-import { IAdminOrdersExcursionDetailsParticipantModel } from "../..";
+import { IAdminOrdersExcursionDetailsParticipantModel, IAdminOrdersExcursionDetailsPickupPointModelBase } from "../..";
 
 export interface IAdminOrdersExcursionDetailsOrderModel {
     id: string;
@@ -8,5 +8,6 @@ export interface IAdminOrdersExcursionDetailsOrderModel {
     bookerId: number;
     price: number;
     participants: IAdminOrdersExcursionDetailsParticipantModel[];
+    pickupPoint?: IAdminOrdersExcursionDetailsPickupPointModelBase;
     isCollapsed: boolean;
 }

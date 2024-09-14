@@ -31,6 +31,8 @@ export * from './requests/orders/get-list/iorder-get-list.req';
 export * from './requests/orders/get-list/order-get-list.req';
 export * from './requests/orders/participant-add-or-edit/iorder-participant-add-or-edit.req';
 export * from './requests/orders/participant-add-or-edit/order-participant-add-or-edit.req';
+export * from './requests/orders/set-pickup-point/iorder-set-pickup-point.req';
+export * from './requests/orders/set-pickup-point/order-set-pickup-point.req';
 
 // Responses
 export * from './responses/account/register/iaccount-register.res';
@@ -44,6 +46,7 @@ export * from './responses/excursions/get-item/pickup-point/iexcursions-get-item
 export * from './responses/excursions/get-item/iexcursions-get-item.res';
 export * from './responses/orders/get-list/item/iorders-get-list-item.res';
 export * from './responses/orders/get-list/iorder-get-list.res';
+export * from './responses/orders/get-excursion-orders-with-details/excursion/pickup-point/iorders-get-excursion-orders-with-details-excursion-pickup-point.res';
 export * from './responses/orders/get-excursion-orders-with-details/excursion/iorders-get-excursion-orders-with-details-excursion.res';
 export * from './responses/orders/get-excursion-orders-with-details/order/participant/user/iorders-get-excursion-orders-with-details-order-participant-user.res';
 export * from './responses/orders/get-excursion-orders-with-details/order/participant/iorders-get-excursion-orders-with-details-order-participant.res'

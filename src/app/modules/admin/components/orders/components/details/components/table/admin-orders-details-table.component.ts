@@ -17,6 +17,7 @@ export class AdminOrdersDetailsTableComponent {
     @Output() edit: EventEmitter<{ participant: IAdminOrdersExcursionDetailsParticipantModel, order: IAdminOrdersExcursionDetailsOrderModel }> = new EventEmitter<{ participant: IAdminOrdersExcursionDetailsParticipantModel, order: IAdminOrdersExcursionDetailsOrderModel }>();
     @Output() delete: EventEmitter<IAdminOrdersExcursionDetailsParticipantModel> = new EventEmitter<IAdminOrdersExcursionDetailsParticipantModel>();
     @Output() addParticipant: EventEmitter<IAdminOrdersExcursionDetailsOrderModel> = new EventEmitter<IAdminOrdersExcursionDetailsOrderModel>();
+    @Output() setPickupPoint: EventEmitter<IAdminOrdersExcursionDetailsOrderModel> = new EventEmitter<IAdminOrdersExcursionDetailsOrderModel>();
     
     readonly PaymentMethod = PaymentMethod;
     readonly PaymentStatus = PaymentStatus;

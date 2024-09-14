@@ -1,4 +1,4 @@
-import { IAdminOrdersExcursionDetailsExcursionModel } from "../..";
+import { IAdminOrdersExcursionDetailsExcursionModel, IAdminOrdersExcursionDetailsPickupPointModelBase } from "../..";
 
 export class AdminOrdersExcursionDetailsExcursionModel implements IAdminOrdersExcursionDetailsExcursionModel {
 
@@ -12,6 +12,7 @@ export class AdminOrdersExcursionDetailsExcursionModel implements IAdminOrdersEx
         public discountPriceGross: number = 0,
         public seats: number = 0,
         public availableSeats: number = 0,
-        public sum: number = 0
+        public pickupPoints: IAdminOrdersExcursionDetailsPickupPointModelBase[] = [],
+        public sum: number = 0,
     ) { }
 }
