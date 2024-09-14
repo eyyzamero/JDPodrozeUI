@@ -1,0 +1,7 @@
+<section class="admin-users-list-container">
+    <h3 class="admin-users-list-section-title">Użytkownicy</h3>
+    <app-loading-spinner *ngIf="state() === LoadingState.LOADING; else content" [center]="false"></app-loading-spinner>
+    <ng-template #content>
+        <app-admin-users-list-table [users]="list()?.users"></app-admin-users-list-table>
+    </ng-template>
+</section>

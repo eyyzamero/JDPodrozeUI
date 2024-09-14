@@ -18,7 +18,11 @@ const routes: Routes = [
 			{
 				path: 'orders',
 				loadChildren: () => import('./components/orders/admin-orders.module').then(m => m.AdminOrdersModule)
-			}
+			},
+            {
+                path: 'users',
+                loadChildren: () => import('./components/users/admin-users.module').then(m => m.AdminUsersModule)
+            }
 		]
 	}
 ];

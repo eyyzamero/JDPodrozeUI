@@ -52,3 +52,5 @@ export * from './responses/orders/get-excursion-orders-with-details/order/partic
 export * from './responses/orders/get-excursion-orders-with-details/order/participant/iorders-get-excursion-orders-with-details-order-participant.res'
 export * from './responses/orders/get-excursion-orders-with-details/order/iorders-get-excursion-orders-with-details-order.res';
 export * from './responses/orders/get-excursion-orders-with-details/iorders-get-excursion-orders-with-details.res';
+export * from './responses/users/get-list/user/iusers-get-list-user.res';
+export * from './responses/users/get-list/iusers-get-list.res';

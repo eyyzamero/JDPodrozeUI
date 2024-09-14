@@ -1,0 +1,48 @@
+<section class="admin-users-list-table-container">
+    <table class="table table-striped table-hover table-responsive admin-users-list-table">
+        <thead class="table-responsive admin-users-list-table-thead">
+            <tr>
+                <th scope="col" class="admin-users-list-table-thead-login">
+                    <span>Login</span>
+                </th>
+                <th scope="col" class="admin-users-list-table-thead-first-name">
+                    <span>Imie</span>
+                </th>
+                <th scope="col" class="admin-users-list-table-thead-last-name">
+                    <span>Nazwisko</span>
+                </th>
+                <th scope="col" class="admin-users-list-table-thead-email">
+                    <span>E-Mail</span>
+                </th>
+                <th scope="col" class="admin-users-list-table-thead-admin">
+                    <span>Administrator</span>
+                </th>
+                <th scope="col" class="admin-users-list-table-thead-actions">
+                    <span>Akcje</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="table-responsive admin-users-list-table-tbody">
+            <tr *ngFor="let user of users">
+                <td class="admin-users-list-table-tbody-login">
+                    <span>{{ user.login }}</span>
+                </td>
+                <td class="admin-users-list-table-tbody-first-name">
+                    <span>{{ user.firstName }}</span>
+                </td>
+                <td class="admin-users-list-table-tbody-last-name">
+                    <span>{{ user.lastName }}</span>
+                </td>
+                <td class="admin-users-list-table-tbody-email">
+                    <span>{{ user.email }}</span>
+                </td>
+                <td class="admin-users-list-table-tbody-admin">
+                    <img [src]="user.isAdmin ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="user.isAdmin ? 'check': 'close'" alt="active">
+                </td>
+                <td class="admin-users-list-table-tbody-actions">
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

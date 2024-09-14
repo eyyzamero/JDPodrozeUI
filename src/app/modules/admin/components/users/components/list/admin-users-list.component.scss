@@ -1,0 +1,15 @@
+.admin-users-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .admin-users-list-section-title {
+        font-weight: bold;
+        margin: 0;
+    }
+
+    app-loading-spinner {
+		display: block;
+		margin: 32px auto;
+	}
+}
