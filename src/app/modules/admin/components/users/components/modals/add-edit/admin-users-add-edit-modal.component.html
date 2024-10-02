@@ -1,0 +1,9 @@
+<section class="admin-users-add-edit-modal-container">
+    <div class="admin-users-add-edit-modal-content">
+        <h3>{{ formMode === FormMode.NEW ? 'Nowy użytkownik' : 'Edycja użytkownika' }}</h3>
+        <app-account-register-form (submit)="onSubmit($event)" submitBtnText="Wyślij" [showNavigateToHomePageBtn]="false"></app-account-register-form>
+        <button type="button" class="cancel-btn" (click)="close()">
+			<span>Anuluj</span>
+		</button>
+    </div>
+</section>

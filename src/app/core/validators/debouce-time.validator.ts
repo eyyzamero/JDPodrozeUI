@@ -5,8 +5,8 @@ export function debounceTimeValidator(validator: AsyncValidatorFn, debounceTimeM
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
         return control.valueChanges.pipe(
             debounceTime(debounceTimeMs),
-            switchMap(() => validator(control)),
-            first()
+            first(),
+            switchMap(() => validator(control))
         );
     };
 };

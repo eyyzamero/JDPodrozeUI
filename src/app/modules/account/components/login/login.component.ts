@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { LoadingState } from 'src/app/core/enums';
 import { Subscription, take } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { getControl } from 'src/app/core/helpers';
 
 @Component({
 	templateUrl: './login.component.html',

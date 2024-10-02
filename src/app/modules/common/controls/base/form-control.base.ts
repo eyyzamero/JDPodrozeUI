@@ -1,10 +1,10 @@
-import { AfterContentInit, ChangeDetectorRef, ContentChildren, Directive, Input, OnDestroy, QueryList } from "@angular/core";
+import { AfterContentInit, ChangeDetectorRef, ContentChildren, Directive, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { FormControlErrorDirective } from "../directives";
-import { Subscription } from "rxjs";
+import { debounceTime, Subscription } from "rxjs";
 
 @Directive()
-export class FormControlBase<TType> implements AfterContentInit, OnDestroy {
+export class FormControlBase<TType> implements AfterContentInit, OnInit, OnDestroy {
 
     @ContentChildren(FormControlErrorDirective) private _errorRefs?: QueryList<FormControlErrorDirective>;
 
@@ -13,6 +13,9 @@ export class FormControlBase<TType> implements AfterContentInit, OnDestroy {
     @Input() placeholder: string = '';
     @Input() id?: string;
     @Input() autocomplete?: string; 
+    @Input() debounceTime: number = 0;
+
+    @Output() valueChanged: EventEmitter<TType | null> = new EventEmitter<TType | null>();
 
     get isInvalid(): boolean {
         const result = this.control.errors && this.control.touched;
@@ -21,6 +24,7 @@ export class FormControlBase<TType> implements AfterContentInit, OnDestroy {
 
     errorMessages: string[] = [];
 
+    private _valueChangesSubscription?: Subscription;
     private _errorRefsChangesSubscription?: Subscription;
 
     constructor(
@@ -35,6 +39,14 @@ export class FormControlBase<TType> implements AfterContentInit, OnDestroy {
             }
         });
         this._refreshErrorMessages();
+    }
+
+    ngOnInit(): void {
+        this._valueChangesSubscription = this.control.valueChanges.pipe(
+            debounceTime(this.debounceTime)
+        ).subscribe({
+            next: (value) => this.valueChanged.emit(value)
+        });
     }
 
     private _refreshErrorMessages(): void {
@@ -52,5 +64,6 @@ export class FormControlBase<TType> implements AfterContentInit, OnDestroy {
 
     ngOnDestroy(): void {
         this._errorRefsChangesSubscription?.unsubscribe();
+        this._valueChangesSubscription?.unsubscribe();
     }
 }

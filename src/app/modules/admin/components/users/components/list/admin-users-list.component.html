@@ -2,6 +2,14 @@
     <h3 class="admin-users-list-section-title">Użytkownicy</h3>
     <app-loading-spinner *ngIf="state() === LoadingState.LOADING; else content" [center]="false"></app-loading-spinner>
     <ng-template #content>
-        <app-admin-users-list-table [users]="list()?.users"></app-admin-users-list-table>
+        <div class="admin-users-list-action-buttons">
+            <button type="button" class="btn add-user-btn" (click)="add()">
+                <span>Dodaj użytkownika</span>
+            </button>
+        </div>
+        <div class="admin-users-list-filters-container">
+            <app-form-control-input id="searchText" type="text" [control]="searchText" [debounceTime]="500" label="Login / Imie / Nazwisko / E-Mail" (valueChanged)="onSearch($event)"></app-form-control-input>
+        </div>
+        <app-admin-users-list-table [users]="list()?.users" (edit)="edit($event)" (delete)="delete($event)"></app-admin-users-list-table>
     </ng-template>
 </section>

@@ -1,6 +1,7 @@
 export class AuthIsLoginAvailableReq {
 
     constructor(
-        public login: string = ''
+        public login: string = '',
+        public currentLogin?: string
     ) { }
 }

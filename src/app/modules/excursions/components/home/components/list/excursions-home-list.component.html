@@ -9,5 +9,6 @@
 				<app-excursions-home-list-item [item]="excursion"></app-excursions-home-list-item>
 			</article>
 		</div>
+        <h4 *ngIf="state === LoadingState.LOADED && !excursions?.length">Obecnie nie oferujemy żadnych wycieczek</h4>
     </ng-template>
 </section>

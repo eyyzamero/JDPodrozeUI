@@ -1,4 +1,5 @@
 export interface IUsersGetListUserRes {
+    id: number,
     login: string;
     firstName: string;
     lastName: string;

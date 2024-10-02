@@ -1,0 +1,79 @@
+@use 'src/styles/mixins' as mixins;
+
+$width: 400px;
+
+:host {
+    display: flex;
+    width: 100%;
+}
+
+.account-register-form-container {
+    width: 100%;
+
+    .error {
+		font-weight: bold;
+		color: var(--bs-danger);
+		width: calc(100% - 16px);
+		text-align: center;
+
+		@include mixins.breakpoint(sm) {
+			width: $width;
+		}
+	}
+
+    form {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+
+        .form-field,
+        button {
+            width: calc(100% - 16px);
+            
+            @include mixins.breakpoint(sm) {
+				width: $width;
+			}
+        }
+
+		button {
+            padding: 12px;
+			font-size: 14px;
+			border-radius: 4px;
+			font-weight: bolder;
+			outline: none;
+			border: none;
+			background-color: var(--app-light-orange-color);
+			text-transform: uppercase;
+			color: black;
+
+            &:focus {
+                box-shadow: 0 0 0 0.25rem var(--app-orange-color-opacity-25-color);
+            }
+
+            &:hover {
+                opacity: 0.9;
+            }
+
+			&.home-btn {
+				background-color: var(--app-light-blue-color2);
+			}
+
+			.spinner-border {
+				--bs-spinner-width: 16px;
+    			--bs-spinner-height: 16px;
+				--bs-spinner-border-width: 3px;
+			}
+
+			&.disabled {
+				cursor: not-allowed;
+			}
+
+            &:disabled {
+                opacity: 0.5;
+            }
+		}
+	}
+}

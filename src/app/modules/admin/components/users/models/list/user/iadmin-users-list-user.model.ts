@@ -1,4 +1,5 @@
 export interface IAdminUsersListUserModel {
+    id: number;
     login: string;
     firstName: string;
     lastName: string;

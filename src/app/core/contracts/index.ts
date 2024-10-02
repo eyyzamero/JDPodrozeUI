@@ -33,6 +33,10 @@ export * from './requests/orders/participant-add-or-edit/iorder-participant-add-
 export * from './requests/orders/participant-add-or-edit/order-participant-add-or-edit.req';
 export * from './requests/orders/set-pickup-point/iorder-set-pickup-point.req';
 export * from './requests/orders/set-pickup-point/order-set-pickup-point.req';
+export * from './requests/account/iaccount-add-or-edit.req';
+export * from './requests/account/account-add-or-edit.req';
+export * from './requests/account/get-list/iaccount-get-list.req';
+export * from './requests/account/get-list/account-get-list.req';
 
 // Responses
 export * from './responses/account/register/iaccount-register.res';

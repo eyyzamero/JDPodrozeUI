@@ -1,0 +1,46 @@
+.admin-users-add-edit-modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 16px;
+
+    .admin-users-add-edit-modal-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 432px;
+        max-height: 100%;
+        padding: 16px;
+        background-color: white;
+        overflow: auto;
+
+        h3 {
+            font-weight: bold;
+		    margin: 0 0 32px 0;
+            text-align: center;
+        }
+
+        button {
+            padding: 12px;
+			font-size: 14px;
+			border-radius: 4px;
+			font-weight: bolder;
+			outline: none;
+			border: none;
+			background-color: var(--app-light-gray-color2);
+			text-transform: uppercase;
+			color: black;
+            margin-top: 8px;
+
+            &:focus {
+                box-shadow: 0 0 0 4px var(--app-orange-color-opacity-25-color);
+            }
+
+            &:hover {
+                opacity: 0.9;
+            }
+		}
+    }
+}

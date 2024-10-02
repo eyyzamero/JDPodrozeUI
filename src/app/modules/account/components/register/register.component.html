@@ -3,19 +3,5 @@
         <img class="logo" src="assets/images/logos/logo_colored_width_200.png" alt="logo" (click)="navigateToHomePage()">
     </a>
 	<header>Zarejestruj się</header>
-	<form [formGroup]="form" (ngSubmit)="register()">
-        <span class="error" *ngIf="error()">Wystąpił błąd</span>
-        <app-register-login-field class="form-field" [control]="getFormControl('login')"></app-register-login-field>
-        <app-register-password-field class="form-field" [control]="getFormControl('password')"></app-register-password-field>
-        <app-register-confirm-password-field class="form-field" [control]="getFormControl('confirmPassword')"></app-register-confirm-password-field>
-        <app-register-first-name-field class="form-field" [control]="getFormControl('firstName')"></app-register-first-name-field>
-        <app-register-last-name-field class="form-field" [control]="getFormControl('lastName')"></app-register-last-name-field>
-        <app-register-email-field class="form-field" [control]="getFormControl('email')"></app-register-email-field>
-		<button type="submit">
-			<span>Zarejestruj</span>
-		</button>
-		<button type="button" class="home-btn" (click)="navigateToHomePage()">
-			<span>Powrót do strony głównej</span>
-		</button>
-	</form>
+    <app-account-register-form [error]="error()" [loadingState]="loadingState()" (submit)="register($event)" (navigateToHomePage)="navigateToHomePage()"></app-account-register-form>
 </div>

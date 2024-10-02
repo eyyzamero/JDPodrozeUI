@@ -11,7 +11,8 @@
                     padding: 12px 16px;
                     white-space: nowrap;
 
-                    &.admin-users-list-table-thead-admin {
+                    &.admin-users-list-table-thead-admin,
+                    &.admin-users-list-table-thead-actions {
                         text-align: center;
                     }
                 }
@@ -28,14 +29,19 @@
                         text-align: center;
                     }
 
+                    .admin-users-list-table-tbody-actions {
+                        display: flex;
+                        justify-content: center;
+                        gap: 12px;
+                    }
+
                     img {
                         display: inline-flex;
                         width: 20px;
                         height: 20px;
 
                         &.edit,
-                        &.delete,
-                        &.template {
+                        &.delete {
                             cursor: pointer;
                         }
 
@@ -46,10 +52,6 @@
                         &.close,
                         &.delete {
                             filter: var(--app-red-color-filter);
-                        }
-
-                        &.template {
-                            filter: var(--app-primary-color-filter);
                         }
                     }
                 }

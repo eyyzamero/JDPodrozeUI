@@ -39,8 +39,11 @@
                 <td class="admin-users-list-table-tbody-admin">
                     <img [src]="user.isAdmin ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="user.isAdmin ? 'check': 'close'" alt="active">
                 </td>
-                <td class="admin-users-list-table-tbody-actions">
-                    
+                <td>
+                    <div class="admin-users-list-table-tbody-actions">
+                        <img src="assets/icons/edit.svg" class="edit" (click)="edit.emit(user)" alt="edit">
+                        <img src="assets/icons/delete.svg" class="delete" (click)="delete.emit(user.id)" alt="delete">
+                    </div>
                 </td>
             </tr>
         </tbody>

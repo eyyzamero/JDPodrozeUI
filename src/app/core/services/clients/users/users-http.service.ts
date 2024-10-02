@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { IUsersGetListRes } from 'src/app/core/contracts';
+import { IAccountGetListReq, IUsersGetListRes } from 'src/app/core/contracts';
 import { configuration } from 'src/configurations/configuration';
 
 @Injectable({
@@ -13,8 +13,8 @@ export class UsersHttpService {
         private readonly _httpClient: HttpClient
     ) { }
 
-    getList(): Observable<IUsersGetListRes> {
-        return this._httpClient.get<IUsersGetListRes>(`${configuration.api}/Users`).pipe(
+    getList(req: IAccountGetListReq): Observable<IUsersGetListRes> {
+        return this._httpClient.post<IUsersGetListRes>(`${configuration.api}/Users`, req).pipe(
             take(1)
         );
     }

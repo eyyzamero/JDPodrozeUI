@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-    selector: 'app-register-password-field',
-    templateUrl: './register-password-field.component.html',
-    styleUrls: ['./register-password-field.component.scss'],
+    selector: 'app-account-register-password-field',
+    templateUrl: './account-register-password-field.component.html',
+    styleUrls: ['./account-register-password-field.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegisterPasswordFieldComponent {
+export class AccountRegisterPasswordFieldComponent {
 
     @Input({ required: true }) control!: FormControl<string>;
 

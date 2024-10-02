@@ -8,17 +8,19 @@ import { Observable, tap } from 'rxjs';
 export class RequestInterceptor implements HttpInterceptor {
 
 	constructor(
-		private _authDataService: AuthDataService,
-		private _router: Router
-	) {}
+		private readonly _authDataService: AuthDataService,
+		private readonly _router: Router
+	) { }
 
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-		request = request.clone({
-			setHeaders: {
-				'Authorization': `Bearer ${this._authDataService.currentValue.data?.Token}`
-			}
-		});
-
+        if (this._authDataService.currentValue.data?.Token)
+        {
+            request = request.clone({
+                setHeaders: {
+                    'Authorization': `Bearer ${this._authDataService.currentValue.data.Token}`
+                }
+            });
+        }
 		return next.handle(request).pipe(
 			tap({
 				error: (error: HttpErrorResponse) => {
@@ -39,3 +41,4 @@ export class RequestInterceptor implements HttpInterceptor {
 		);
 	}
 }
+

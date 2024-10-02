@@ -12,4 +12,30 @@
 		display: block;
 		margin: 32px auto;
 	}
+
+    .admin-users-list-action-buttons {
+        margin-top: 16px;
+        
+        .add-user-btn {
+            background-color: var(--app-light-orange-color);
+            color: black;
+            font-weight: bold;
+    
+            &:focus,
+            &:active {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+    }
+
+    .admin-users-list-filters-container {
+        display: block;
+        margin: 16px 0;
+
+        #searchText {
+            display: block;
+            max-width: 250px;
+        }
+    }
 }

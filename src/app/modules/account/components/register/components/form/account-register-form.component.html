@@ -1,0 +1,20 @@
+<section class="account-register-form-container">
+    <form [formGroup]="form">
+        <span class="error" *ngIf="error">Wystąpił błąd</span>
+        <app-account-register-login-field class="form-field" [control]="getFormControl('login')"></app-account-register-login-field>
+        <app-account-register-password-field class="form-field" [control]="getFormControl('password')"></app-account-register-password-field>
+        <app-account-register-confirm-password-field class="form-field" [control]="getFormControl('confirmPassword')"></app-account-register-confirm-password-field>
+        <app-account-register-first-name-field class="form-field" [control]="getFormControl('firstName')"></app-account-register-first-name-field>
+        <app-account-register-last-name-field class="form-field" [control]="getFormControl('lastName')"></app-account-register-last-name-field>
+        <app-account-register-email-field class="form-field" [control]="getFormControl('email')"></app-account-register-email-field>
+		<button type="button" (click)="onSubmit()">
+            <div *ngIf="loadingState === LoadingState.LOADING; else btnText" class="spinner-border" role="status"></div>
+			<ng-template #btnText>
+                <span>{{ submitBtnText }}</span>
+			</ng-template>
+		</button>
+		<button *ngIf="showNavigateToHomePageBtn" type="button" class="home-btn" (click)="navigateToHomePage.emit()">
+			<span>Powrót do strony głównej</span>
+		</button>
+	</form>
+</section>

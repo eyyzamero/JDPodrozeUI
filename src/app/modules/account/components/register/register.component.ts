@@ -1,103 +1,60 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, WritableSignal, signal } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AccountBase } from '../base/account.base';
+import { ChangeDetectionStrategy, Component, WritableSignal, signal } from '@angular/core';
 import { AuthHttpService } from 'src/app/core/services/http/auth/auth-http.service';
 import { Router } from '@angular/router';
 import { AuthRegisterReq } from 'src/app/core/contracts';
 import { take } from 'rxjs';
 import { AuthJsonWebTokenLocalStorageDataService } from 'src/app/core/services/data/auth/jwt-local-storage/auth-json-web-token-local-storage-data.service';
-import { IsLoginAvailableValidator, passwordsEqualValidator } from './validators';
-import { debounceTimeValidator } from 'src/app/core/validators';
+import { FormGroup } from '@angular/forms';
+import { LoadingState } from 'src/app/core/enums';
 
 @Component({
 	templateUrl: './register.component.html',
 	styleUrls: ['./register.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegisterComponent extends AccountBase {
+export class RegisterComponent {
 
-	form: FormGroup = new FormGroup({
-		login: new FormControl(null, {
-            validators: [
-                Validators.required,
-                Validators.minLength(8),
-                Validators.maxLength(50),
-            ],
-            asyncValidators: [
-                debounceTimeValidator(IsLoginAvailableValidator.createValidator(this._authHttpService, this._changeDetectorRef), 500) 
-            ]
-        }),
-		password: new FormControl(null, {
-            validators: [
-                Validators.required,
-                Validators.minLength(8),
-                Validators.maxLength(255)
-            ]
-        }),
-		confirmPassword: new FormControl(null, {
-            validators: [
-                Validators.required,
-                Validators.minLength(8),
-                Validators.maxLength(255),
-                passwordsEqualValidator
-            ]
-        }),
-		firstName: new FormControl(null, {
-            validators: [
-                Validators.required,
-                Validators.maxLength(50)
-            ]
-        }),
-		lastName: new FormControl(null, {
-            validators: [
-                Validators.required,
-                Validators.maxLength(50)
-            ]
-        }),
-		email: new FormControl(null, {
-            validators: [
-                Validators.required,
-                Validators.email,
-                Validators.maxLength(255)
-            ]
-        })
-	});
     error: WritableSignal<boolean> = signal(false);
+    loadingState: WritableSignal<LoadingState> = signal(LoadingState.LOADED);
 
 	constructor(
-		readonly router: Router,
-		readonly authHttpService: AuthHttpService,
-		private readonly _authJsonWebTokenLocalStorageDataService: AuthJsonWebTokenLocalStorageDataService,
-        private readonly _changeDetectorRef: ChangeDetectorRef
-	) {
-		super(router, authHttpService);
+		private readonly _router: Router,
+		private readonly _authHttpService: AuthHttpService,
+		private readonly _authJsonWebTokenLocalStorageDataService: AuthJsonWebTokenLocalStorageDataService
+    ) { }
+
+    navigateToHomePage(): void {
+		this._router.navigate(['/']);
 	}
 
-	register(): void {
-        this.error.set(false);
-        this.form.markAllAsTouched();
-		if (this.form.valid) {
-			const request = new AuthRegisterReq(
-				this.form.controls['login'].value,
-				this.form.controls['password'].value,
-				this.form.controls['firstName'].value,
-				this.form.controls['lastName'].value,
-				this.form.controls['email'].value,
-				true
-			);
-            this.form.disable();
+	register(form: FormGroup): void {
+        form.markAllAsTouched();
+        if (form.valid) {
+            form.disable();
+            this.error.set(false);
+            this.loadingState.set(LoadingState.LOADING);
+            const request = new AuthRegisterReq(
+                form.controls['login'].value,
+                form.controls['password'].value,
+                form.controls['firstName'].value,
+                form.controls['lastName'].value,
+                form.controls['email'].value,
+                true
+            );
             this._authHttpService.register(request).pipe(
                 take(1)
             ).subscribe({
                 next: (value) => {
                     this._authJsonWebTokenLocalStorageDataService.add(value.token);
+                    this.loadingState.set(LoadingState.LOADED);
                     this._router.navigate(['/']);
                 },
                 error: () => {
                     this.error.set(true);
-                    this.form.enable();
+                    this.loadingState.set(LoadingState.ERROR);
+                    form.enable();
                 }
-            })
-		}
+            });
+        }
 	}
 }
