@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { RoleType } from 'src/app/core/enums';
 import { IAuthModel } from 'src/app/core/models';
 import { AuthJsonWebTokenLocalStorageDataService } from 'src/app/core/services/data/auth/jwt-local-storage/auth-json-web-token-local-storage-data.service';
 
@@ -13,6 +14,8 @@ export class HeaderMenuOptionsComponent {
 
 	@Input() auth?: IAuthModel | null = null;
 	@Output() closeMenu: EventEmitter<void> = new EventEmitter<void>();
+
+    readonly RoleType = RoleType;
 
 	constructor(
 		private _router: Router,

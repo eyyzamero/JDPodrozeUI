@@ -10,7 +10,8 @@ import { Subscription } from 'rxjs';
 export class NavigationService implements OnDestroy {
 
 	get items(): INavigationTabModel[] {
-		return this._role === RoleType.ADMINISTRATOR ? this._items : this._items.filter(x => x.role !== RoleType.ADMINISTRATOR);
+        const result = this._role === RoleType.ADMINISTRATOR ? this._items : this._items.filter(x => x.role !== RoleType.ADMINISTRATOR);
+		return result;
 	};
 
 	private _items: INavigationTabModel[] = [
