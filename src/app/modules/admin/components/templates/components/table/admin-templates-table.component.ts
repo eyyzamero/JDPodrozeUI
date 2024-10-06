@@ -6,7 +6,7 @@ import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { AdminExcursionsTableBase } from '../../../excursions/base';
 import { AdminExcursionsDataService, AdminExcursionsHttpService } from 'src/app/modules/admin/services';
 import { ToastsService } from 'src/app/core/services';
-import { ContextType } from 'src/app/core/enums';
+import { ContextType, FormMode } from 'src/app/core/enums';
 import { AdminExcursionsSortType } from '../../../excursions/enums';
 import { ExcursionsGetListReq } from 'src/app/core/contracts';
 import { take } from 'rxjs';
@@ -56,6 +56,13 @@ export class AdminTemplatesTableComponent extends AdminExcursionsTableBase {
             }
 		})
 	}
+
+    addBasedOnTemplate(id: number): void {
+        this._router.navigate([`./form/${FormMode.NEW.toLowerCase()}/${id}`], {
+            relativeTo: this._activatedRoute,
+            queryParamsHandling: 'merge'
+		});
+    }
 
     protected override _handleQueryParams(queryParams: Params): void {
         this.sortCurrent.set(queryParams['sort'] ? +queryParams['sort'] as AdminExcursionsSortType : AdminExcursionsSortType.DATE_FROM);

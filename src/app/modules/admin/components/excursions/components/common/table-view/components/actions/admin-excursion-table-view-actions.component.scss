@@ -22,7 +22,8 @@
         }
 
         &.template,
-        &.details {
+        &.details,
+        &.add {
             filter: var(--app-primary-color-filter);
         }
     }

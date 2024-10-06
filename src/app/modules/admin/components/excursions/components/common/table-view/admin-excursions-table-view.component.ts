@@ -25,6 +25,7 @@ export class AdminExcursionsTableViewComponent {
     @Input() sortCurrent: AdminExcursionsSortType = AdminExcursionsSortType.NONE;
     @Input() columns: (keyof IExcursionModel)[] = [];
 
+    @Output() add: EventEmitter<number> = new EventEmitter<number>();
     @Output() edit: EventEmitter<number> = new EventEmitter<number>();
     @Output() delete: EventEmitter<number> = new EventEmitter<number>();
     @Output() template: EventEmitter<number> = new EventEmitter<number>();

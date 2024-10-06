@@ -12,6 +12,7 @@ export class AdminExcursionTableViewActionsComponent {
     @Input() context: ContextType = ContextType.NONE;
     @Input() buttonsEnabled: boolean = false;
 
+    @Output() add: EventEmitter<void> = new EventEmitter<void>();
     @Output() edit: EventEmitter<void> = new EventEmitter<void>();
     @Output() delete: EventEmitter<void> = new EventEmitter<void>();
     @Output() template: EventEmitter<void> = new EventEmitter<void>();

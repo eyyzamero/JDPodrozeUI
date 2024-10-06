@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ExcursionsAddImageReq, ExcursionsAddPickupPointReq, ExcursionsAddReq, ExcursionsEditImageReq, ExcursionsEditReq, IExcursionsAddImageReq, IExcursionsAddPickupPointReq, IExcursionsAddReq, IExcursionsEditImageReq, IExcursionsEditReq, IExcursionsGetItemImageRes, IExcursionsGetItemPickupPointRes, IExcursionsGetItemRes, IExcursionsGetListItemImageRes, IExcursionsGetListItemRes, IExcursionsGetListRes } from 'src/app/core/contracts';
+import { FormMode } from 'src/app/core/enums';
 import { DatesService } from 'src/app/core/services';
 import { ExcursionImageModel, ExcursionModel, ExcursionPickupPointModel, IExcursionImageModel, IExcursionModel, IExcursionPickupPointModel } from 'src/app/modules/excursions/models';
 
@@ -59,8 +60,8 @@ export class AdminExcursionsMapperService {
 		return dest;
 	}
 
-	iExcursionsGetItemResToFormGroup(src: IExcursionsGetItemRes, dest: FormGroup): FormGroup {
-		dest.controls['id'].setValue(src.id);
+	iExcursionsGetItemResToFormGroup(src: IExcursionsGetItemRes, dest: FormGroup, mode: FormMode): FormGroup {
+        dest.controls['id'].setValue(src.id);
 		dest.controls['title'].setValue(src.title);
 		dest.controls['shortDescription'].setValue(src.shortDescription);
 		dest.controls['description'].setValue(src.description);
@@ -72,10 +73,10 @@ export class AdminExcursionsMapperService {
 		dest.controls['discount'].setValue(src.discount);
 		dest.controls['discountPrice'].setValue(src.discountPrice);
         dest.controls['seats'].setValue(src.seats);
-		const images = src.images.map(image => this._iExcursionsGetItemImageResToFormControlIExcursionImageModel(image));
+		const images = src.images.map(image => this._iExcursionsGetItemImageResToFormControlIExcursionImageModel(image, mode === FormMode.NEW));
 		(dest.controls['images'] as FormArray).clear();
 		images.forEach(image => (dest.controls['images'] as FormArray).push(image));
-        const pickupPoints = src.pickupPoints.map(this._iExcursionsGetItemPickupPointResToIExcursionPickupPointModel, this);
+        const pickupPoints = src.pickupPoints.map(pickupPoint => this._iExcursionsGetItemPickupPointResToIExcursionPickupPointModel(pickupPoint, mode === FormMode.NEW));
         (dest.controls['pickupPoints'] as FormArray).clear();
         pickupPoints.forEach(pickupPoint => (dest.controls['pickupPoints'] as FormArray).push(pickupPoint));
 		return dest;
@@ -133,14 +134,14 @@ export class AdminExcursionsMapperService {
 		return dest;
 	}
 
-	private _iExcursionsGetItemImageResToFormControlIExcursionImageModel(src: IExcursionsGetItemImageRes): FormControl<IExcursionImageModel | null> {
-		const image = new ExcursionImageModel(src.id, src.excursionId, src.order, src.name, src.type, `data:image/${src.type};base64, ${src.base64}`);
+	private _iExcursionsGetItemImageResToFormControlIExcursionImageModel(src: IExcursionsGetItemImageRes, clearId: boolean = false): FormControl<IExcursionImageModel | null> {
+		let image = new ExcursionImageModel(clearId ? 0 : src.id, src.excursionId, src.order, src.name, src.type, `data:image/${src.type};base64, ${src.base64}`);
 		const dest = new FormControl(image);
 		return dest;
 	}
 
-    private _iExcursionsGetItemPickupPointResToIExcursionPickupPointModel(src: IExcursionsGetItemPickupPointRes): FormControl<IExcursionPickupPointModel | null> {
-        const pickupPoint = new ExcursionPickupPointModel(src.id, src.name);
+    private _iExcursionsGetItemPickupPointResToIExcursionPickupPointModel(src: IExcursionsGetItemPickupPointRes, clearId: boolean = false): FormControl<IExcursionPickupPointModel | null> {
+        const pickupPoint = new ExcursionPickupPointModel(clearId ? undefined : src.id, src.name);
         const dest = new FormControl(pickupPoint);
         return dest;
     }

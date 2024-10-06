@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { AbstractControl, FormArray, FormControl } from '@angular/forms';
 import { ExcursionImageModel, IExcursionImageModel } from 'src/app/modules/excursions/models';
 
@@ -16,7 +16,9 @@ export class AdminExcursionsFormImagesComponent {
 		return (this.formArray.value as Array<IExcursionImageModel>).filter(x => !x.deleted);
 	}
 
-	constructor() { }
+	constructor(
+        private readonly _changeDetectionRef: ChangeDetectorRef
+    ) { }
 
 	onFileChange(event: any): void {
 		const file = event.target.files[0];
@@ -36,6 +38,7 @@ export class AdminExcursionsFormImagesComponent {
 					)
 				) as FormControl<IExcursionImageModel>
 			);
+            this._changeDetectionRef.markForCheck();
 		};
 
 		if (file)
@@ -62,6 +65,7 @@ export class AdminExcursionsFormImagesComponent {
 			images.forEach((image, i) => image.order = i);
 			this.formArray.setValue(images);
 		}
+        this._changeDetectionRef.markForCheck();
 	}
 
 	onDelete(image: IExcursionImageModel) {

@@ -1,4 +1,5 @@
 <div class="admin-excursion-table-view-actions-container" [ngSwitch]="context" [ngClass]="{ 'disabled': !buttonsEnabled }">
+    <img *ngIf="shouldDisplayAction([ContextType.EXCURSIONS_TEMPLATES])" src="assets/icons/plus.svg" class="add" (click)="add.emit()" alt="add">
     <img *ngIf="shouldDisplayAction([ContextType.EXCURSIONS, ContextType.EXCURSIONS_TEMPLATES])" src="assets/icons/edit.svg" class="edit" (click)="edit.emit()" alt="edit">
     <img *ngIf="shouldDisplayAction([ContextType.EXCURSIONS, ContextType.EXCURSIONS_TEMPLATES])" src="assets/icons/delete.svg" class="delete" (click)="delete.emit()" alt="delete">
     <img *ngIf="shouldDisplayAction([ContextType.EXCURSIONS])" src="assets/icons/template.svg" class="template" (click)="template.emit()" alt="template">

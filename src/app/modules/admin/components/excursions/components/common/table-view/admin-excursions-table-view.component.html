@@ -52,7 +52,7 @@
                     <img [src]="excursion.inCarousel ? 'assets/icons/check.svg' : 'assets/icons/close.svg'" [ngClass]="excursion.inCarousel ? 'check': 'close'" alt="in-carousel">
                 </td>
                 <td class="excursion-actions">
-                    <app-admin-excursion-table-view-actions [context]="context" [buttonsEnabled]="buttonsEnabled"
+                    <app-admin-excursion-table-view-actions [context]="context" [buttonsEnabled]="buttonsEnabled" (add)="add.emit(excursion.id)"
                         (edit)="edit.emit(excursion.id)" (delete)="delete.emit(excursion.id)" (template)="template.emit(excursion.id)"
                         (details)="details.emit(excursion.id)">
                     </app-admin-excursion-table-view-actions>

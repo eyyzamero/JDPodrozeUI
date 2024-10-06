@@ -52,10 +52,16 @@ export abstract class AdminExcursionsFormBase implements OnInit {
         ).subscribe({
             next: (params) => {
                 const id = params['id'];
+                const mode = params['mode'];
+
+                if (mode && Object.keys(FormMode).map(x => x.toLowerCase()).includes(mode))
+                    this.mode.set((`${mode}`.toUpperCase()) as FormMode);
 				
                 if (id && !isNaN(id)) {
                     this._getData(+id);
-                    this.mode.set(FormMode.EDIT);
+                    
+                    if (!mode)
+                        this.mode.set(FormMode.EDIT);
                 } else
                     this.state.set(LoadingState.LOADED);
             }
@@ -78,7 +84,7 @@ export abstract class AdminExcursionsFormBase implements OnInit {
 		this.form().updateValueAndValidity();
 
         if (this.form().valid) {
-            this.form().controls['id'].value
+            this.mode() === FormMode.EDIT
 				? this._editExcursion()
 				: this._addExcursion();
 		}
@@ -95,7 +101,7 @@ export abstract class AdminExcursionsFormBase implements OnInit {
         ).subscribe({
             next: (res) => {
                 setTimeout(() => {
-                    this._adminExcursionsMapperService.iExcursionsGetItemResToFormGroup(res, this.form());
+                    this._adminExcursionsMapperService.iExcursionsGetItemResToFormGroup(res, this.form(), this.mode());
                     this.state.set(LoadingState.LOADED);
                 });
             }
