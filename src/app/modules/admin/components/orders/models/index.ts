@@ -1,4 +1,3 @@
-// Do wyjebania
 export * from './excursion/order/participant/iadmin-orders-excursion-order-participant.model';
 export * from './excursion/order/participant/admin-orders-excursion-order-participant.model';
 export * from './excursion/order/iadmin-orders-excursion-order.model';

@@ -39,17 +39,6 @@ export class ExcursionsMapperService {
 		return dest;
 	}
 
-    // TODO - DO WYWALENIA
-	formGroupToIExcursionsEnrollReq(src: FormGroup): IExcursionsEnrollReq {
-		const dest = new ExcursionsEnrollReq(
-			src.controls['excursionId'].value,
-			this.formGroupToIExcursionEnrollPersonReq(src),
-			this.formArrayToArrayOfIExcursionEnrollPersonReq(src.controls['participants'] as FormArray),
-			src.controls['paymentMethod'].value
-		);
-		return dest;
-	}
-
     enrollFormGroupToIExcursionsEnrollReqNew(src: FormGroup, excursionId: number): IExcursionsEnrollReq {
         const dest = new ExcursionsEnrollReq(
             excursionId,
@@ -59,20 +48,6 @@ export class ExcursionsMapperService {
         );
         return dest;
     }
-
-    // TODO DO WYWALENIA
-	formGroupToIExcursionEnrollPersonReq(src: FormGroup): IExcursionEnrollPersonReq {
-		const dest = new ExcursionEnrollPersonReq(
-			this._authDataService.currentValue.data?.Id ?? undefined,
-			src.controls['bookingPersonName'].value,
-			src.controls['bookingPersonSurname'].value,
-			src.controls['bookingPersonEmail'].value,	
-			src.controls['bookingPersonTelephone'].value,
-			this._datesService.ngbDateToDate(src.controls['bookingPersonBirthDate'].value),
-			src.controls['bookingPersonDiscount'].value
-		);
-		return dest;
-	}
 
     enrollFormGroupToIExcursionEnrollPersonReq(src: FormGroup, userId?: number): IExcursionEnrollPersonReq {
         const dest = new ExcursionEnrollPersonReq(
@@ -86,24 +61,6 @@ export class ExcursionsMapperService {
         );
         return dest;
     }
-
-    // TODO DO WYWALENIA
-	formArrayToArrayOfIExcursionEnrollPersonReq(src: FormArray): IExcursionEnrollPersonReq[] {
-		let dest: IExcursionEnrollPersonReq[] = [];
-		(src.value as Array<IExcursionsParticipantModel>).forEach(participant => {
-			const enrollPerson = new ExcursionEnrollPersonReq(
-				undefined,
-				participant.name,
-				participant.surname,
-				undefined,
-				undefined,
-				this._datesService.ngbDateToDate(participant.birthDate),
-				participant.discount
-			);
-			dest.push(enrollPerson);
-		});
-		return dest;
-	}
 
     enrollFormArrayToArrayOfIExcursionEnrollPersonReq(src: FormArray): IExcursionEnrollPersonReq[] {
         const dest = (src.controls as Array<FormGroup>).map(formGroup => this.enrollFormGroupToIExcursionEnrollPersonReq(formGroup, undefined));

@@ -25,7 +25,7 @@ export class ExcursionsCarouselComponent {
 
 	@Input() showNavigationIndicators: boolean = true;
 	@Input() items: IExcursionsCarouselItemModel[] = [];
-    @Input() onClickRedirect: boolean = false;
+    @Input() clickRedirect: boolean = false;
 
 	@Output() onSlide: EventEmitter<NgbSlideEvent> = new EventEmitter<NgbSlideEvent>();
 

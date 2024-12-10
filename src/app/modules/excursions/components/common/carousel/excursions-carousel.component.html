@@ -2,7 +2,7 @@
 	<ngb-carousel #carousel class="excursions-carousel" [interval]="5000"
 		[keyboard]="true" [pauseOnHover]="true" [showNavigationIndicators]="showNavigationIndicators" (slide)="onSlide.emit($event)" role="group">
 		<ng-template *ngFor="let item of items; let i = index" ngbSlide [id]="'image-' + i">
-			<a [routerLink]="onClickRedirect ? ['excursions/details', item.excursionId ] : null" class="image-wrapper">
+			<a [routerLink]="clickRedirect ? ['excursions/details', item.excursionId ] : null" class="image-wrapper">
 				<picture>
 					<source [srcset]="getImage(item.id, Resolution.nHD, ImageExtension.WEBP)" media="(max-width: 1399px)" type="image/webp">
 					<source [srcset]="getImage(item.id, Resolution.FWVGA, ImageExtension.WEBP)" media="(min-width: 1400px)" type="image/webp">
@@ -12,7 +12,7 @@
 						[attr.fetchpriority]="i === 0 ? 'high' : 'auto'" [loading]="i === 0 ? 'eager' : 'lazy'">
 				</picture>
 			</a>
-			<a *ngIf="item.title || item.description" [routerLink]="onClickRedirect ? ['excursions/details', item.excursionId ] : null"  class="carousel-caption">
+			<a *ngIf="item.title || item.description" [routerLink]="clickRedirect ? ['excursions/details', item.excursionId ] : null"  class="carousel-caption">
 				<h3>{{ item.title }}</h3>
 				<p>{{ item.description }}</p>
             </a>
