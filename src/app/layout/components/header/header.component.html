@@ -4,7 +4,8 @@
 			<img src="assets/images/logos/logo_colored_width_200.png" alt="logo" (click)="redirectToHomePage()">
 		</div>
 		<div class="navigation-container">
-			<a *ngFor="let tab of tabs" class="navigation" [ngClass]="{ 'disabled': tab.disabled }" [routerLink]="tab.disabled ? '.' :  tab.path">
+			<a *ngFor="let tab of tabs" class="navigation" [id]="'nav_' + tab.target.toLowerCase() + '_' + tab.name.toLowerCase().replace(' ', '')"
+                [ngClass]="{ 'disabled': tab.disabled }" [routerLink]="tab.disabled ? '.' :  tab.path">
 				<span>{{ tab.name }}</span>
 			</a>
 		</div>

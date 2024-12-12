@@ -1,24 +1,24 @@
 <ul class="header-menu-options-container">
 	<li *ngIf="!auth" class="header-menu-option">
-		<a routerLink="/account/login" class="header-menu-option-link" (click)="onOptionClick()">
+		<a routerLink="/account/login" id="header-menu-option-link-login" class="header-menu-option-link" (click)="onOptionClick()">
 			<img src="assets/icons/login.svg" alt="login">
 			<span>Zaloguj się</span>
 		</a>
 	</li>
 	<li *ngIf="!auth" class="header-menu-option">
-		<a routerLink="/account/register" class="header-menu-option-link" (click)="onOptionClick()">
+		<a routerLink="/account/register" id="header-menu-option-link-register" class="header-menu-option-link" (click)="onOptionClick()">
 			<img src="assets/icons/user-add.svg" alt="user-add">
 			<span>Zarejestuj się</span>
 		</a>
 	</li>
 	<li *ngIf="auth && auth.role === RoleType.ADMINISTRATOR" class="header-menu-option">
-		<a routerLink="/admin" class="header-menu-option-link" (click)="onOptionClick()">
+		<a routerLink="/admin" id="header-menu-option-link-admin-panel" class="header-menu-option-link" (click)="onOptionClick()">
 			<img src="assets/icons/table.svg" alt="table">
 			<span>Panel administracyjny</span>
 		</a>
 	</li>
 	<li *ngIf="auth" class="header-menu-option">
-		<a href="#" class="header-menu-option-link" (click)="logout($event)">
+		<a href="#" id="header-menu-option-link-logout" class="header-menu-option-link" (click)="logout($event)">
 			<img src="assets/icons/logout.svg" alt="logout">
 			<span>Wyloguj się</span>
 		</a>

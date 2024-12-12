@@ -7,7 +7,7 @@
 	<form [formGroup]="form" (ngSubmit)="tryToLogin()">
         <app-login-login-field class="form-field" [control]="getFormControl('login')"></app-login-login-field>
         <app-login-password-field class="form-field" [control]="getFormControl('password')"></app-login-password-field>
-		<button type="submit" [ngClass]="{ 'disabled': loadingState() === LoadingState.LOADING }">
+		<button type="submit" id="login-btn" [ngClass]="{ 'disabled': loadingState() === LoadingState.LOADING }">
 			<div *ngIf="loadingState() === LoadingState.LOADING; else btnText" class="spinner-border" role="status"></div>
 			<ng-template #btnText>
 				<span>Zaloguj</span>

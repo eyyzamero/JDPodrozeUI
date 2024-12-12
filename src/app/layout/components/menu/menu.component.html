@@ -5,19 +5,19 @@
 	</section>
 	<span class="divider"></span>
 	<section class="navigation-container">
-		<a *ngFor="let tab of tabs" class="navigation" [ngClass]="{ 'disabled': tab.disabled }" [routerLink]="tab.disabled ? '.' :  tab.path" (click)="onNavigation()">
+		<a *ngFor="let tab of tabs" class="navigation" [id]="'side-menu-nav-' + tab.name.toLowerCase().replace(' ', '')" [ngClass]="{ 'disabled': tab.disabled }" [routerLink]="tab.disabled ? '.' :  tab.path" (click)="onNavigation()">
 			<span class="text">{{ tab.name }}</span>
 			<app-menu-chevron></app-menu-chevron>
 		</a>
-		<a *ngIf="!auth" class="navigation" routerLink="/account/login" (click)="onNavigation()">
+		<a *ngIf="!auth" id="side-menu-nav-login" class="navigation" routerLink="/account/login" (click)="onNavigation()">
 			<span class="text">Zaloguj się</span>
 			<app-menu-chevron></app-menu-chevron>
 		</a>
-		<a *ngIf="auth" class="navigation" (click)="logout($event)">
+		<a *ngIf="auth" id="side-menu-nav-logout" class="navigation" (click)="logout($event)">
 			<span class="text">Wyloguj się</span>
 			<app-menu-chevron></app-menu-chevron>
 		</a>
-		<a class="navigation" routerLink="/account/register" (click)="onNavigation()">
+		<a class="navigation" id="side-menu-nav-register" routerLink="/account/register" (click)="onNavigation()">
 			<span class="text">Zarejestruj się</span>
 			<app-menu-chevron></app-menu-chevron>
 		</a>
