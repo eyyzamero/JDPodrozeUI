@@ -91,6 +91,11 @@ export class AdminOrdersDetailsComponent implements OnInit {
         });
         addParticipantModal.componentInstance.order = order;
         addParticipantModal.componentInstance.discount = (this.details?.excursion.discountPriceGross ?? 0) > 0;
+
+        addParticipantModal.result.then(result => {
+            if (result === true)
+                this._getData(this.details!.excursion.id);     
+        });
     }
 
     edit(payload: { participant: IAdminOrdersExcursionDetailsParticipantModel, order: IAdminOrdersExcursionDetailsOrderModel }): void {
@@ -102,6 +107,11 @@ export class AdminOrdersDetailsComponent implements OnInit {
         editParticipantModal.componentInstance.order = payload.order;
         editParticipantModal.componentInstance.participant = payload.participant;
         editParticipantModal.componentInstance.discount = (this.details?.excursion.discountPriceGross ?? 0) > 0;
+
+        editParticipantModal.result.then(result => {
+            if (result === true)
+                this._getData(this.details!.excursion.id);     
+        });
     }
 
     enroll(): void {

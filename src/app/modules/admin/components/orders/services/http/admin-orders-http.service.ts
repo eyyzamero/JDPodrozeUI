@@ -17,7 +17,7 @@ export class AdminOrdersHttpService {
 		private readonly _ordersHttpService: OrdersHttpService,
 		private readonly _adminOrdersMapperService: AdminOrdersMapperService,
 		private readonly _adminOrdersDataService: AdminOrdersDataService,
-        private readonly _adminOrdersDetailsDataService: AdminOrdersDetailsDataService
+        private readonly _adminOrdersDetailsDataService: AdminOrdersDetailsDataService,
 	) { }
 
 	getList(req: IOrderGetListReq): void {
@@ -82,6 +82,12 @@ export class AdminOrdersHttpService {
                     : this._adminOrdersDetailsDataService.editParticipant(participant, req.orderId);
             }
         });
+    }
+
+    addOrEditParticipantObservable(req: IOrderParticipantAddOrEditReq): Observable<number | null> {
+        return this._ordersHttpService.addOrEditParticipant(req).pipe(
+            take(1)
+        );
     }
 
     setPickupPointObservable(request: IOrderSetPickupPointReq): Observable<void> {

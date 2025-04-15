@@ -9,6 +9,8 @@ import { ExcursionsEnrollForm } from 'src/app/modules/excursions/components/comm
 import { AdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsOrderModel, IAdminOrdersExcursionDetailsParticipantModel, IAdminOrdersExcursionDetailsPickupPointModel } from '../../../../../models';
 import { ExcursionsMapperService } from 'src/app/modules/excursions/services/mapper/excursions-mapper.service';
 import { AdminOrdersHttpService } from '../../../../../services/http/admin-orders-http.service';
+import { AdminOrdersMapperService } from '../../../../../services/mapper/admin-orders-mapper.service';
+import { AdminOrdersDetailsDataService } from '../../../../../services/data/details/admin-orders-details-data.service';
 
 @Component({
     selector: 'app-admin-orders-details-participant-modal',
@@ -44,7 +46,9 @@ export class AdminOrdersDetailsParticipantModalComponent {
     constructor(
         private readonly _excursionsMapperService: ExcursionsMapperService,
         private readonly _adminOrdersHttpService: AdminOrdersHttpService,
-        private readonly _ngbActiveModal: NgbActiveModal
+        private readonly _ngbActiveModal: NgbActiveModal,
+        private readonly _adminOrdersMapperService: AdminOrdersMapperService,
+        private readonly _adminOrdersDetailsDataService: AdminOrdersDetailsDataService
     ) { }
 
     onCancel(): void {
@@ -58,7 +62,20 @@ export class AdminOrdersDetailsParticipantModalComponent {
         if (this.form.valid && this.loadingState() !== LoadingState.LOADING) {
             this.loadingState.set(LoadingState.LOADING);
             const req = this._excursionsMapperService.participantFormGroupToIOrderParticipantAddOrEditReq(this.form, this.order, this.participantId);
-            this._adminOrdersHttpService.addOrEditParticipant(req);
+            this._adminOrdersHttpService.addOrEditParticipantObservable(req).subscribe({
+                next: (participantId) => {
+                    const participant = this._adminOrdersMapperService.iOrderParticipantAddOrEditReqToAdminOrdersExcursionDetailsParticipantModel(req, participantId);
+                    
+                    participantId
+                        ? this._adminOrdersDetailsDataService.addParticipant(participant, req.orderId)
+                        : this._adminOrdersDetailsDataService.editParticipant(participant, req.orderId);
+
+                    this._ngbActiveModal.close(true);
+                },
+                error: () => {
+                    this.loadingState.set(LoadingState.LOADED);
+                }
+            });
         }
     }
 }

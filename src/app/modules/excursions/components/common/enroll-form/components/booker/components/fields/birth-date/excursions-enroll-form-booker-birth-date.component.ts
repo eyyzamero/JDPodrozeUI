@@ -14,7 +14,7 @@ export class ExcursionsEnrollFormBookerBirthDateComponent extends ExcursionsEnro
     maxDate = new NgbDate(new Date().getFullYear() - 3, new Date().getMonth() + 1, new Date().getDate())
 
     constructor(
-        private _ngbDateFormatterService: NgbDateFormatterService
+        private readonly _ngbDateFormatterService: NgbDateFormatterService
     ) {
         super();
     }
